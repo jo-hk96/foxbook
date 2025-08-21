@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/css/index_sample.css"/>
 <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
 
-<title>BookRen</title>
+<title>FoxStar</title>
 
 </head>
 <body id = "back">
@@ -36,17 +36,17 @@
 		<h3 id = "mainread2">안녕하세요 여우별 도서관 입니다.</h3>	
 		
 			<div class="search-container">
-				    <form class = "search-box" action="/list" method="get">
-				    	<input class ="search-txt" type = "text" name="serach-txt" placeholder="도서명을 입력해주세요.">
+				    <form class = "search-box" action="/BookList" method="get">
+				    	<input class ="search-txt" type = "text" name="search-txt" placeholder="도서명을 입력해주세요.">
 				    	<button class = "search-btn" type ="submit">
 				    		<i class="fa-solid fa-magnifying-glass fa-xl" style="color: #003049;"></i>
 				    	</button>
 				    </form>
 					<table id = "menu2">
 						<tr>
-							<td><a href = "">여우별</a></td>
-							<td><a href = "">안녕하세요</a></td>
-							<td><a href = "">책을 많이 읽으면 복이와요 : )</a></td>
+							<td><a href = "">여우별1</a></td>
+							<td><a href = "">여우별2</a></td>
+							<td><a href = "">여우별3</a></td>
 						</tr>
 					</table>
 			</div>

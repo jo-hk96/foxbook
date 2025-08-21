@@ -1,4 +1,4 @@
-package com.booklist;
+package com.fox;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

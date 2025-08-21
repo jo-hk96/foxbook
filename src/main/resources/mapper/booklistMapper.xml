@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fox.booklist.mapper.BooklistMapper">
+	<select id = "bookList" resultType = "com.fox.booklist.domain.booklistDTO">
+		select YBI_IDX,YBI_SUBJECT,YBI_PUBLI,YBI_NAME,YBI_RENTAL,YBI_INDATE, YBI_DEL
+		from yb_book_info
+		 WHERE YBI_SUBJECT LIKE '%' || #{YBI_SUBJECT} || '%'
+		 order by 1 asc
+	</select>
+	
+	
+</mapper>
