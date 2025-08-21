@@ -1,0 +1,96 @@
+1. BR_USER
+인덱스, 아이디, 비번, 이름, 성별, 연락처, 가입날짜, 권한, 삭제여부
+
+CREATE TABLE BR_USER(
+	BU_IDX			NUMBER(6)  	  PRIMARY KEY NOT NULL, - 삭제
+	BU_USERID 		VARCHAR2(12)  PRIMARY KEY NOT NULL,
+	BU_PASSWD	  	VARCHAR2(12)  NOT NULL,
+	BU_USERNAME     VARCHAR2(30)  NOT NULL,
+	BU_PHONE		VARCHAR2(15)  NOT NULL,
+	BU_INDATE       DATE          DEFAULT SYSDATE,
+	BU_OUTDATE		DATE		  DEFAULT SYSDATE,
+	BU_AUTH	 		CHAR		  NOT NULL,
+	BU_DEL			CHAR		  NOT NULL
+);
+
+  --> BU_IDX 		: 테이블 입력 데이터의 고유 번호
+      BU_USERID 	: 특수문자를 제외한 사용자 아이디
+      BU_PASSWD 	: 사용자의 비밀번호
+      BU_USERNAME   : 사용자의 이름
+      BU_PHONE		: 사용자의 연락처
+      BU_INDATE		: 가입날짜
+      BU_OUTDATE	: 삭제 및 휴먼전환 날짜
+      BU_AUTH		: 권한 플래그 (관리자계정 포함) 
+      	S : 관리자
+      	Y : 일반 사용자
+      	N : 휴먼전환 
+      BU_DEL 		: 탈퇴 플래그 (관리자계정 포함)
+        N : 사용중
+        Y : 삭제     
+
+
+2. BR_BOOK_INFO
+인덱스, 책제목, 저자, 이미지경로, 대여여부, 등록일자, 삭제여부
+
+CREATE TABLE BR_BOOK_INFO(
+	BBI_IDX		NUMBER(6)		PRIMARY KEY NOT NULL,
+	BBI_SUBJECT	VARCHAR2(50)	NOT NULL,
+	BBI_NAME	VARCHAR2(30)	NOT NULL,
+	BBI_PATH	VARCHAR2(100)	,
+	BBI_RENTAL	CHAR			NOT NULL,
+	BBI_INDATE	DATE			DEFAULT SYSDATE,
+	BBI_DEL		CHAR			NOT NULL
+);
+
+  --> BBI_IDX		: 테이블 입력 데이터 고유 번호
+      BBI_SUBJECT	: 책 제목
+      BBI_NAME		: 저자 이름
+      BBI_PATH		: 이미지 경로
+      BBI_RENTAL	: 대여 여부
+      	N : 대여 가능
+      	Y : 대여 중
+      BBI_INDATE	: 책 등록 일자
+      BBI_DEL		: 삭제 플래그
+      	N : 보유
+      	Y : 삭제
+
+
+3. BR_RENTAL_INFO
+인덱스, 대여일자, 반납일자, 확인일자 , 책 고유 인덱스, 유저 아이디
+
+
+CREATE TABLE BR_RENTAL_INFO(
+	BRI_IDX		NUMBER(6)		PRIMARY KEY NOT NULL,
+	BRI_RTDATE	DATE			DEFAULT SYSDATE,
+	BRI_REDATE	DATE			DEFAULT SYSDATE,
+	BBI_IDX		NUMBER(6)		NOT NULL,
+	BU_USERID	VARCHAR2(12)	NOT NULL,
+	
+	CONSTRAINT FK_RENTAL FOREIGN KEY  (BBI_IDX) REFERENCES   BR_BOOK_INFO(BBI_IDX) ,
+    CONSTRAINT FK_BOOK FOREIGN KEY (BU_USERID) REFERENCES  BR_USER(BU_USERID)
+);
+
+
+
+
+
+/*
+CREATE TABLE BR_RENTAL_INFO(
+	BRI_IDX		NUMBER(6)		NOT NULL,
+	BRI_RTDATE	DATE			DEFAULT SYSDATE,
+	BRI_REDATE	DATE			DEFAULT SYSDATE,
+	BBI_IDX		NUMBER(6)		NOT NULL,
+	BU_USERID	VARCHAR2(12)	NOT NULL,
+	
+	CONSTRAINTS   FILES_PK     PRIMARY KEY   -- 기본기(복합키)
+   (
+       BRI_IDX,
+       BBI_IDX,
+       BU_USERID
+   )
+   , CONSTRAINT   FK_BOARD_FILES_IDX
+     FOREIGN KEY  (BBI_IDX,BU_USERID)
+     REFERENCES   BR_BOOK_INFO(BBI_IDX),BR_USER(BU_USERID) 
+     ON  DELETE   CASCADE
+);
+*/
