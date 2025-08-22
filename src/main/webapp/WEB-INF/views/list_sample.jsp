@@ -61,7 +61,8 @@
 							
 						<c:if test="${books.ybi_rental eq 'N'}">	
 								<form action ="/Rent" method ="get">
-									<input type = "hidden" name ="ybi_idx" value = "${books.ybi_idx}">
+									<input type = "hidden" name ="ybi_idx" 		value = "${books.ybi_idx}">
+									<input type = "hidden" name ="yu_userid" 	value = "${session.yu_userid}">
 									<input type = "submit" value = "대여">
 								</form>
 						</c:if>

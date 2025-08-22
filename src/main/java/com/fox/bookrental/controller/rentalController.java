@@ -28,7 +28,7 @@ public class rentalController {
 	public String rental(@RequestParam("ybi_idx") int ybi_idx ,HttpSession session , RedirectAttributes rttr) {
 		booklistDTO bookid = booklistMapper.GetBookId(ybi_idx);
 		if("N".equals(bookid.getYbi_rental())) {
-			String userId = (String) session.getAttribute("userId");
+			String userId = (String) session.getAttribute("yu_userid");
 			rentalDTO rental = new rentalDTO();
 			rental.setYbi_idx(ybi_idx);
 			rental.setYu_userid(userId);
