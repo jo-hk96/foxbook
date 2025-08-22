@@ -8,5 +8,18 @@
 		 order by 1 asc
 	</select>
 	
+	<select id = "GetBookId">
+		select YBI_IDX,YBI_SUBJECT,YBI_PUBLI,YBI_NAME,YBI_RENTAL,YBI_INDATE
+		from yb_book_info
+		 WHERE ybi_idx = #{YBI_IDX}
+	</select>
+	
+	<update id="updateRentalStatus">
+    UPDATE YB_BOOK_INFO
+    SET YBI_RENTAL = #{status}
+    WHERE YBI_IDX = #{ybi_idx}
+	</update>
+	
+	
 	
 </mapper>

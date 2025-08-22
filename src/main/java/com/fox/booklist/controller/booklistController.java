@@ -12,14 +12,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fox.booklist.domain.booklistDTO;
 import com.fox.booklist.mapper.BooklistMapper;
 
-
-
-
 @Controller
 public class booklistController {
-	
+
 	@Autowired
 	private BooklistMapper booklistMapper;
+
+	@RequestMapping("/")
+	public String home() {
+		return "index_sample";
+	}
 	
 	@RequestMapping("/BookList")
 	public String list(@RequestParam("search-txt") String search_txt, Model model) {
@@ -27,27 +29,11 @@ public class booklistController {
 		model.addAttribute("bookList", bookList);
 		return "list_sample";
 	}
-
-	@RequestMapping("/")
-	public String home() {
-		return "index_sample";	
-	}
-	
-	@RequestMapping("/login")
-	public String login() {
-		return "login_sample";
-	}
-	
-	
-	@RequestMapping("/syslist")
-	public String syslist() {
-		return "syslist_sample";
-	}
+	/*
+	 * @RequestMapping("/login") public String login() { return "login_sample"; }
+	 */
 	@RequestMapping("/join")
 	public String join() {
 		return "join_sample";
 	}
-	
-	
-	
 }

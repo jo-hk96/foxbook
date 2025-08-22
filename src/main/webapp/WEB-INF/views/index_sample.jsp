@@ -23,11 +23,19 @@
 		        <span></span>
    			 </div>
 			
-		<div id = "nav-menu">	
-			<a href="/login">로그인</a>
-			<a href="/mypage">내 정보</a>
+		<div id = "nav-menu">
+		<c:if test="${sessionScope.login_id == null}">
+			<a href="/LoginForm">로그인</a>
 			<a href="/join">회원가입</a>
+	   	</c:if>
+		<c:if test="${sessionScope.login_id != null}">
+	   		<a href= "">반갑습니다! ${sessionScope.login_id}님!</a>
+			<a href="/mypage">내 정보</a>
+	   		<a href ="/logout">로그아웃</a>
+	   	</c:if>
+		
 			<a href="/">◐</a>
+			
 		</div>
 	</div>		
 	

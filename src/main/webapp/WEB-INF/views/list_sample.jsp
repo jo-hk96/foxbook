@@ -41,13 +41,15 @@
 		    		<i class="fa-solid fa-magnifying-glass fa-xl" style="color: #003049;"></i>
 		    	</button>
 			</form>
+			
+			
 				<table>
 					<tr>
 						<td>번호</td>
 						<td>책제목</td>
 						<td>출판사</td>
 						<td>저자</td>
-						<td>대여</td>
+						<td>대여하기</td>
 					</tr>
 					<c:forEach var = "books" items = "${bookList}"> 
 						<tr>
@@ -55,7 +57,18 @@
 							<td>${books.ybi_subject}</td>
 							<td>${books.ybi_publi}</td>
 							<td>${books.ybi_name}</td>
-							<td><a href = "/">대여</a></td>
+							<td>
+							
+						<c:if test="${books.ybi_rental eq 'N'}">	
+								<form action ="/Rent" method ="get">
+									<input type = "hidden" name ="ybi_idx" value = "${books.ybi_idx}">
+									<input type = "submit" value = "대여">
+								</form>
+						</c:if>
+						<c:if test="${books.ybi_rental eq 'Y'}">
+						         <span>대여중</span>
+						 </c:if>
+						</td>
 						</tr>
 					</c:forEach>
 			</table>

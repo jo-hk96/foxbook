@@ -156,7 +156,7 @@ main {
 
 
 /*----헤더----*/
-@media (max-width: 576px) { 
+@media (max-width: 780px) { 
 	
 	
     #mainread {
@@ -218,14 +218,14 @@ main {
 
 
 /*--햄버거메뉴--*/
-@media (max-width: 768px) {
+@media (max-width: 780px) {
      #nav-menu {
         visibility: hidden; /* 작은 화면에서 메뉴 숨기기 */
         flex-direction: column;
         position: absolute;
         top: 80px;
         right: 0;
-        background-color: #f0f0f0;
+        background-color: white;
         width: 100%;
         text-align: center;
         padding: 20px 0;

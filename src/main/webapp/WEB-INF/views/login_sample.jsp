@@ -12,9 +12,9 @@
 		<div id="login" >
 			<h2>Login</h2>
 	        <form id="login-form" action="/login" method="post" >
-	            <input type="text" name="user_id" placeholder="아이디">
-	            <input type="password" name="user_pwd" placeholder="비밀번호">
-	            <input type="submit" value="Login"><br />
+	            <input type="text" name="yu_userid" placeholder="아이디">
+	            <input type="password" name="yu_passwd" placeholder="비밀번호">
+	            <input type="submit" value="Login"><br/>
 	            <a href="">회원가입</a>
 	        </form>
 		</div>
