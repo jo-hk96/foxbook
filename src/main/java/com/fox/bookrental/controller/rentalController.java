@@ -31,7 +31,7 @@ public class rentalController {
 			String userId = (String) session.getAttribute("userId");
 			rentalDTO rental = new rentalDTO();
 			rental.setYbi_idx(ybi_idx);
-			rental.setYri_userid(userId);
+			rental.setYu_userid(userId);
 			rentalMapper.insertRental(rental);
 			booklistMapper.updateRentalStatus(ybi_idx, "Y");
 		}
