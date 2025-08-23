@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fox.booklist.domain.booklistDTO;
 import com.fox.booklist.mapper.BooklistMapper;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class booklistController {
 
@@ -24,10 +26,17 @@ public class booklistController {
 	}
 	
 	@RequestMapping("/BookList")
-	public String list(@RequestParam("search-txt") String search_txt, Model model) {
-		List<booklistDTO> bookList = booklistMapper.bookList(search_txt);
+	public String list(@RequestParam("search-txt") String search_txt, HttpSession session, Model model) {
+		String yu_userid = (String) session.getAttribute("login_id");
+		List<booklistDTO> bookList = booklistMapper.bookList(search_txt , yu_userid);
 		model.addAttribute("bookList", bookList);
 		return "list_sample";
 	}
-
+	
+	
+	
+	
+	
+	
+	
 }

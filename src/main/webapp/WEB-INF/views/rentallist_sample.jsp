@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/list_sample.css"/>
-<title>BookRen</title>
+<title>FoxStar</title>
 </head>
 <body>
 	<div id="header">

@@ -8,9 +8,7 @@
 <link rel="stylesheet" href="/css/index_sample.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-
 <title>FoxStar</title>
-
 </head>
 <body id="back">
 
@@ -28,17 +26,13 @@
 					<a href="/join">회원가입</a>
 				</c:if>
 				<c:if test="${sessionScope.login_id != null}">
-					<a href="">반갑습니다! ${sessionScope.login_id}님!</a>
-					<a href="/MyPage">내 정보</a>
+					<a class = "nohover">${sessionScope.login_id}님</a>
+					<a href="/RentalList">내 정보</a>
 					<a href="/logout">로그아웃</a>
 				</c:if>
-
 				<a href="/">◐</a>
-
 			</div>
 		</div>
-
-
 		<h1 id="mainread">잠시 쉬어가는 지식의 요람</h1>
 		<h3 id="mainread2">안녕하세요 여우별 도서관 입니다.</h3>
 		<div class="search-container">

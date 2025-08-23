@@ -1,25 +1,45 @@
 @charset "UTF-8";
+@font-face {
+    font-family: 'GangwonEdu_OTFBoldA';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 * { box-sizing : border-box; padding:0;	margin:0; }
+.search-txt {
+	width:500px;
+    height:50px;
+    }
+    
+.search-btn{width:40px;
+    height:50px;}
+    
 
 #header { border:1px soild gray;  width:100%; }
 #header a { text-align:left; vertical-align:middle; color:gray; font-weight:bold; }
 
 #back{background-color: #EFF7F6;}
+#back{font-family:'GangwonEdu_OTFBoldA' , sans-serif; }
 
-#container { margin:0 auto; padding-top: 20px; background-color:white; width:100%; }
-#left table { float:left; border-collapse: collapse; width:15%; margin-left:50px; }
-#left table tr:nth-of-type(1) { border-bottom:5px solid skyblue; }
-#left table tr { height:50px; border-bottom:1px solid skyblue; }
+#rentalList{font-size:17px;}
+#renList {  border-collapse: collapse;}
+#renList td {padding:10px; border-bottom : 1px solid black;}
 
+#list{font-size :20px;}
+#list{border-collapse:collapse;}
+#list td{padding :10px; border-bottom :1px solid black;}
+	
+/* .search-txt {
+    padding: 10px; 창의 내부 여백을 늘려 크기 키우기
+    font-size: 16px; 글자 크기 키우기
+}
 
+검색 버튼 크기 키우기
+.search-btn {
+    padding: 10px; 버튼의 내부 여백을 늘려 크기 키우기
+    font-size: 18px; 돋보기 아이콘 크기 키우기
+}
+ */
 
-#right table { float:right; border-collapse: collapse; width:70%; margin-right:50px; }
-#right table tr:nth-of-type(1) { border-bottom:5px solid skyblue; }
-#right table tr:nth-of-type(1) input[type="text"] { width:500px; height:44px; text-align:left; font-size:20px; }
-#right table tr:nth-of-type(1) input[type="button"] { width:70px; height:44px; font-size:17px; }
-#right table tr { height:50px; border-bottom:1px solid skyblue; }
-#right table td:nth-of-type(1) { width:15%; text-align:center; }
-#right table td:nth-of-type(2) { width:45%; text-align:left; }
-#right table td:nth-of-type(3) { width:15%; text-align:center; }
-#right table td:nth-of-type(4) { width:15%; text-align:center; }

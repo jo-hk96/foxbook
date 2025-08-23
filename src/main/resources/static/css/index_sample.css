@@ -19,6 +19,8 @@
    		}
 #header a{text-align:center;  color:#003049 ;text-decoration : none; font-size: 30px;}
 #header a:hover{ color:#7BDFF2  }
+#header a.nohover:hover {
+  color: #003049;}
 
 #header a:not(.logo) {
     margin-left: 20px;

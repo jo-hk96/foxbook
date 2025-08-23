@@ -15,36 +15,42 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class rentalController {
-	
-	
 	@Autowired
 	private RentalMapper rentalMapper;
-	
 	@Autowired
 	private BooklistMapper booklistMapper;
 	
-	
+	//대여
 	@RequestMapping("/Rent")
-	public String rental(@RequestParam("ybi_idx") int ybi_idx ,HttpSession session , RedirectAttributes rttr) {
-		booklistDTO bookid = booklistMapper.GetBookId(ybi_idx);
+	public String rental(@RequestParam("ybi_idx") int ybi_idx ,HttpSession session) {
+		//booklistDTO bookid = booklistMapper.GetBookId(ybi_idx);
 		String userId = (String) session.getAttribute("login_id");
+		  
+		rentalDTO rental = new rentalDTO();
+		rental.setYbi_idx(ybi_idx);
+		rental.setYu_userid(userId);
+		rentalMapper.insertRental(rental);
 		
-		//세션의 유저아이디값이 null일 경우
-		 if (userId == null) {
-		        rttr.addFlashAttribute("errorMessage", "로그인이 필요합니다.");
-		        return "redirect:/login"; // 예시: 로그인 페이지로 이동
-		    }
-		 
-		 
-		//yb_book_info 의ybi_rental의 값이 n과 같은경우 대여 후 n -> y 바꿈
-		if("N".equals(bookid.getYbi_rental())) {
-			rentalDTO rental = new rentalDTO();
-			rental.setYbi_idx(ybi_idx);
-			rental.setYu_userid(userId);
-			rentalMapper.insertRental(rental);
-			booklistMapper.updateRentalStatus(ybi_idx, "Y");
-	}
-		return "redirect:/";
+		//Rental 값이 N일경우 로직 실행
+		//if("N".equals(bookid.getYbi_rental())) {
+			//booklistMapper.updateRentalStatus(ybi_idx, "Y");
+		//}
+		return "redirect:/RentalList";
 	
-	}	
+	}
+		//반납
+		@RequestMapping("/ReturnBook")
+		public String Returnbook(rentalDTO rentalDTO , HttpSession session , RedirectAttributes re) {
+		//login_id : userid를 저장한 세션를 변수에 저장
+		String yu_userid = (String) session.getAttribute("login_id");
+		
+		
+		rentalDTO.setYu_userid(yu_userid);
+		rentalMapper.updateRental(rentalDTO);
+		//booklistMapper.updateRentalStatus(rentalDTO.getYbi_idx(), "N");
+		re.addFlashAttribute("returnSuccecs", "반납이 완료되었습니다.");
+		return "redirect:/RentalList";	
+	}
+	
+	
 }

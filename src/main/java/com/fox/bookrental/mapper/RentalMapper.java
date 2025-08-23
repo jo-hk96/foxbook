@@ -12,4 +12,6 @@ public interface RentalMapper {
 
 	void insertRental(rentalDTO rental);
 	
+	void updateRental(rentalDTO rentalDTO);
+	
 }

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fox.bookrental.mapper.RentalMapper">
+	
+	
+	<!--대여한책 정보 저장-->
 	<insert id = "insertRental">
 		insert into yb_rental_info (yri_idx , yri_rtdate, ybi_idx, yu_userid)
 		values(
@@ -9,6 +12,12 @@
 		)
 	</insert>
 	
+	<!-- 반납일저장 -->
+	<update id="updateRental">
+	    UPDATE yb_rental_info	
+	    SET YRI_REDATE = sysdate
+	    WHERE YU_USERID = #{yu_userid} AND YBI_IDX = #{ybi_idx} AND YRI_REDATE IS NULL
+	</update>
 
 
 </mapper>

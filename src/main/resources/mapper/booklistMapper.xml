@@ -4,10 +4,14 @@
 	
 	<!--책 제목으로 리스트 검색 쿼리-->
 	<select id = "bookList" resultType = "com.fox.booklist.domain.booklistDTO">
-		select YBI_IDX,YBI_SUBJECT,YBI_PUBLI,YBI_NAME,YBI_RENTAL,YBI_INDATE, YBI_DEL
-		from yb_book_info
-		 WHERE YBI_SUBJECT LIKE '%' || #{YBI_SUBJECT} || '%'
-		 order by 1 asc
+		select YBI.YBI_IDX, YBI.YBI_SUBJECT, YBI.YBI_PUBLI, YBI.YBI_NAME, YBI.YBI_RENTAL, YBI.YBI_INDATE, YBI.YBI_DEL,
+		DECODE(MAX(CASE WHEN YRI.YU_USERID = #{yu_userid} AND YRI.YRI_REDATE IS NULL THEN 'RENTED' ELSE NULL END), 'RENTED', '대여중', '대여가능')  as rentalst
+		FROM yb_book_info YBI
+		LEFT JOIN yb_rental_info YRI ON YBI.ybi_idx = YRI.ybi_idx
+		WHERE YBI.YBI_SUBJECT LIKE '%' || #{search-txt} || '%'
+		GROUP BY
+		YBI.YBI_IDX, YBI.YBI_SUBJECT, YBI.YBI_PUBLI, YBI.YBI_NAME, YBI.YBI_RENTAL, YBI.YBI_INDATE, YBI.YBI_DEL
+		ORDER BY YBI.YBI_IDX asc
 	</select>
 	
 	
@@ -18,21 +22,39 @@
 		 WHERE ybi_idx = #{YBI_IDX}
 	</select>
 	
-	<!-- 해당하는 idx값의 렌탈 정보 변경 ( n , y) -->
+	<!-- 해당하는 idx값의 렌탈 정보 변경 ( n , y)
 	<update id="updateRentalStatus">
     UPDATE YB_BOOK_INFO
     SET YBI_RENTAL = #{status}
     WHERE YBI_IDX = #{ybi_idx}
 	</update>
+	-->
 	
 	
+	<!-- 대여중인 책 리스트 -->
 	<select id = "rentalList">
-		SELECT YBI.YBI_IDX, YBI.YBI_SUBJECT, YBI.ybi_publi, YBI.YBI_NAME, to_char(YRI.YRI_RTDATE,'YYYY-MM-DD') YRI_RTDATE, DECODE(to_char(YRI.YRI_REDATE,'YYYY-MM-DD'),NULL,'-',to_char(YRI.YRI_REDATE,'YYYY-MM-DD')) YRI_REDATE
+		SELECT YBI.YBI_IDX, YBI.YBI_SUBJECT, YBI.ybi_publi, YBI.YBI_NAME, to_char(YRI.YRI_RTDATE,'YYYY-MM-DD AM HH:MI') YRI_RTDATE, 
+		DECODE(to_char(YRI.YRI_REDATE,'YYYY-MM-DD AM HH:MI'),NULL,'대여중',to_char(YRI.YRI_REDATE,'YYYY-MM-DD AM HH:MI')) YRI_REDATE
       FROM YB_BOOK_INFO YBI, YB_RENTAL_INFO YRI
       WHERE YRI.YU_USERID= #{yu_userid} AND YBI.YBI_IDX = YRI.YBI_IDX
-      ORDER BY ybi_idx asc
+       <if test="searchTxt != null and searchTxt != ''">
+        	AND YBI.YBI_SUBJECT LIKE '%' || #{searchTxt} || '%'
+   	 	</if>
+      ORDER BY yri_redate desc
 	</select>
 
-	
-	
+
+
+	<!-- 대여내역 검색 -->
+	<select id = "RentalSearch">
+		SELECT
+	    YBI.YBI_IDX, 
+	    YBI.YBI_SUBJECT, 
+	    YBI.YBI_NAME, 
+	    YBI.YBI_PUBLI
+		FROM YB_BOOK_INFO YBI
+		JOIN YB_RENTAL_INFO YRI ON YBI.YBI_IDX = YRI.YBI_IDX
+		WHERE YRI.YU_USERID = #{yu_userid}
+		AND YBI.YBI_SUBJECT LIKE '%' || #{YBI_subject} '%'
+	</select>
 </mapper>

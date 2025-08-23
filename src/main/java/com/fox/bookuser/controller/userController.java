@@ -58,10 +58,13 @@ public class userController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping("/MyPage")
-	public String mypage(HttpSession session ,  Model model) {
+	
+	//대여내역 리스트
+	@RequestMapping("/RentalList")
+	//파라미터값에 searchTxt가 들어가지않아도 페이지가 열림
+	public String mypage(@RequestParam(value = "searchTxt", required = false) String searchTxt , HttpSession session ,  Model model) {
 		String yu_userid = (String) session.getAttribute("login_id");
-		List<rentalDTO> rentalList = booklistMapper.rentalList(yu_userid);
+		List<rentalDTO> rentalList = booklistMapper.rentalList(yu_userid , searchTxt);
 		
 		//유저아이디가 null일경우 = 로그인을 하지 않은 경우
 		if(yu_userid == null) {
@@ -69,7 +72,8 @@ public class userController {
 		}
 		//mypage 의 rentalList 담긴 rentalDTO 리스트를 보냄
 		model.addAttribute("rentalList" , rentalList);
-		return "mypage";
+		model.addAttribute("yu_userid", yu_userid);
+		return "rentalList";
 	}
 	
 	
