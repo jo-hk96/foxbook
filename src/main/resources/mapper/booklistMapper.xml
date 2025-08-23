@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fox.booklist.mapper.BooklistMapper">
+	
+	<!--책 제목으로 리스트 검색 쿼리-->
 	<select id = "bookList" resultType = "com.fox.booklist.domain.booklistDTO">
 		select YBI_IDX,YBI_SUBJECT,YBI_PUBLI,YBI_NAME,YBI_RENTAL,YBI_INDATE, YBI_DEL
 		from yb_book_info
@@ -8,18 +10,29 @@
 		 order by 1 asc
 	</select>
 	
+	
+	<!-- 책번호로 책 검색  -->
 	<select id = "GetBookId">
 		select YBI_IDX,YBI_SUBJECT,YBI_PUBLI,YBI_NAME,YBI_RENTAL,YBI_INDATE
 		from yb_book_info
 		 WHERE ybi_idx = #{YBI_IDX}
 	</select>
 	
+	<!-- 해당하는 idx값의 렌탈 정보 변경 ( n , y) -->
 	<update id="updateRentalStatus">
     UPDATE YB_BOOK_INFO
     SET YBI_RENTAL = #{status}
     WHERE YBI_IDX = #{ybi_idx}
 	</update>
 	
+	
+	<select id = "rentalList">
+		SELECT YBI.YBI_IDX, YBI.YBI_SUBJECT, YBI.ybi_publi, YBI.YBI_NAME, to_char(YRI.YRI_RTDATE,'YYYY-MM-DD') YRI_RTDATE, DECODE(to_char(YRI.YRI_REDATE,'YYYY-MM-DD'),NULL,'-',to_char(YRI.YRI_REDATE,'YYYY-MM-DD')) YRI_REDATE
+      FROM YB_BOOK_INFO YBI, YB_RENTAL_INFO YRI
+      WHERE YRI.YU_USERID= #{yu_userid} AND YBI.YBI_IDX = YRI.YBI_IDX
+      ORDER BY ybi_idx asc
+	</select>
+
 	
 	
 </mapper>

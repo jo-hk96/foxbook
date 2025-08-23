@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.fox.booklist.domain.booklistDTO;
+import com.fox.bookrental.domain.rentalDTO;
 
 @Mapper
 public interface BooklistMapper {
@@ -15,8 +16,10 @@ public interface BooklistMapper {
 	 
 	 booklistDTO GetBookId(int bookId);
 
-	void updateRentalStatus(int ybi_idx, String string);
+	void updateRentalStatus(int ybi_idx, String status);
 	 
+	
+	List<rentalDTO> rentalList(@Param("yu_userid") String yu_userid);
 
 	
 	

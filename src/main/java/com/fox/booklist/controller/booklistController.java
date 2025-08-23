@@ -29,11 +29,5 @@ public class booklistController {
 		model.addAttribute("bookList", bookList);
 		return "list_sample";
 	}
-	/*
-	 * @RequestMapping("/login") public String login() { return "login_sample"; }
-	 */
-	@RequestMapping("/join")
-	public String join() {
-		return "join_sample";
-	}
+
 }

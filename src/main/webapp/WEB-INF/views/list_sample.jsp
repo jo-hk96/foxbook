@@ -11,7 +11,7 @@
 </head>
 <body id = "back">
 	<div id="header">
-		<a href="/"><img src="/images/index/Blogo.png" height="60" alt="Logo"/></a>
+		<a href="/"><img src="/images/index/Blogo.png" height="40" alt="Logo"/></a>
 	</div>
 	
 	<!--
@@ -41,8 +41,6 @@
 		    		<i class="fa-solid fa-magnifying-glass fa-xl" style="color: #003049;"></i>
 		    	</button>
 			</form>
-			
-			
 				<table>
 					<tr>
 						<td>번호</td>
@@ -62,13 +60,14 @@
 						<c:if test="${books.ybi_rental eq 'N'}">	
 								<form action ="/Rent" method ="get">
 									<input type = "hidden" name ="ybi_idx" 		value = "${books.ybi_idx}">
-									<input type = "hidden" name ="yu_userid" 	value = "${session.yu_userid}">
 									<input type = "submit" value = "대여">
 								</form>
 						</c:if>
+					
 						<c:if test="${books.ybi_rental eq 'Y'}">
 						         <span>대여중</span>
 						 </c:if>
+						 
 						</td>
 						</tr>
 					</c:forEach>

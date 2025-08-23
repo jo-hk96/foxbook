@@ -9,4 +9,7 @@ public class rentalDTO {
 	private String yri_rtdate; // 대여시작일
 	private String yri_redate; // 반납일
 	private String yu_userid; //사용자 ID
+	private String ybi_subject;
+	private String ybi_publi;
+	private String ybi_name;
 }
