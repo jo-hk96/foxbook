@@ -26,7 +26,6 @@
 			<table id = "renList">
 					<h2>${yu_userid}님의 대여 내역</h2>
 						<tr>
-							<td>번호</td>
 							<td>책번호</td>
 							<td>책제목</td>
 							<td>출판사</td>
@@ -38,7 +37,6 @@
 						</tr>
 					<c:forEach var = "rentals" items = "${rentalList}" varStatus = "loop"> 
 						<tr>
-								<td>${rentalList.size() - loop.index}</td>
 								<td>${rentals.ybi_idx}</td>
 								<td>${rentals.ybi_subject}</td>
 								<td>${rentals.ybi_publi}</td>

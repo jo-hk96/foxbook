@@ -26,7 +26,7 @@
 					<a href="/join">회원가입</a>
 				</c:if>
 				<c:if test="${sessionScope.login_id != null}">
-					<a class = "nohover">${sessionScope.login_id}님</a>
+					<a class = "nohover">${sessionScope.login_id}님 반갑습니다!</a>
 					<a href="/RentalList">내 정보</a>
 					<a href="/logout">로그아웃</a>
 				</c:if>
@@ -44,9 +44,9 @@
 				</form>
 			<table id="menu2">
 				<tr>
-					<td><a href="">#</a></td>
-					<td><a href="">#</a></td>
-					<td><a href="">#</a></td>
+					<td><a href="">공지사항</a></td>
+					<td><a href="">📖</a></td>
+					<td><a href="">📖</a></td>
 				</tr>
 			</table>
 		</div>

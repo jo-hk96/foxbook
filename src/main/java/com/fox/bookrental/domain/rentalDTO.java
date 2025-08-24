@@ -12,4 +12,5 @@ public class rentalDTO {
 	private String ybi_subject;
 	private String ybi_publi;
 	private String ybi_name;
+	
 }
