@@ -8,10 +8,10 @@
 		DECODE(MAX(CASE WHEN YRI.YU_USERID = #{yu_userid} AND YRI.YRI_REDATE IS NULL THEN 'RENTED' ELSE NULL END), 'RENTED', '대여중', '대여가능')  as rentalst
 		FROM yb_book_info YBI
 		LEFT JOIN yb_rental_info YRI ON YBI.ybi_idx = YRI.ybi_idx
-		WHERE YBI.YBI_SUBJECT LIKE '%' || #{search-txt} || '%'
+		WHERE YBI.YBI_SUBJECT LIKE '%' || #{keyword} || '%'
 		GROUP BY
 		YBI.YBI_IDX, YBI.YBI_SUBJECT, YBI.YBI_PUBLI, YBI.YBI_NAME, YBI.YBI_RENTAL, YBI.YBI_INDATE, YBI.YBI_DEL
-		ORDER BY YBI.YBI_IDX asc
+		ORDER BY YBI.YBI_IDX desc
 	</select>
 	
 	
@@ -21,6 +21,7 @@
 		from yb_book_info
 		 WHERE ybi_idx = #{YBI_IDX}
 	</select>
+	
 	
 	<!-- 해당하는 idx값의 렌탈 정보 변경 ( n , y)
 	<update id="updateRentalStatus">
@@ -37,13 +38,12 @@
 		DECODE(to_char(YRI.YRI_REDATE,'YYYY-MM-DD AM HH:MI'),NULL,'대여중',to_char(YRI.YRI_REDATE,'YYYY-MM-DD AM HH:MI')) YRI_REDATE
       FROM YB_BOOK_INFO YBI, YB_RENTAL_INFO YRI
       WHERE YRI.YU_USERID= #{yu_userid} AND YBI.YBI_IDX = YRI.YBI_IDX
-       <if test="searchTxt != null and searchTxt != ''">
-        	AND YBI.YBI_SUBJECT LIKE '%' || #{searchTxt} || '%'
-   	 	</if>
+       <if test="params.keyword != null and params.keyword != ''">
+        AND YBI.YBI_SUBJECT LIKE '%' || #{params.keyword} || '%'
+    </if>
       ORDER BY yri_redate desc
+    OFFSET #{params.offset} ROWS FETCH NEXT #{params.recordSize} ROWS ONLY
 	</select>
-
-
 
 	<!-- 대여내역 검색 -->
 	<select id = "RentalSearch">
@@ -57,4 +57,5 @@
 		WHERE YRI.YU_USERID = #{yu_userid}
 		AND YBI.YBI_SUBJECT LIKE '%' || #{YBI_subject} '%'
 	</select>
+	
 </mapper>

@@ -17,7 +17,7 @@
 	
 		<div id = "rental">
 			 <form class = "search-box" action="/RentalList" method="get">
-		    	<input class ="search-txt" type = "text" name="searchTxt" placeholder="대여한 도서명을 입력해주세요.">
+		    	<input class ="search-txt" type = "text" name="keyword" placeholder="대여한 도서명을 입력해주세요.">
 		    	<button class = "search-btn" type ="submit">
 		    		<i class="fa-solid fa-magnifying-glass fa-xl" style="color: #003049;"></i>
 		    	</button>
@@ -38,7 +38,7 @@
 						</tr>
 					<c:forEach var = "rentals" items = "${rentalList}" varStatus = "loop"> 
 						<tr>
-								<td>${loop.count}</td>
+								<td>${rentalList.size() - loop.index}</td>
 								<td>${rentals.ybi_idx}</td>
 								<td>${rentals.ybi_subject}</td>
 								<td>${rentals.ybi_publi}</td>
@@ -66,8 +66,8 @@
 	    if (message) {
 	        alert(message);
 	    }
-</script>	
+</script>		
 		
-		
+		<%@include file = "/WEB-INF/include/pagingRentalList.jsp" %>
 </body>
 </html>

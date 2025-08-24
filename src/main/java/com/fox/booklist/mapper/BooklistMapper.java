@@ -7,20 +7,18 @@ import org.apache.ibatis.annotations.Param;
 
 import com.fox.booklist.domain.booklistDTO;
 import com.fox.bookrental.domain.rentalDTO;
+import com.fox.paging.domain.SearchDTO;
 
 @Mapper
 public interface BooklistMapper {
 	
 	 //책 검색 리스트
-	 List<booklistDTO> bookList(@Param("search-txt") String search, String yu_userid);
+	 List<booklistDTO> bookList(@Param("keyword") String keyword, String yu_userid);
 	 
 	 booklistDTO GetBookId(int bookId);
 
 	 void updateRentalStatus(int ybi_idx, String status);
 	
-	 List<rentalDTO> rentalList(@Param("yu_userid") String yu_userid, @Param("searchTxt") String searchTxt);
-
-	
-	
-	
+	 
+	 List<rentalDTO> rentalList(@Param("params") SearchDTO params, @Param("yu_userid") String yu_userid);
 }

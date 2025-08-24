@@ -15,7 +15,7 @@
 	</div>
 			<div>
 				 <form class = "search-box" action="/BookList" method="get">
-			    	<input class ="search-txt" type = "text" name="search-txt" placeholder="도서명을 입력해주세요.">
+			    	<input class ="search-txt" type = "text" name = "keyword"  placeholder="도서명을 입력해주세요.">
 			    	<button class = "search-btn" type ="submit">
 			    		<i class="fa-solid fa-magnifying-glass fa-xl" style="color: #003049;"></i>
 			    	</button>
@@ -41,7 +41,7 @@
 												<input type = "hidden" name ="ybi_idx" 		value = "${books.ybi_idx}">
 												<input type = "submit" value = "대여하기">
 											</form>
-									</c:if>
+									</c:if> 
 									<c:if test="${books.rentalst eq '대여중'}">
 									        <form action="/ReturnBook" method="get">
 												<input type="hidden" name="ybi_idx" value="${books.ybi_idx}">
@@ -52,7 +52,8 @@
 						</tr>
 					</c:forEach>
 			</table>
-			
 		</div>
+		
+		<%@include file = "/WEB-INF/include/paging.jsp" %>
 </body>
 </html>

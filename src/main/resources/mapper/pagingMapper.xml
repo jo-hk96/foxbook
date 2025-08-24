@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fox.paging.mapper.PagingMapper">
+	<select id="count">
+		SELECT COUNT(*)
+	    FROM YB_BOOK_INFO
+	    WHERE 1=1
+	    <if test="keyword != null and keyword != ''">
+	        AND (YBI_SUBJECT LIKE '%' || #{keyword} || '%'
+	             OR YBI_NAME LIKE '%' || #{keyword} || '%')
+	    </if>
+	</select>
+	
+	<select id="getBookList" resultType="com.fox.booklist.domain.booklistDTO">
+    SELECT 
+        YBI.YBI_IDX, 
+        YBI.YBI_SUBJECT, 
+        YBI.YBI_PUBLI, 
+        YBI.YBI_NAME, 
+        YBI.YBI_RENTAL, 
+        YBI.YBI_INDATE, 
+        YBI.YBI_DEL,
+        DECODE(MAX(CASE WHEN YRI.YU_USERID = #{yu_userid} AND YRI.YRI_REDATE IS NULL THEN 'RENTED' ELSE NULL END), 'RENTED', '대여중', '대여가능')  as rentalst
+    FROM yb_book_info YBI
+    LEFT JOIN yb_rental_info YRI ON YBI.ybi_idx = YRI.ybi_idx
+    <where>
+        <if test="params.keyword != null and params.keyword != ''">
+            YBI.YBI_SUBJECT LIKE '%' || #{params.keyword} || '%'
+        </if>
+    </where>
+    GROUP BY
+    YBI.YBI_IDX, YBI.YBI_SUBJECT, YBI.YBI_PUBLI, YBI.YBI_NAME, YBI.YBI_RENTAL, YBI.YBI_INDATE, YBI.YBI_DEL
+    ORDER BY YBI.YBI_IDX desc
+    OFFSET #{params.offset} ROWS FETCH NEXT #{params.recordSize} ROWS ONLY
+</select>
+</mapper>
