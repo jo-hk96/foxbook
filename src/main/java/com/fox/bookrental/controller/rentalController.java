@@ -35,7 +35,7 @@ public class rentalController {
 		//if("N".equals(bookid.getYbi_rental())) {
 			//booklistMapper.updateRentalStatus(ybi_idx, "Y");
 		//}
-		return "redirect:/RentalList";
+		return "redirect:/BookList?keyword=";
 	
 	}
 		//반납

@@ -20,7 +20,7 @@
         YBI.YBI_RENTAL, 
         YBI.YBI_INDATE, 
         YBI.YBI_DEL,
-        DECODE(MAX(CASE WHEN YRI.YU_USERID = #{yu_userid} AND YRI.YRI_REDATE IS NULL THEN 'RENTED' ELSE NULL END), 'RENTED', '대여중', '대여가능')  as rentalst
+      CASE when max(CASE WHEN YRI.YU_USERID = #{yu_userid} AND YRI.YRI_REDATE IS NULL THEN 'RENTED' ELSE NULL END) = 'RENTED' THEN '대여중' ELSE '대여가능' END as rentalst
     FROM yb_book_info YBI
     LEFT JOIN yb_rental_info YRI ON YBI.ybi_idx = YRI.ybi_idx
     <where>

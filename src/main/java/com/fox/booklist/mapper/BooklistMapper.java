@@ -21,4 +21,6 @@ public interface BooklistMapper {
 	
 	 
 	 List<rentalDTO> rentalList(@Param("params") SearchDTO params, @Param("yu_userid") String yu_userid);
+
+	 List<rentalDTO> returnList(@Param("params") SearchDTO params, @Param("yu_userid") String yu_userid);
 }

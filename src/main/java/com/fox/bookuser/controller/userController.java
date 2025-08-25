@@ -65,7 +65,7 @@ public class userController {
 	//대여내역 리스트
 	@RequestMapping("/RentalList")
 	//파라미터값에 searchTxt가 들어가지않아도 페이지가 열림
-	public String mypage(String searchTxt , SearchDTO params, HttpSession session ,  Model model) {
+	public String rentalList(String searchTxt , SearchDTO params, HttpSession session ,  Model model) {
 		String yu_userid = (String) session.getAttribute("login_id");
 		List<rentalDTO> rentalList = booklistMapper.rentalList(params, yu_userid);
 		 // 1. 대여 목록의 총 개수 조회
@@ -73,11 +73,6 @@ public class userController {
 		//pagination 객체 생성
 		Pagination pagination = new Pagination(totalCount , params);
 		params.setPagination(pagination);
-		
-		
-		System.out.println("매퍼에 전달되는 offset: " + params.getOffset());
-		System.out.println("매퍼에 전달되는 recordSize: " + params.getRecordSize());
-		//페이지네이션 정보와 사용자 id 로 대여목록 조회
 	    
 		//mypage 의 rentalList 담긴 rentalDTO 리스트를 보냄
 		model.addAttribute("searchDTO", params);
@@ -85,8 +80,6 @@ public class userController {
 		model.addAttribute("yu_userid", yu_userid);
 		return "rentalList";
 	}
-	
-	
 	
 	
 	

@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%-- 
-<c:set var ="startnum" value = "${SearchDTO.pagination.startPage}"/>
-<c:set var ="endnum" value = "${SearchDTO.pagination.endPage}"/>
-<c:set var ="totalpageconut" value = "${SearchDTO.pagination.totalPageCount}"/>
- --%>
 <div id="paging">
 	<table>
 		<tr>

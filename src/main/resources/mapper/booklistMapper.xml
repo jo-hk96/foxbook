@@ -3,7 +3,7 @@
 <mapper namespace="com.fox.booklist.mapper.BooklistMapper">
 	
 	<!--책 제목으로 리스트 검색 쿼리-->
-	<select id = "bookList" resultType = "com.fox.booklist.domain.booklistDTO">
+	<!-- <select id = "bookList" resultType = "com.fox.booklist.domain.booklistDTO">
 		select  YBI.YBI_IDX, YBI.YBI_SUBJECT, YBI.YBI_PUBLI, YBI.YBI_NAME, YBI.YBI_RENTAL, YBI.YBI_INDATE, YBI.YBI_DEL,
 		DECODE(MAX(CASE WHEN YRI.YU_USERID = #{yu_userid} AND YRI.YRI_REDATE IS NULL THEN 'RENTED' ELSE NULL END), 'RENTED', '대여중', '대여가능')  as rentalst
 		FROM yb_book_info YBI
@@ -13,7 +13,7 @@
 		YBI.YBI_IDX, YBI.YBI_SUBJECT, YBI.YBI_PUBLI, YBI.YBI_NAME, YBI.YBI_RENTAL, YBI.YBI_INDATE, YBI.YBI_DEL
 		ORDER BY YBI.YBI_IDX desc
 	</select>
-	
+	 -->
 	
 	<!-- 책번호로 책 검색  -->
 	<select id = "GetBookId">
@@ -44,6 +44,7 @@
       ORDER BY yri_redate desc
     OFFSET #{params.offset} ROWS FETCH NEXT #{params.recordSize} ROWS ONLY
 	</select>
+	
 
 	<!-- 대여내역 검색 -->
 	<select id = "RentalSearch">
@@ -57,5 +58,10 @@
 		WHERE YRI.YU_USERID = #{yu_userid}
 		AND YBI.YBI_SUBJECT LIKE '%' || #{YBI_subject} '%'
 	</select>
+	
+	
+	
+	
+	
 	
 </mapper>

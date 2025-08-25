@@ -1,16 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%-- 
-<c:set var ="startnum" value = "${SearchDTO.pagination.startPage}"/>
-<c:set var ="endnum" value = "${SearchDTO.pagination.endPage}"/>
-<c:set var ="totalpageconut" value = "${SearchDTO.pagination.totalPageCount}"/>
- --%>
- 
- 
 <div id="paging">
-	<table>
+
+<style>
+	#page{font-size : 25px;}
+</style>
+	<table id = "page">
 		<tr>
 			<c:if test="${searchDTO.pagination.existPrevPage}">
 			<td><a href="/RentalList?page=1&keyword=${searchDTO.keyword}">맨처음</a></td>		

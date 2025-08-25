@@ -13,10 +13,11 @@
 <body id="back">
 
 	<main>
+		<!--맨윗단 헤더 -->
 		<div id="header">
 			<a href="/" class="logo"><img src="/images/index/Blogo.png"
 				id="logoimg" height="40" alt="Logo" /></a>
-
+				
 			<div id="burger-menu">
 				<span></span> <span></span> <span></span>
 			</div>
@@ -33,6 +34,8 @@
 				<a href="/">◐</a>
 			</div>
 		</div>
+		
+		<!--메인글,검색창 -->
 		<h1 id="mainread">잠시 쉬어가는 지식의 요람</h1>
 		<h3 id="mainread2">안녕하세요 여우별 도서관 입니다.</h3>
 		<div class="search-container">
@@ -51,12 +54,17 @@
 			</table>
 		</div>
 	</main>
+	
+	<!--푸터 -->
 	<footer>
 		<div id="footer">
 			<span>부산광역시 못골번영로56번길 8</span><br> <span>Copyright © 2025
 				FoxStar Library. All rights reserved.</span><br>
 		</div>
 	</footer>
+	
+	
+	<!--햄버거메뉴스크립트 -->
 	<script>
    		document.addEventListener('DOMContentLoaded', function() {
         const burgerMenu = document.getElementById('burger-menu');

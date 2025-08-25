@@ -17,11 +17,11 @@
 	
 		<div id = "rental">
 			 <form class = "search-box" action="/RentalList" method="get">
-		    	<input class ="search-txt" type = "text" name="keyword" placeholder="대여한 도서명을 입력해주세요.">
+		    	<input class ="search-txt" type = "text" name="keyword" placeholder="반납/대여한 도서명을 입력해주세요.">
 		    	<button class = "search-btn" type ="submit">
 		    		<i class="fa-solid fa-magnifying-glass fa-xl" style="color: #003049;"></i>
 		    	</button>
-			</form>
+			</form> 
 			
 			<table id = "renList">
 					<h2>${yu_userid}님의 대여 내역</h2>
@@ -31,9 +31,8 @@
 							<td>출판사</td>
 							<td>저자</td>
 							<td>대여한날짜</td>
-							<td>반납한날짜</td>
+							<td>반납여부</td>
 							<td>대여/반납</td>
-							
 						</tr>
 					<c:forEach var = "rentals" items = "${rentalList}" varStatus = "loop"> 
 						<tr>
@@ -49,23 +48,22 @@
 											<input type="hidden" name="ybi_idx" value="${rentals.ybi_idx}">
 											<input type ="submit" id = "returnbook" name = "returnbook" value = "반납하기" >
 										</form>
-									</c:if>	
+									</c:if>
+									
 									<c:if test = "${not empty rentals.yri_redate and rentals.yri_redate ne '대여중'}">
-										<span>반납완료</span>
+											<span class="returned-status">반납완료</span>
 									</c:if>	
 								</td>
 						</tr>
 					</c:forEach>
 			</table>
-		</div>
-<script>
-    // ReturnBook 반납완료 메시지
-    let message = "${returnSuccecs}";
-	    if (message) {
-	        alert(message);
-	    }
-</script>		
-		
+			<script>
+			    // ReturnBook 반납완료 메시지
+			    let message = "${returnSuccecs}";
+				    if (message) {
+				        alert(message);
+				    }
+			</script>	
 		<%@include file = "/WEB-INF/include/pagingRentalList.jsp" %>
 </body>
 </html>
