@@ -13,7 +13,7 @@
 <body id="back">
 
 	<main>
-		<!--맨윗단 헤더 -->
+		<!--헤더 -->
 		<div id="header">
 			<a href="/" class="logo"><img src="/images/index/Blogo.png"
 				id="logoimg" height="40" alt="Logo" /></a>

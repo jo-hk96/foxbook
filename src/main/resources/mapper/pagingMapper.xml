@@ -11,6 +11,28 @@
 	    </if>
 	</select>
 	
+	
+	<select id="returnCount" resultType="int">
+		SELECT 
+		    COUNT(*)
+		FROM yb_book_info ybi, yb_rental_info yri 
+		WHERE 
+		    yri.yu_userid = #{yu_userid} 
+		    AND ybi.ybi_idx = yri.ybi_idx
+		    AND yri.yri_redate IS NOT NULL
+	</select>
+	
+	<select id="rentalCount" resultType="int">
+		SELECT 
+		    COUNT(*)
+		FROM yb_book_info ybi, yb_rental_info yri 
+		WHERE 
+		    yri.yu_userid = #{yu_userid} 
+		    AND ybi.ybi_idx = yri.ybi_idx
+		    AND yri.yri_rtdate IS NOT NULL
+	</select>
+	
+	
 	<select id="getBookList" resultType="com.fox.booklist.domain.booklistDTO">
     SELECT 
         YBI.YBI_IDX, 

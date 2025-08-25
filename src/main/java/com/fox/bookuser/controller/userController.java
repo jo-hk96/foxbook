@@ -68,7 +68,7 @@ public class userController {
 	public String rentalList(String searchTxt , SearchDTO params, HttpSession session ,  Model model) {
 		String yu_userid = (String) session.getAttribute("login_id");
 		List<rentalDTO> rentalList = booklistMapper.rentalList(params, yu_userid);
-		 // 1. 대여 목록의 총 개수 조회
+		 // 1. 대여 내역의 총 개수 조회
 		int totalCount = pagingMapper.count(yu_userid, params.getKeyword());
 		//pagination 객체 생성
 		Pagination pagination = new Pagination(totalCount , params);
@@ -81,7 +81,24 @@ public class userController {
 		return "rentalList";
 	}
 	
-	
-	
+	//반납내역 리스트
+	@RequestMapping("/ReturnList")
+	//파라미터값에 searchTxt가 들어가지않아도 페이지가 열림
+	public String returnList(String searchTxt , SearchDTO params, HttpSession session ,  Model model) {
+		String yu_userid = (String) session.getAttribute("login_id");
+		List<rentalDTO> returnList = booklistMapper.returnList(params, yu_userid);
+		// 1. 반납 목록의 총 개수 조회
+		int totalCount = pagingMapper.returnCount(yu_userid, params.getKeyword());
+		
+		//pagination 객체 생성
+		Pagination pagination = new Pagination(totalCount , params);
+		params.setPagination(pagination);
+		
+		//mypage 의 rentalList 담긴 rentalDTO 리스트를 보냄
+		model.addAttribute("searchDTO", params);
+		model.addAttribute("returnList" , returnList);
+		model.addAttribute("yu_userid", yu_userid);
+		return "returnList";
+	}
 	
 }

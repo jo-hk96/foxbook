@@ -16,57 +16,49 @@
 	</div>
 	
 		<div id = "rental">
-			 <form class = "search-box" action="/RentalList" method="get">
-		    	<input class ="search-txt" type = "text" name="keyword" placeholder="대여한 도서명을 입력해주세요.">
+			 <form class = "search-box" action="/ReturnList" method="get">
+		    	<input class ="search-txt" type = "text" name="keyword" placeholder="반납한 도서명을 입력해주세요">
 		    	<button class = "search-btn" type ="submit">
 		    		<i class="fa-solid fa-magnifying-glass fa-xl" style="color: #003049;"></i>
 		    	</button>
-			</form> 
-			
+			</form>
+			 
 			<table id = "renList">
-					<h2>${yu_userid}님의 대여 내역</h2> <h2><a href ="/ReturnList"> 반납내역보기</a></h2>
+					<h2>${yu_userid}님의 반납 내역</h2> <h2><a href = "/RentalList">대여내역</a></h2>
 						<tr>
 							<td>책번호</td>
 							<td>책제목</td>
 							<td>출판사</td>
 							<td>저자</td>
 							<td>대여한날짜</td>
-							<td>반납여부</td>
+							<td>반납한날짜</td>
 							<td>대여/반납</td>
 						</tr>
-					<c:forEach var = "rentals" items = "${rentalList}" varStatus = "loop">
-					
-						<c:if test="${rentals.yri_redate eq '대여중'}">
+						
+					<c:forEach var = "returns" items = "${returnList}" varStatus = "loop"> 
 							<tr>
-									<td>${rentals.ybi_idx}</td>
-									<td>${rentals.ybi_subject}</td>
-									<td>${rentals.ybi_publi}</td>
-									<td>${rentals.ybi_name}</td>
-									<td>${rentals.yri_rtdate}</td>
-									<td>${rentals.yri_redate}</td>
+									<td>${returns.ybi_idx}</td>
+									<td>${returns.ybi_subject}</td>
+									<td>${returns.ybi_publi}</td>
+									<td>${returns.ybi_name}</td>
+									<td>${returns.yri_rtdate}</td>
+									<td>${returns.yri_redate}</td>
 									<td>
-										<c:if test = "${rentals.yri_redate eq '대여중'}">
+									<%-- 	<c:if test = "${returns.yri_redate eq '대여중'}">
 											<form action = "/ReturnBook"  method = "get" onsubmit="return confirm('${rentals.ybi_subject}을(를)반납 하시겠습니까?');">
 												<input type="hidden" name="ybi_idx" value="${rentals.ybi_idx}">
 												<input type ="submit" id = "returnbook" name = "returnbook" value = "반납하기" >
 											</form>
-										</c:if>
+										</c:if>	 --%>
 										
-										<c:if test = "${not empty rentals.yri_redate and rentals.yri_redate ne '대여중'}">
-												<span class="returned-status">반납완료</span>
-										</c:if>	
+											<c:if test = "${not empty returns.yri_redate and returns.yri_redate ne '대여중'}">
+													<span class="returned-status">반납완료</span>
+											</c:if>
 									</td>
 							</tr>
-						</c:if>	
 					</c:forEach>
 			</table>
-			<script>
-			    // ReturnBook 반납완료 메시지
-			    let message = "${returnSuccecs}";
-				    if (message) {
-				        alert(message);
-				    }
-			</script>	
-		<%@include file = "/WEB-INF/include/pagingRentalList.jsp" %>
+			
+	<%@include file = "/WEB-INF/include/pagingReturnList.jsp" %>
 </body>
 </html>

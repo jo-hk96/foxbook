@@ -18,4 +18,6 @@ public interface PagingMapper {
 	public List<booklistDTO> getBookList(@Param("params") SearchDTO params, @Param("yu_userid") String yu_userid);
 
 	int count(String yu_userid, String keyword);
+
+	int returnCount(String yu_userid, String keyword);
 }

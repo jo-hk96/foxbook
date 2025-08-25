@@ -42,7 +42,20 @@
         AND YBI.YBI_SUBJECT LIKE '%' || #{params.keyword} || '%'
     </if>
       ORDER BY yri_redate desc
-    OFFSET #{params.offset} ROWS FETCH NEXT #{params.recordSize} ROWS ONLY
+   OFFSET #{params.offset} ROWS FETCH NEXT #{params.recordSize} ROWS ONLY
+	</select>
+	
+	<!-- 반납 책 리스트 -->
+	<select id = "returnList">
+		SELECT YBI.YBI_IDX, YBI.YBI_SUBJECT, YBI.ybi_publi, YBI.YBI_NAME, to_char(YRI.YRI_RTDATE,'YYYY-MM-DD AM HH:MI') YRI_RTDATE, 
+		DECODE(to_char(YRI.YRI_REDATE,'YYYY-MM-DD AM HH:MI'),NULL,'대여중',to_char(YRI.YRI_REDATE,'YYYY-MM-DD AM HH:MI')) YRI_REDATE
+      FROM YB_BOOK_INFO YBI, YB_RENTAL_INFO YRI
+      WHERE YRI.YU_USERID= #{yu_userid} AND YBI.YBI_IDX = YRI.YBI_IDX
+       <if test="params.keyword != null and params.keyword != ''">
+        AND YBI.YBI_SUBJECT LIKE '%' || #{params.keyword} || '%'
+    </if>
+      ORDER BY yri_redate desc
+   OFFSET #{params.offset} ROWS FETCH NEXT #{params.recordSize} ROWS ONLY
 	</select>
 	
 
@@ -58,10 +71,4 @@
 		WHERE YRI.YU_USERID = #{yu_userid}
 		AND YBI.YBI_SUBJECT LIKE '%' || #{YBI_subject} '%'
 	</select>
-	
-	
-	
-	
-	
-	
 </mapper>
