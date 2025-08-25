@@ -15,7 +15,7 @@
 		<a href="/"><img src="/images/index/Blogo.png" height="40" alt="Logo"/></a>
 	</div>
 	
-		<div id = "rental">
+		<div id = "returned">
 			 <form class = "search-box" action="/ReturnList" method="get">
 		    	<input class ="search-txt" type = "text" name="keyword" placeholder="반납한 도서명을 입력해주세요">
 		    	<button class = "search-btn" type ="submit">
@@ -23,8 +23,8 @@
 		    	</button>
 			</form>
 			 
-			<table id = "renList">
-					<h2>${yu_userid}님의 반납 내역</h2> <h2><a href = "/RentalList">대여내역</a></h2>
+			<table id = "returnedList">
+					<span class = "spa">${yu_userid}님의 반납 내역</span> <span class = "spa"><a href = "/RentalList">[내가 대여한 내역보기]</a></span>
 						<tr>
 							<td>책번호</td>
 							<td>책제목</td>
@@ -58,7 +58,16 @@
 							</tr>
 					</c:forEach>
 			</table>
-			
-	<%@include file = "/WEB-INF/include/pagingReturnList.jsp" %>
+	<div class = "returnPaging">
+		<%@include file = "/WEB-INF/include/pagingReturnList.jsp" %>
+	</div>	
+	
+	<script>
+			    // ReturnBook 반납완료 메시지
+			    let message = "${returnSuccecs}";
+				    if (message) {
+				        alert(message);
+				    }
+			</script>	
 </body>
 </html>

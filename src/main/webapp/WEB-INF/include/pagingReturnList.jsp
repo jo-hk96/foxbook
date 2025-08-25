@@ -4,23 +4,32 @@
 <div id="paging">
 
 <style>
-	#page{font-size : 25px;}
+	#page{font-size : 30px; }
+	#page td{padding : 20px;}
+	
 </style>
+
+<c:if test = "${totalCount > 0}">
 	<table id = "page">
 		<tr>
 			<c:if test="${searchDTO.pagination.existPrevPage}">
-			<td><a href="/ReturnList?page=1&keyword=${searchDTO.keyword}">맨처음</a></td>		
-			<td><a href="/ReturnList?page=${searchDTO.page - 1}&keyword=${searchDTO.keyword}">이전</a></td>		
+				<td><a href="/ReturnList?page=1&keyword=${searchDTO.keyword}">맨처음</a></td>		
+				<td><a href="/ReturnList?page=${searchDTO.page - 1}&keyword=${searchDTO.keyword}">이전</a></td>		
 			</c:if>	
 				
 			<c:forEach var="pagenum" begin="${searchDTO.pagination.startPage}" end="${searchDTO.pagination.endPage}" step="1">
 				<td><a href="/ReturnList?page=${pagenum}&keyword=${searchDTO.keyword}">${pagenum}</a></td>		
 			</c:forEach>
 				
-			<c:if test="${searchDTO.pagination.existNextPage}">
+			<%-- <c:if test="${searchDTO.pagination.existNextPage}"> --%>
 				<td><a href="/ReturnList?page=${searchDTO.page + 1}&keyword=${searchDTO.keyword}">다음</a></td>		
 				<td><a href="/ReturnList?page=${searchDTO.pagination.totalPageCount}&keyword=${searchDTO.keyword}">맨끝</a></td>		
-			</c:if>	
+			<%-- </c:if>	 --%>
 		</tr>
 	</table>
+</c:if>
+
+<c:if test = "${totalCount == 0 }">
+	<h2>반납목록이없습니다</h2>
+</c:if>	
 </div>

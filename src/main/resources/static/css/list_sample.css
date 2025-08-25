@@ -23,23 +23,26 @@
 #back{background-color: #EFF7F6;}
 #back{font-family:'GangwonEdu_OTFBoldA' , sans-serif; }
 
-#rentalList{font-size:17px;}
+
 #renList {  border-collapse: collapse;}
-#renList td {padding:10px; border-bottom : 1px solid black;}
+#renList td {padding:15px; padding-left :70px ;border-bottom : 1px solid black;}
+
+
+#returnedList { border-collapse: collapse;}
+#returnedList td {padding:15px; padding-left:50px; border-bottom : 1px solid black;}
+
+
 
 #list{font-size :20px;}
 #list{border-collapse:collapse;}
 #list td{padding :10px; border-bottom :1px solid black;}
 	
-/* .search-txt {
-    padding: 10px; 창의 내부 여백을 늘려 크기 키우기
-    font-size: 16px; 글자 크기 키우기
-}
+	
+.returnPaging{display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center;    /* 수직 가운데 정렬 */
+  height: 10vh;}
 
-검색 버튼 크기 키우기
-.search-btn {
-    padding: 10px; 버튼의 내부 여백을 늘려 크기 키우기
-    font-size: 18px; 돋보기 아이콘 크기 키우기
-}
- */
+.rentalPaging{display:flex; justify-content:center; align-items:center; height:10vh;}
 
+.spa{font-size:25px;}

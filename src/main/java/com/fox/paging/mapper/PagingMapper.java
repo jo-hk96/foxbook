@@ -20,4 +20,7 @@ public interface PagingMapper {
 	int count(String yu_userid, String keyword);
 
 	int returnCount(String yu_userid, String keyword);
+
+
+	int rentalCount(String yu_userid, String keyword);
 }

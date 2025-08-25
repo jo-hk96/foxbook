@@ -3,7 +3,7 @@
 <mapper namespace="com.fox.bookrental.mapper.RentalMapper">
 	
 	
-	<!--대여한책 정보 저장-->
+	<!--대여일자업뎃-->
 	<insert id = "insertRental">
 		insert into yb_rental_info (yri_idx , yri_rtdate, ybi_idx, yu_userid)
 		values(
@@ -12,7 +12,7 @@
 		)
 	</insert>
 	
-	<!-- 반납일저장 -->
+	<!-- 반납일자업뎃 -->
 	<update id="updateRental">
 	    UPDATE yb_rental_info	
 	    SET YRI_REDATE = sysdate

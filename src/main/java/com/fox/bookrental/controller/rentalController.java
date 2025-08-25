@@ -49,7 +49,7 @@ public class rentalController {
 		rentalMapper.updateRental(rentalDTO);
 		//booklistMapper.updateRentalStatus(rentalDTO.getYbi_idx(), "N");
 		re.addFlashAttribute("returnSuccecs", "반납이 완료되었습니다.");
-		return "redirect:/RentalList";	
+		return "redirect:/ReturnList";	
 	}
 	
 	

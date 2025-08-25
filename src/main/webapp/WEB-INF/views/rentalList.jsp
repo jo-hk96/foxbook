@@ -24,7 +24,7 @@
 			</form> 
 			
 			<table id = "renList">
-					<h2>${yu_userid}님의 대여 내역</h2> <h2><a href ="/ReturnList"> 반납내역보기</a></h2>
+					<span class = "spa">${yu_userid}님의 대여 내역</span> <span class = "spa"><a href ="/ReturnList"> [내가 반납한 내역보기]</a></span>
 						<tr>
 							<td>책번호</td>
 							<td>책제목</td>
@@ -60,13 +60,10 @@
 						</c:if>	
 					</c:forEach>
 			</table>
-			<script>
-			    // ReturnBook 반납완료 메시지
-			    let message = "${returnSuccecs}";
-				    if (message) {
-				        alert(message);
-				    }
-			</script>	
+			
+			
+		<div class = "rentalPaging">
 		<%@include file = "/WEB-INF/include/pagingRentalList.jsp" %>
+		</div>
 </body>
 </html>

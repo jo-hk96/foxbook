@@ -11,9 +11,20 @@
 	    </if>
 	</select>
 	
+	<!--대여갯수-->
+	<select id="rentalCount" resultType="int">
+			SELECT 
+		   count(*)
+		FROM yb_book_info ybi, yb_rental_info yri 
+		WHERE 
+		    yri.yu_userid = #{yu_userid}
+		    AND ybi.ybi_idx = yri.ybi_idx
+		    AND yri.yri_redate IS NULL
+	</select>
 	
+	<!--반납갯수-->
 	<select id="returnCount" resultType="int">
-		SELECT 
+		SELECT
 		    COUNT(*)
 		FROM yb_book_info ybi, yb_rental_info yri 
 		WHERE 
@@ -22,15 +33,6 @@
 		    AND yri.yri_redate IS NOT NULL
 	</select>
 	
-	<select id="rentalCount" resultType="int">
-		SELECT 
-		    COUNT(*)
-		FROM yb_book_info ybi, yb_rental_info yri 
-		WHERE 
-		    yri.yu_userid = #{yu_userid} 
-		    AND ybi.ybi_idx = yri.ybi_idx
-		    AND yri.yri_rtdate IS NOT NULL
-	</select>
 	
 	
 	<select id="getBookList" resultType="com.fox.booklist.domain.booklistDTO">
@@ -42,7 +44,7 @@
         YBI.YBI_RENTAL, 
         YBI.YBI_INDATE, 
         YBI.YBI_DEL,
-      CASE when max(CASE WHEN YRI.YU_USERID = #{yu_userid} AND YRI.YRI_REDATE IS NULL THEN 'RENTED' ELSE NULL END) = 'RENTED' THEN '대여중' ELSE '대여가능' END as rentalst
+      CASE when max(CASE WHEN YRI.YU_USERID = #{yu_userid , jdbcType=VARCHAR} AND YRI.YRI_REDATE IS NULL THEN 'RENTED' ELSE NULL END) = 'RENTED' THEN '대여중' ELSE '대여가능' END as rentalst
     FROM yb_book_info YBI
     LEFT JOIN yb_rental_info YRI ON YBI.ybi_idx = YRI.ybi_idx
     <where>
