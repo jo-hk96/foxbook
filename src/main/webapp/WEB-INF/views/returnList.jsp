@@ -8,11 +8,11 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/list_sample.css"/>
 <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-<title>FoxStar</title>
+<title>여우별 도서관</title>
 </head>
 <body id = "back">
 	<div id="header">
-		<a href="/"><img src="/images/index/Blogo.png" height="40" alt="Logo"/></a>
+		<a href="/"><img src="/images/index/SmallLogoLight.png"  alt="Logo"/></a>
 	</div>
 	
 		<div id = "returned">
@@ -44,12 +44,7 @@
 									<td>${returns.yri_rtdate}</td>
 									<td>${returns.yri_redate}</td>
 									<td>
-									<%-- 	<c:if test = "${returns.yri_redate eq '대여중'}">
-											<form action = "/ReturnBook"  method = "get" onsubmit="return confirm('${rentals.ybi_subject}을(를)반납 하시겠습니까?');">
-												<input type="hidden" name="ybi_idx" value="${rentals.ybi_idx}">
-												<input type ="submit" id = "returnbook" name = "returnbook" value = "반납하기" >
-											</form>
-										</c:if>	 --%>
+								
 										
 											<c:if test = "${not empty returns.yri_redate and returns.yri_redate ne '대여중'}">
 													<span class="returned-status">반납완료</span>

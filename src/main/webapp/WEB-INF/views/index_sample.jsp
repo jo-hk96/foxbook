@@ -8,14 +8,14 @@
 <link rel="stylesheet" href="/css/index.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-<title>FoxStar</title>
+<title>여우별 도서관</title>
 </head>
 <body id="back">
 
 	<main>
 		<!--헤더 -->
 		<div id="header">
-			<a href="/" class="logo"><img src="/images/index/Blogo.png"
+			<a href="/" class="logo"><img src="/images/index/LightModeLogo.png"
 				id="logoimg" height="40" alt="Logo" /></a>
 				
 			<div id="burger-menu">
@@ -31,8 +31,9 @@
 					<a href="/RentalList">내 정보</a>
 					<a href="/logout">로그아웃</a>
 				</c:if>
-				<a href="/">◐</a>
-			</div>
+					<a href="/" class="dark"><img src="/images/index/moon.svg"
+									id="moonimg" height="30" alt="moon" /></a>
+			  </div>
 		</div>
 		
 		<!--메인글,검색창 -->
@@ -48,8 +49,8 @@
 			<table id="menu2">
 				<tr>
 					<td><a href="">공지사항</a></td>
-					<td><a href="">📖</a></td>
-					<td><a href="">📖</a></td>
+					<td><a href="">##</a></td>
+					<td><a href="">##</a></td>
 				</tr>
 			</table>
 		</div>

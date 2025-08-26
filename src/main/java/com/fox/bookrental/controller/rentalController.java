@@ -41,10 +41,10 @@ public class rentalController {
 		//반납
 		@RequestMapping("/ReturnBook")
 		public String Returnbook(rentalDTO rentalDTO , HttpSession session , RedirectAttributes re) {
-		//login_id : userid를 저장한 세션를 변수에 저장
+		//login_id 세션 불러오기
 		String yu_userid = (String) session.getAttribute("login_id");
 		
-		
+		//유저이름 ,반납일 저장
 		rentalDTO.setYu_userid(yu_userid);
 		rentalMapper.updateRental(rentalDTO);
 		//booklistMapper.updateRentalStatus(rentalDTO.getYbi_idx(), "N");

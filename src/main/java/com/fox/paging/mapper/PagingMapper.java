@@ -11,16 +11,21 @@ import com.fox.paging.domain.SearchDTO;
 @Mapper
 public interface PagingMapper {
 	
+	
 	int count(SearchDTO params); 
 	
-	List<booklistDTO> getBookList(SearchDTO params);
 	
+	//도서목록 리스트 조회
 	public List<booklistDTO> getBookList(@Param("params") SearchDTO params, @Param("yu_userid") String yu_userid);
 
+	
+	//총 도서목록 카운트
 	int count(String yu_userid, String keyword);
-
-	int returnCount(String yu_userid, String keyword);
-
-
+	
+	
+	//대여 검색,로그인 사용자 정보
 	int rentalCount(String yu_userid, String keyword);
+	
+	//반납 검색,로그인 사용자 정보
+	int returnCount(String yu_userid, String keyword);
 }

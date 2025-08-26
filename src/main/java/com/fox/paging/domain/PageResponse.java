@@ -20,5 +20,4 @@ public class PageResponse<T> {
 		this.pagination = pagination;
 	}
 	
-	
 }

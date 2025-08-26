@@ -48,6 +48,10 @@ public class booklistController {
 		Pagination pagination = new Pagination(totalCount, params);
 		params.setPagination(pagination);
 		
+		//페이지가 0 보다 작을경우 1 로 설정 (이전 버튼 누를시 -1 -2.. 방지)
+		if(params.getPage() < 0) {
+			params.setPage(1);
+		}
 		// 4. 페이지네이션 정보와 사용자 ID, 검색 조건으로 목록 조회
 		List<booklistDTO> bookList = pagingMapper.getBookList(params, yu_userid); // Mapper에 DTO와 ID를 함께 넘김
 		
@@ -57,7 +61,7 @@ public class booklistController {
 		
 		return "list_sample";
 	}
-	}
+}
 	
 	
 	

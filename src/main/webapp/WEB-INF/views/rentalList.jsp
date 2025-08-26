@@ -8,11 +8,11 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/list_sample.css"/>
 <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-<title>FoxStar</title>
+<title>여우별 도서관</title>
 </head>
 <body id = "back">
 	<div id="header">
-		<a href="/"><img src="/images/index/Blogo.png" height="40" alt="Logo"/></a>
+		<a href="/"><img src="/images/index/SmallLogoLight.png" alt="Logo"/></a>
 	</div>
 	
 		<div id = "rental">

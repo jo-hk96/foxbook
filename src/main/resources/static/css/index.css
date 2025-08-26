@@ -37,7 +37,7 @@
 #mainread, #mainread2 {
     width: 90%;
     max-width: 600px; 
-    margin: 50px auto; 
+    margin: 80px auto; 
     text-align: center;
     color :#003049;
 }
@@ -48,7 +48,7 @@
 /*----텍스트 입력창 스타일----*/
 .search-container{
 	  width: 90%; 
-      margin:100px auto ; 
+      margin:120px auto ; 
       max-width: 600px;
       padding: 0 10px;
 }
@@ -137,6 +137,8 @@ main {
 
 
 
+/* 햄버거메뉴 */
+
 #burger-menu {
     display: none;
     cursor: pointer;
@@ -214,6 +216,8 @@ main {
 	}
 	
 	
+	
+	/*-- 푸터 --*/
 	#footer{font-size :15px;}
 	
 }

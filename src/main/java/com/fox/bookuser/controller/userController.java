@@ -29,6 +29,7 @@ public class userController {
 	
 	@Autowired
 	private BooklistMapper booklistMapper;
+	
 	@Autowired
 	private PagingMapper pagingMapper;
 	
@@ -80,7 +81,7 @@ public class userController {
 			params.setPage(1);
 		}
 		
-		//페이징,대여리스트,유저아이디 보냄
+		//페이징,대여리스트,유저아이디
 		model.addAttribute("searchDTO", params);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("rentalList" , rentalList);
@@ -105,7 +106,7 @@ public class userController {
 		Pagination pagination = new Pagination(totalCount , params);
 		params.setPagination(pagination);
 		
-		//페이징,대여리스트,유저아이디 보냄
+		//페이징,대여리스트,유저아이디
 		model.addAttribute("searchDTO", params);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("returnList" , returnList);
