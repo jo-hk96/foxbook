@@ -25,19 +25,19 @@ public class rentalController {
 	public String rental(@RequestParam("ybi_idx") int ybi_idx ,HttpSession session) {
 		//booklistDTO bookid = booklistMapper.GetBookId(ybi_idx);
 		String userId = (String) session.getAttribute("login_id");
-		  
 		rentalDTO rental = new rentalDTO();
 		rental.setYbi_idx(ybi_idx);
 		rental.setYu_userid(userId);
 		rentalMapper.insertRental(rental);
+		
 		
 		//Rental 값이 N일경우 로직 실행
 		//if("N".equals(bookid.getYbi_rental())) {
 			//booklistMapper.updateRentalStatus(ybi_idx, "Y");
 		//}
 		return "redirect:/BookList?keyword=";
-	
-	}
+		
+		}
 		//반납
 		@RequestMapping("/ReturnBook")
 		public String Returnbook(rentalDTO rentalDTO , HttpSession session , RedirectAttributes re) {

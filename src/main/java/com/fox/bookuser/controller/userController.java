@@ -47,7 +47,7 @@ public class userController {
 		
 		if(user != null && user.getYu_passwd().equals(userDTO.getYu_passwd())) {
 			session.setAttribute("login_id", user.getYu_userid());
-			return "index_sample";
+			return "index";
 		}else{
 		model.addAttribute("error","아이디 또는 패스워드가 틀립니다.");	
 		return "redirect:/LoginForm"; // home.jsp 로 포워딩
@@ -60,6 +60,13 @@ public class userController {
 		//세션 해제
 		session.invalidate();
 		return "redirect:/";
+	}
+	
+	@RequestMapping("/userInfo")
+	public String userInfo() {
+		
+		
+		return "userInfo";
 	}
 	
 	

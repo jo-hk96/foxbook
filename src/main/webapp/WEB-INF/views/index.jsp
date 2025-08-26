@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/css/index.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22256%22 height=%22256%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-size=%2290%22>🌠</text></svg>" />
 <title>여우별 도서관</title>
 </head>
 <body id="back">
@@ -15,7 +16,7 @@
 	<main>
 		<!--헤더 -->
 		<div id="header">
-			<a href="/" class="logo"><img src="/images/index/LightModeLogo.png"
+			<a href="/" class="logo"><img src="/img/LightModeLogo.png"
 				id="logoimg" height="40" alt="Logo" /></a>
 				
 			<div id="burger-menu">
@@ -31,11 +32,10 @@
 					<a href="/RentalList">내 정보</a>
 					<a href="/logout">로그아웃</a>
 				</c:if>
-					<a href="/" class="dark"><img src="/images/index/moon.svg"
+					<a href="/" class="dark"><img src="/img/moon.svg"
 									id="moonimg" height="30" alt="moon" /></a>
 			  </div>
 		</div>
-		
 		<!--메인글,검색창 -->
 		<h1 id="mainread">잠시 쉬어가는 지식의 요람</h1>
 		<h3 id="mainread2">안녕하세요 여우별 도서관 입니다.</h3>

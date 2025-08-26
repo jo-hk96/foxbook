@@ -2,6 +2,8 @@ package com.fox.bookuser.domain;
 
 import lombok.Data;
 
+
+//유저정보
 @Data
 public class userDTO {
 	private String yu_userid;

@@ -22,15 +22,13 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class booklistController {
 
-	@Autowired
-	private BooklistMapper booklistMapper;
 	
 	@Autowired
 	private PagingMapper pagingMapper;
 
 	@RequestMapping("/")
 	public String home() {
-		return "index_sample";
+		return "index";
 	}
 	
 	
@@ -52,7 +50,7 @@ public class booklistController {
 		if(params.getPage() < 0) {
 			params.setPage(1);
 		}
-		// 4. 페이지네이션 정보와 사용자 ID, 검색 조건으로 목록 조회
+		// 4. 페이지네이션 정보와 사용자 ID, 검색 조건으로 목록 조회 (params : keyword)
 		List<booklistDTO> bookList = pagingMapper.getBookList(params, yu_userid); // Mapper에 DTO와 ID를 함께 넘김
 		
 		// 5. 모델에 데이터 담아 뷰로 전달

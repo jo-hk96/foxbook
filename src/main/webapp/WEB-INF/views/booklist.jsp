@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>대여 내역</title>
+  <title>여우별 도서관</title>
   <!-- CSS -->
   <link rel="stylesheet" href="/css/common.css">
   <link rel="stylesheet" href="/css/admin.css">
@@ -40,13 +40,13 @@
       <ul class="nav-links">
         <!-- 화면 크기 400 미만일 때 로고 대신 홈 버튼 등장 -->
         <li id="house">
-          <a href="/BookList">
+          <a href="/">
             <i class="fa-solid fa-house"></i>
             <span class="link-name">홈으로</span>
           </a>
         </li>
         <li>
-          <a href="/">
+          <a href="admin.html">
             <i class="fa-solid fa-clipboard-list"></i>
             <span class="link-name">메인으로</span>
           </a>
@@ -54,34 +54,20 @@
         <li>
           <a href="userlist.html">
             <i class="fa-solid fa-users"></i>
-            <span class="link-name">내 정보 수정</span>
+            <span class="link-name">사용자 목록</span>
           </a>
         </li>
         <li>
-          <a href="/BookList">
+          <a href="booklist.jsp">
             <i class="fa-solid fa-book"></i>
             <span class="link-name">도서 목록</span>
           </a>
         </li>
-        <li>
-          <a href="/RentalList">
-            <i class="fa-solid fa-book"></i>
-            <span class="link-name">대여 내역</span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/ReturnList">
-            <i class="fa-solid fa-book"></i>
-            <span class="link-name">반납 내역</span>
-          </a>
-        </li>
-        
       </ul>
       <!-- === 로그아웃 / 다크모드 스위치 === -->
       <ul class="logout-mode">
         <li>
-          <a href="/logout">
+          <a href="#">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
             <span class="link-name">로그아웃</span>
           </a>
@@ -111,73 +97,73 @@
 
   <!-- ====== 대시보드 ====== -->
   <section class="dashboard">
-    <div class = "binder searchbar-binder">
-    
-        <!-- 메뉴 버튼 -->
-        <i class="fa-solid fa-bars sidebar-toggle"></i>
-        
-        <!-- 검색 바 -->
-	      <form action="/RentalList" method="get"> 
-	      <div class="search-container">
-		        <input class="search-box" type="text" name="keyword" placeholder="대여하신 도서명을 입력하세요">
-		        	<i class="search-box fa-solid fa-magnifying-glass" id="searchbtn"></i>
-		  </div>
-	      </form>
-    </div>
+    <!-- 메뉴 버튼 -->
+    <i class="fa-solid fa-bars sidebar-toggle"></i>
     <!-- == 도서 목록 == -->
     <div class="activity">
       <div class="title">
         <i class="fa-solid fa-book"></i>
-        <span class="text">대여 목록</span>
+        <span class="text">도서 목록</span>
       </div>
       <table class="activity-table">
         <thead>
           <tr>
-            <th class="table-title">책번호</th>
-            <th class="table-title">책제목</th>
+            <th class="table-title"></th>
+            <th class="table-title">책 이름</th>
             <th class="table-title">출판사</th>
             <th class="table-title">저자</th>
-            <th class="table-title">대여한날짜</th>
-            <th class="table-title">반납여부</th>
-            <th class="table-title">대여/반납</th>
+            <th class="table-title">등록일</th>
+            <th class="table-title">대여상태</th>
           </tr>
         </thead>
         <tbody>
-        <c:forEach var = "rentals" items = "${rentalList}" varStatus = "loop">
-			<c:if test="${rentals.yri_redate eq '대여중'}">
-		          <tr>
-			            <td class="table-data">${rentals.ybi_idx}</td>
-			            <td class="table-data">${rentals.ybi_subject}</td>
-			            <td class="table-data">${rentals.ybi_publi}</td>
-			            <td class="table-data">${rentals.ybi_name}</td>
-			            <td class="table-data">${rentals.yri_rtdate}</td>
-			            <td class="table-data">${rentals.yri_redate}</td>
-			            <td>
-							<c:if test = "${rentals.yri_redate eq '대여중'}">
-								<form action = "/ReturnBook"  method = "get" onsubmit="return confirm('${rentals.ybi_subject}을(를)반납 하시겠습니까?');">
-									<input type="hidden" name="ybi_idx" value="${rentals.ybi_idx}">
-									<input type ="submit" id = "returnbook" name = "returnbook" value = "반납하기" >
-								</form>
-							</c:if>
-							<c:if test = "${not empty rentals.yri_redate and rentals.yri_redate ne '대여중'}">
-									<span class="returned-status">반납완료</span>
-							</c:if>	
-						</td>
-				  </tr>
-			</c:if>	
-		 </c:forEach>
+          <tr>
+            <td class="table-data">1</td>
+            <td class="table-data">7년 동안의 잠</td>
+            <td class="table-data">어린이작가정신</td>
+            <td class="table-data">박완서</td>
+            <td class="table-data">2025-08-22</td>
+            <td class="table-data">대여중</td>
+          </tr>
+          <tr>
+            <td class="table-data">2</td>
+            <td class="table-data">셜록 홈즈 단편선 01 - 보헤미아 스캔들</td>
+            <td class="table-data">피드백</td>
+            <td class="table-data">아서 코난 도일</td>
+            <td class="table-data">2021-07-15</td>
+            <td class="table-data">대여가능</td>
+          </tr>
+          <tr>
+            <td class="table-data">3</td>
+            <td class="table-data">안네의 일기</td>
+            <td class="table-data">계림북스</td>
+            <td class="table-data">안네 프랑크</td>
+            <td class="table-data">2020-06-07</td>
+            <td class="table-data">대여중</td>
+          </tr>
+          <tr>
+            <td class="table-data">4</td>
+            <td class="table-data">일리아스</td>
+            <td class="table-data">돋을새김</td>
+            <td class="table-data">호메로스</td>
+            <td class="table-data">2024-08-09</td>
+            <td class="table-data">대여중</td>
+          </tr>
+          <tr>
+            <td class="table-data">5</td>
+            <td class="table-data">살인예언자</td>
+            <td class="table-data">다산책방</td>
+            <td class="table-data">딘 쿤츠</td>
+            <td class="table-data">2022-01-03</td>
+            <td class="table-data">대여가능</td>
+          </tr>
         </tbody>
       </table>
     </div>
   </section>
-  	<div class = "rentalPaging">
-		<%@include file = "/WEB-INF/include/pagingRentalList.jsp" %>
-	</div>	
-	
-  
 
   <!-- ===== 다크모드 전환, 메뉴 토글 스크립트 ===== -->
-  <script src="./js/darkmode.js"></script>
+  <script src="js/script.js"></script>
 </body>
 
 </html>

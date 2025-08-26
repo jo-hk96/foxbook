@@ -11,7 +11,7 @@
 </head>
 <body id = "back">
 	<div id="header">
-		<a href="/"><img src="/images/index/Blogo.png" height="40" alt="Logo"/></a>
+		<a href="/"><img src="/img/index/SmallLogoLight.png" alt="Logo"/></a>
 	</div>
 			<div>
 				 <form class = "search-box" action="/BookList" method="get">

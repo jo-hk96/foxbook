@@ -159,29 +159,33 @@ main {
 /*-------반응형-------*/
 
 
-/*----헤더----*/
 @media (max-width: 780px) { 
 	
 	
+	
+	/*--메인글--*/
     #mainread {
-        font-size: 2.0em; 
+        font-size: 2.7em; 
     }
     
     #mainread2 {
-        font-size: 1.0em;
+        font-size: 1.7em;
     }
     
     #menu2 td {
-       	font-size: 17px;
+       	font-size: 20px;
     }
    
    
-   #header a{font-size: 15px;}
+   	/*--헤더--*/
+  	#header a{font-size: 15px;}
    
     #header a:not(.logo) {
         margin: 0; 
     }
     
+    
+    /*--메인로고 이미지--*/
 	#logoimg {height:30px;}
 	
 	
