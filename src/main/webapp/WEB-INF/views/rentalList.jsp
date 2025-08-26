@@ -30,7 +30,7 @@
     <div class="logo-name">
       <div class="logo-image">
         <a href="/">
-          <img id="logoimg" src="img/LightModeLogo.png" alt="logo">
+          <img id="logoimg" src="/img/LightModeLogo.png" alt="logo">
           <img id="logoimgsmall" src="img/SmallLogoLight.png" alt="logo">
         </a>
       </div>
@@ -118,10 +118,10 @@
         
         <!-- 검색 바 -->
 	      <form action="/RentalList" method="get"> 
-	      <div class="search-container">
-		        <input class="search-box" type="text" name="keyword" placeholder="대여하신 도서명을 입력하세요">
-		        	<i class="search-box fa-solid fa-magnifying-glass" id="searchbtn"></i>
-		  </div>
+		      <div class="search-container">
+			        <input class="search-box" type="text" name="keyword" placeholder="대여하신 도서명을 입력하세요">
+			        	<i class="search-box fa-solid fa-magnifying-glass" id="searchbtn"></i>
+		 	 </div>
 	      </form>
     </div>
     <!-- == 도서 목록 == -->
@@ -144,7 +144,7 @@
         </thead>
         <tbody>
         <c:forEach var = "rentals" items = "${rentalList}" varStatus = "loop">
-			<c:if test="${rentals.yri_redate eq '대여중'}">
+			
 		          <tr>
 			            <td class="table-data">${rentals.ybi_idx}</td>
 			            <td class="table-data">${rentals.ybi_subject}</td>
@@ -156,15 +156,13 @@
 							<c:if test = "${rentals.yri_redate eq '대여중'}">
 								<form action = "/ReturnBook"  method = "get" onsubmit="return confirm('${rentals.ybi_subject}을(를)반납 하시겠습니까?');">
 									<input type="hidden" name="ybi_idx" value="${rentals.ybi_idx}">
+									<input type = "hidden" name ="ybi_subject" 		value = "${rentals.ybi_subject}">
 									<input type ="submit" id = "returnbook" name = "returnbook" value = "반납하기" >
 								</form>
 							</c:if>
-							<c:if test = "${not empty rentals.yri_redate and rentals.yri_redate ne '대여중'}">
-									<span class="returned-status">반납완료</span>
-							</c:if>	
 						</td>
 				  </tr>
-			</c:if>	
+			
 		 </c:forEach>
         </tbody>
       </table>
@@ -173,9 +171,13 @@
   	<div class = "rentalPaging">
 		<%@include file = "/WEB-INF/include/pagingRentalList.jsp" %>
 	</div>	
-	
-  
-
+		 	<script>
+			    // 대여완료 메시지
+			    let subject = "${subject}";
+				    if (subject) {
+				        alert(subject + "이(가) 대여되었습니다");
+				    }
+				</script>	
   <!-- ===== 다크모드 전환, 메뉴 토글 스크립트 ===== -->
   <script src="./js/darkmode.js"></script>
 </body>

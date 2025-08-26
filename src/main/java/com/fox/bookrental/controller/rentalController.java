@@ -17,12 +17,10 @@ import jakarta.servlet.http.HttpSession;
 public class rentalController {
 	@Autowired
 	private RentalMapper rentalMapper;
-	@Autowired
-	private BooklistMapper booklistMapper;
 	
 	//대여
 	@RequestMapping("/Rent")
-	public String rental(@RequestParam("ybi_idx") int ybi_idx ,HttpSession session) {
+	public String rental(@RequestParam("ybi_idx") int ybi_idx ,String ybi_subject ,HttpSession session, RedirectAttributes re) {
 		//booklistDTO bookid = booklistMapper.GetBookId(ybi_idx);
 		String userId = (String) session.getAttribute("login_id");
 		rentalDTO rental = new rentalDTO();
@@ -30,17 +28,18 @@ public class rentalController {
 		rental.setYu_userid(userId);
 		rentalMapper.insertRental(rental);
 		
-		
 		//Rental 값이 N일경우 로직 실행
 		//if("N".equals(bookid.getYbi_rental())) {
 			//booklistMapper.updateRentalStatus(ybi_idx, "Y");
 		//}
-		return "redirect:/BookList?keyword=";
+		
+		re.addFlashAttribute("subject",ybi_subject);
+		return "redirect:/RentalList";
 		
 		}
 		//반납
 		@RequestMapping("/ReturnBook")
-		public String Returnbook(rentalDTO rentalDTO , HttpSession session , RedirectAttributes re) {
+		public String Returnbook(rentalDTO rentalDTO ,String ybi_subject, HttpSession session , RedirectAttributes re) {
 		//login_id 세션 불러오기
 		String yu_userid = (String) session.getAttribute("login_id");
 		
@@ -48,7 +47,7 @@ public class rentalController {
 		rentalDTO.setYu_userid(yu_userid);
 		rentalMapper.updateRental(rentalDTO);
 		//booklistMapper.updateRentalStatus(rentalDTO.getYbi_idx(), "N");
-		re.addFlashAttribute("returnSuccecs", "반납이 완료되었습니다.");
+		re.addFlashAttribute("subject",ybi_subject);
 		return "redirect:/ReturnList";	
 	}
 	

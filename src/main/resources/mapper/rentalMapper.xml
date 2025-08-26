@@ -5,7 +5,7 @@
 	
 	<!--대여일자업뎃-->
 	<insert id = "insertRental">
-		insert into yb_rental_info (yri_idx , yri_rtdate, ybi_idx, yu_userid)
+		insert into yb_rental_info (yri_idx , yri_rtdate, ybi_idx, yu_userid )
 		values(
 			(select nvl(max(yri_idx), 0) + 1 from yb_rental_info),sysdate,
 			#{ybi_idx}, #{yu_userid}

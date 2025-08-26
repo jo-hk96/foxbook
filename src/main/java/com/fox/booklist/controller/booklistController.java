@@ -25,6 +25,9 @@ public class booklistController {
 	
 	@Autowired
 	private PagingMapper pagingMapper;
+	
+	@Autowired
+	private BooklistMapper booklistMapper;
 
 	@RequestMapping("/")
 	public String home() {
@@ -51,13 +54,13 @@ public class booklistController {
 			params.setPage(1);
 		}
 		// 4. 페이지네이션 정보와 사용자 ID, 검색 조건으로 목록 조회 (params : keyword)
-		List<booklistDTO> bookList = pagingMapper.getBookList(params, yu_userid); // Mapper에 DTO와 ID를 함께 넘김
+		List<booklistDTO> bookList = booklistMapper.getBookList(params, yu_userid); // Mapper에 DTO와 ID를 함께 넘김
 		
 		// 5. 모델에 데이터 담아 뷰로 전달
 		model.addAttribute("searchDTO", params);
 		model.addAttribute("bookList", bookList);
 		
-		return "list_sample";
+		return "list";
 	}
 }
 	

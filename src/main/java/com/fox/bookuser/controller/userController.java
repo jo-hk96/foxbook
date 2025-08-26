@@ -79,6 +79,9 @@ public class userController {
 		List<rentalDTO> rentalList = booklistMapper.rentalList(params, yu_userid);
 		 // 1. 대여 내역의 총 개수 조회
 		int totalCount = pagingMapper.rentalCount(yu_userid, params.getKeyword());
+		
+		System.out.println( yu_userid  + "의" + "대여내역갯수:"+ totalCount);
+		
 		//pagination 
 		Pagination pagination = new Pagination(totalCount , params);
 		params.setPagination(pagination);
@@ -99,12 +102,13 @@ public class userController {
 	//반납내역 리스트
 	@RequestMapping("/ReturnList")
 	//파라미터값에 searchTxt가 들어가지않아도 페이지가 열림
-	public String returnList(String searchTxt , SearchDTO params, HttpSession session , Model model) {
+	public String returnList(SearchDTO params, HttpSession session , Model model) {
 		String yu_userid = (String) session.getAttribute("login_id");
 		List<rentalDTO> returnList = booklistMapper.returnList(params, yu_userid);
 		// 1. 반납 목록의 총 개수 조회
 		int totalCount = pagingMapper.returnCount(yu_userid, params.getKeyword());
 		
+		System.out.println(yu_userid + "의" + "반납내역갯수:" + totalCount);
 		//페이지가 보다 작을 경우 1로 설정
 		if(params.getPage() < 0) {
 			params.setPage(1);

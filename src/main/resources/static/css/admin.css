@@ -140,11 +140,13 @@ nav.close ~ .dashboard{
     align-items: flex-start;
 }
 /* ==== 검색 바  ==== */
-.search-box {
-    display: flex;
+
+.search-container {
+    display: flex; /* 부모 요소에 flex 적용 */
     height: 35px;
-    align-items: center;
+    align-items: center; /* 세로 중앙 정렬 */
 }
+
 input.search-box {
     display: flex;
     border: 1px solid var(--border-color);
@@ -391,14 +393,16 @@ footer {
 }
 
 
-
-
 /*--페이징--*/
 .returnPaging{display: flex;
   justify-content: center; /* 수평 가운데 정렬 */
   align-items: center;    /* 수직 가운데 정렬 */
   height: 10vh;} /* 위아래 높이 조절 */
-
+  
 .rentalPaging{display:flex; justify-content:center; align-items:center; height:10vh;}
 
-.spa{font-size:25px;}
+#page{font-size : 20px; }
+#page td{padding : 20px; }
+#page a{text-decoration: none; color: #7BDFF2;}
+#page a:hover{color : #EFF7F6;}
+

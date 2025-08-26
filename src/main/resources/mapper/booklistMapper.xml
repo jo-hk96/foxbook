@@ -4,14 +4,14 @@
 
 	<!-- 대여책 리스트 -->
 	<select id = "rentalList">
-		SELECT YBI.YBI_IDX, YBI.YBI_SUBJECT, YBI.ybi_publi, YBI.YBI_NAME, to_char(YRI.YRI_RTDATE,'YYYY-MM-DD AM HH:MI') YRI_RTDATE, 
-		DECODE(to_char(YRI.YRI_REDATE,'YYYY-MM-DD AM HH:MI'),NULL,'대여중',to_char(YRI.YRI_REDATE,'YYYY-MM-DD AM HH:MI:SS')) YRI_REDATE
+		SELECT YBI.YBI_IDX, YBI.YBI_SUBJECT, YBI.ybi_publi, YBI.YBI_NAME, to_char(YRI.YRI_RTDATE,'YYYY-MM-DD AM HH:MI:SS') YRI_RTDATE, 
+		'대여중' AS YRI_REDATE
       FROM YB_BOOK_INFO YBI, YB_RENTAL_INFO YRI
-      WHERE YRI.YU_USERID= #{yu_userid} AND YBI.YBI_IDX = YRI.YBI_IDX
+      WHERE YRI.YU_USERID= #{yu_userid} AND YBI.YBI_IDX = YRI.YBI_IDX and yri.yri_redate is null
        <if test="params.keyword != null and params.keyword != ''">
-        AND YBI.YBI_SUBJECT LIKE '%' || #{params.keyword} || '%'
-    </if>
-      ORDER BY yri_redate desc
+       		 AND YBI.YBI_SUBJECT LIKE '%' || #{params.keyword} || '%'
+   	   </if>
+      ORDER BY yri_rtdate desc
    OFFSET #{params.offset} ROWS FETCH NEXT #{params.recordSize} ROWS ONLY
 	</select>
 	
@@ -28,5 +28,30 @@
       ORDER BY yri_redate desc
    OFFSET #{params.offset} ROWS FETCH NEXT #{params.recordSize} ROWS ONLY
 	</select>
+	
+	<!-- 도서전체리스트 목록조회  -->
+	<select id="getBookList" resultType="com.fox.booklist.domain.booklistDTO">
+    SELECT 
+        YBI.YBI_IDX, 
+        YBI.YBI_SUBJECT, 
+        YBI.YBI_PUBLI, 
+        YBI.YBI_NAME, 
+        YBI.YBI_RENTAL, 
+        YBI.YBI_INDATE, 
+        YBI.YBI_DEL,
+      CASE when max(CASE WHEN YRI.YU_USERID = #{yu_userid , jdbcType=VARCHAR} AND YRI.YRI_REDATE IS NULL THEN 'RENTED' ELSE NULL END) = 'RENTED' THEN '대여중' ELSE '대여가능' END as rentalst
+    FROM yb_book_info YBI
+    LEFT JOIN yb_rental_info YRI ON YBI.ybi_idx = YRI.ybi_idx
+    <where>
+        <if test="params.keyword != null and params.keyword != ''">
+            YBI.YBI_SUBJECT LIKE '%' || #{params.keyword} || '%'
+        </if>
+    </where>
+    GROUP BY
+    YBI.YBI_IDX, YBI.YBI_SUBJECT, YBI.YBI_PUBLI, YBI.YBI_NAME, YBI.YBI_RENTAL, YBI.YBI_INDATE, YBI.YBI_DEL
+    ORDER BY YBI.YBI_IDX desc
+    OFFSET #{params.offset} ROWS FETCH NEXT #{params.recordSize} ROWS ONLY
+</select>
+	
 	
 </mapper>

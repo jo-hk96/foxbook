@@ -11,7 +11,7 @@
 </head>
 <body id = "back">
 	<div id="header">
-		<a href="/"><img src="/img/index/SmallLogoLight.png" alt="Logo"/></a>
+		<a href="/"><img src="/img/SmallLogoLight.png" alt="Logo"/></a>
 	</div>
 			<div>
 				 <form class = "search-box" action="/BookList" method="get">
@@ -37,8 +37,9 @@
 								<td>${books.ybi_name}</td>
 								<td>
 									<c:if test="${books.rentalst eq '대여가능'}">	
-											<form action ="/Rent" method ="get" onclick = "checkConfirm()">
+											<form action ="/Rent" method ="get" onsubmit="return confirm('${books.ybi_subject}을(를)대여 하시겠습니까?');">
 												<input type = "hidden" name ="ybi_idx" 		value = "${books.ybi_idx}">
+												<input type = "hidden" name ="ybi_subject" 		value = "${books.ybi_subject}">
 												<input type = "submit" value = "대여하기">
 											</form>
 									</c:if> 

@@ -34,15 +34,18 @@ public class Pagination {
         }
         // 첫 페이지 번호 계산
         this.startPage = ((params.getPage() - 1) / params.getPageSize()) * params.getPageSize() + 1;
-
+        
         // 끝 페이지 번호 계산
         this.endPage   = this.startPage + params.getPageSize() - 1;
         //끝페이지보다 시작페이지가 작으면 이전버튼 보여줌
-        this.existPrevPage = (this.endPage > this.startPage );
+        	this.existPrevPage = (this.endPage > this.startPage);
+      
+        
         // 총 페이지보다 끝페이지가 작으면 다음페이지 보여줌
         this.existNextPage = (this.endPage < this.totalPageCount);
         
         // 끝 페이지가 전체 페이지 수보다 큰 경우, 끝 페이지 전체 페이지 수 저장
+        // 전체페이지수가 67일경우 10씩 넘어간다는 가정하에 67로 맞춰줌
         if (this.endPage > this.totalPageCount) {
             this.endPage = this.totalPageCount;
         }

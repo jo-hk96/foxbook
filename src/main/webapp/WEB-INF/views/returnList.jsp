@@ -30,7 +30,7 @@
     <div class="logo-name">
       <div class="logo-image">
         <a href="/">
-          <img id="logoimg" src="img/LightModeLogo.png" alt="logo">
+          <img id="logoimg" src="/img/LightModeLogo.png" alt="logo">
           <img id="logoimgsmall" src="img/SmallLogoLight.png" alt="logo">
         </a>
       </div>
@@ -58,7 +58,7 @@
           </a>
         </li>
         <li>
-          <a href="booklist.jsp">
+          <a href="/BookList">
             <i class="fa-solid fa-book"></i>
             <span class="link-name">도서 목록</span>
           </a>
@@ -116,9 +116,11 @@
         <i class="fa-solid fa-bars sidebar-toggle"></i>
 
         <!-- 검색 바 -->
-      <form action="/ReturnList" method="get"> 
-	        <input class="search-box" type="text" name="keyword" placeholder="반납하신 도서명을 입력하세요">
-	        <i class="search-box fa-solid fa-magnifying-glass" id="searchbtn"></i>
+      <form action="/ReturnList" method="get">
+      		<div class = "search-container">
+		        <input class="search-box" type="text" name="keyword" placeholder="반납하신 도서명을 입력하세요">
+		        <i class="search-box fa-solid fa-magnifying-glass" id="searchbtn"></i>
+	        </div>
         </form>
     </div>
     <!-- == 도서 목록 == -->
@@ -162,10 +164,10 @@
   </section>
   
  			 <script>
-			    // ReturnBook 반납완료 메시지
-			    let message = "${returnSuccecs}";
-				    if (message) {
-				        alert(message);
+			    // 반납완료 메시지
+			   let subject = ("${subject}")
+				    if (subject) {
+				        alert(subject + "이(가) 반납되었습니다.");
 				    }
 				</script>	
 				
