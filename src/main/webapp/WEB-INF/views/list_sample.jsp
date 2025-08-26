@@ -37,7 +37,7 @@
 								<td>${books.ybi_name}</td>
 								<td>
 									<c:if test="${books.rentalst eq '대여가능'}">	
-											<form action ="/Rent" method ="get">
+											<form action ="/Rent" method ="get" onclick = "checkConfirm()">
 												<input type = "hidden" name ="ybi_idx" 		value = "${books.ybi_idx}">
 												<input type = "submit" value = "대여하기">
 											</form>
