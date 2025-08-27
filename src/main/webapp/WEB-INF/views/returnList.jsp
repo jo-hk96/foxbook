@@ -116,10 +116,12 @@
         <i class="fa-solid fa-bars sidebar-toggle"></i>
 
         <!-- 검색 바 -->
-      <form action="/ReturnList" method="get">
+      <form action="/ReturnList" method="get" onsubmit="return eq()">
       		<div class = "search-container">
 		        <input class="search-box" type="text" name="keyword" placeholder="반납하신 도서명을 입력하세요">
-		        <i class="search-box fa-solid fa-magnifying-glass" id="searchbtn"></i>
+		        <button type = "submit" class ="hidden-button">
+		       	 	<i class="search-box fa-solid fa-magnifying-glass" id="searchbtn"></i>
+		        </button>
 	        </div>
         </form>
     </div>
@@ -163,8 +165,32 @@
     </div>
   </section>
   
+	  		<!--목록과 일치하는 도서명이없을시 메시지-->
+	  		<script>
+		        // 서버에서 전달받은 값이 true인지 확인
+		        <c:if test="${neResult}">
+		            alert("반납목록에 해당하는 도서명이 없습니다.");
+		        </c:if>
+		    </script>
+	    
+	  
+  			<!--입력값없이 검색시-->
+	  		<script>
+				function eq(){
+					const keywordInput = document.querySelector('.search-box[name="keyword"]');
+					const keyword = keywordInput.value.trim(); 
+					
+					if(keyword === ""){
+							alert("반납하신 도서명 입력후 검색해주세요.");
+						return false;
+					}
+					return true;
+				}
+			</script>
+			
+			
+			<!--반납완료 메시지-->
  			 <script>
-			    // 반납완료 메시지
 			   let subject = ("${subject}")
 				    if (subject) {
 				        alert(subject + "이(가) 반납되었습니다.");

@@ -169,6 +169,15 @@ i.search-box {
     cursor: pointer;
 }
 
+
+/* button submit 태그 숨김  */
+.hidden-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
 /* === 테이블 위 제목 === */
 .title{
     display: flex;
@@ -401,8 +410,23 @@ footer {
   
 .rentalPaging{display:flex; justify-content:center; align-items:center; height:10vh;}
 
+.listPaging{display:flex; justify-content:center; align-items:center; height:10vh;}
+
 #page{font-size : 20px; }
 #page td{padding : 20px; }
 #page a{text-decoration: none; color: #7BDFF2;}
 #page a:hover{color : #EFF7F6;}
+
+
+
+
+#page td.active {
+    color: #fff; /* 글자색을 흰색으로 */
+    font-weight: bold; /* 글자를 굵게 */
+}
+
+
+#page td.active a {
+    color: red; /* 현재 페이지 링크의 글자색을 흰색으로 */
+}
 

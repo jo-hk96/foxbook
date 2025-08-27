@@ -117,10 +117,12 @@
         <i class="fa-solid fa-bars sidebar-toggle"></i>
         
         <!-- 검색 바 -->
-	      <form action="/RentalList" method="get"> 
+	      <form action="/RentalList" method="get" onsubmit="return eq()"> 
 		      <div class="search-container">
 			        <input class="search-box" type="text" name="keyword" placeholder="대여하신 도서명을 입력하세요">
+			        <button type = "submit"  class="hidden-button">
 			        	<i class="search-box fa-solid fa-magnifying-glass" id="searchbtn"></i>
+		 	 		</button>
 		 	 </div>
 	      </form>
     </div>
@@ -171,14 +173,44 @@
   	<div class = "rentalPaging">
 		<%@include file = "/WEB-INF/include/pagingRentalList.jsp" %>
 	</div>	
-		 	<script>
-			    // 대여완료 메시지
-			    let subject = "${subject}";
-				    if (subject) {
-				        alert(subject + "이(가) 대여되었습니다");
-				    }
-				</script>	
-  <!-- ===== 다크모드 전환, 메뉴 토글 스크립트 ===== -->
+	
+	
+		<!--목록과 일치하는 도서명이없을시 메시지-->
+		<script>
+	        // 서버에서 전달받은 값이 true인지 확인
+	        <c:if test="${neResult}">
+	            alert("대여목록에 해당하는 도서명이 없습니다.");
+	        </c:if>
+	    </script>
+    
+    
+    
+    	<!--입력값없이 검색시-->
+		<script>
+			function eq(){
+				const keywordInput = document.querySelector('.search-box[name="keyword"]');
+				const keyword = keywordInput.value.trim(); 
+				
+				if(keyword === ""){
+						alert("대여하신 도서명 입력후 검색해주세요.");
+					return false;
+				}
+				return true;
+			}
+		</script>
+	
+	
+	
+		<!--반납완료 메시지-->
+ 		<script>
+		    let subject = "${subject}";
+			    if (subject) {
+			        alert(subject + "이(가) 대여되었습니다");
+			    }
+		</script>
+		
+		
+<!-- 다크모드 -->
   <script src="./js/darkmode.js"></script>
 </body>
 

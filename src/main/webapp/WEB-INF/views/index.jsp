@@ -40,7 +40,7 @@
 		<h1 id="mainread">잠시 쉬어가는 지식의 요람</h1>
 		<h3 id="mainread2">안녕하세요 여우별 도서관 입니다.</h3>
 		<div class="search-container">
-				<form class="search-box" action="/BookList" method="get">
+				<form class="search-box" action="/BookList" method="get" onsubmit = "return eq()">
 					<input class="search-txt" type="text" name="keyword" placeholder="도서명을 입력해주세요.">
 					<button class="search-btn" type="submit">
 						<i class="fa-solid fa-magnifying-glass fa-xl" style="color: #003049;"></i>
@@ -48,8 +48,8 @@
 				</form>
 			<table id="menu2">
 				<tr>
+					<td><a href="/BookList">전체 도서목록 보기</a></td>
 					<td><a href="">공지사항</a></td>
-					<td><a href="">##</a></td>
 					<td><a href="">##</a></td>
 				</tr>
 			</table>
@@ -63,6 +63,22 @@
 				FoxStar Library. All rights reserved.</span><br>
 		</div>
 	</footer>
+	
+	
+	
+		<!--입력값없이 검색시-->
+		<script>
+			function eq(){
+				const keywordInput = document.querySelector('.search-txt[name="keyword"]');
+				const keyword = keywordInput.value.trim(); 
+				
+				if(keyword === ""){
+						alert("도서명 입력후 검색해주세요.");
+					return false;
+				}
+				return true;
+			}
+		</script>
 	
 	
 	<!--햄버거메뉴스크립트 -->

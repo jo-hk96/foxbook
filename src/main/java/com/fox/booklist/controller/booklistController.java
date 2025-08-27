@@ -45,6 +45,8 @@ public class booklistController {
 		// 2. 검색 조건에 맞는 전체 게시글 수 조회
 		int totalCount = pagingMapper.count(params);
 		
+		System.out.println("전체도서갯수:" + totalCount);
+		
 		// 3. Pagination 객체 생성 및 SearchDTO에 주입
 		Pagination pagination = new Pagination(totalCount, params);
 		params.setPagination(pagination);
