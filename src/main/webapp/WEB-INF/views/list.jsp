@@ -46,7 +46,7 @@
           </a>
         </li>
         <li>
-          <a href="admin.html">
+          <a href="/">
             <i class="fa-solid fa-clipboard-list"></i>
             <span class="link-name">메인으로</span>
           </a>
@@ -154,7 +154,7 @@
 							<form action ="/Rent" method ="get" onsubmit="return confirm('${books.ybi_subject}을(를)대여 하시겠습니까?');">
 								<input type = "hidden" name ="ybi_idx" 		value = "${books.ybi_idx}">
 								<input type = "hidden" name ="ybi_subject" 		value = "${books.ybi_subject}">
-								<input type = "submit" value = "대여하기">
+								<button class="rent-btn" type = "submit">대여하기</button>
 							</form>
 					</c:if> 
 					<c:if test="${books.rentalst eq '대여중'}">

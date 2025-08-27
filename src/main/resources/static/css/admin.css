@@ -239,6 +239,24 @@ nav .logo-name #logoimg.small {
     transform-origin: center center;
 }
 
+
+
+/* 대여하기 버튼 */
+form .rent-btn {
+  background-color: var(--primary-color); /* Green */
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+form .rent-btn:hover {
+  cursor: pointer;
+}
+
 /* 화면 크기 400 미만의 경우 등장하는 홈 버튼 */
 #house.small-mode {
     display: none;
@@ -417,14 +435,10 @@ footer {
 #page a{text-decoration: none; color: #7BDFF2;}
 #page a:hover{color : #EFF7F6;}
 
-
-
-
 #page td.active {
     color: #fff; /* 글자색을 흰색으로 */
     font-weight: bold; /* 글자를 굵게 */
 }
-
 
 #page td.active a {
     color: red; /* 현재 페이지 링크의 글자색을 흰색으로 */

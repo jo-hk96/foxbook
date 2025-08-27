@@ -46,7 +46,7 @@
           </a>
         </li>
         <li>
-          <a href="admin.html">
+          <a href="/">
             <i class="fa-solid fa-clipboard-list"></i>
             <span class="link-name">메인으로</span>
           </a>
@@ -169,7 +169,7 @@
 	  		<script>
 		        // 서버에서 전달받은 값이 true인지 확인
 		        <c:if test="${neResult}">
-		            alert("반납목록에 해당하는 도서명이 없습니다.");
+		            alert("반납도서목록이 없습니다.");
 		        </c:if>
 		    </script>
 	    

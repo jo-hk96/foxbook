@@ -159,7 +159,7 @@
 								<form action = "/ReturnBook"  method = "get" onsubmit="return confirm('${rentals.ybi_subject}을(를)반납 하시겠습니까?');">
 									<input type="hidden" name="ybi_idx" value="${rentals.ybi_idx}">
 									<input type = "hidden" name ="ybi_subject" 		value = "${rentals.ybi_subject}">
-									<input type ="submit" id = "returnbook" name = "returnbook" value = "반납하기" >
+									<button class="rent-btn" type = "submit">반납하기</button>
 								</form>
 							</c:if>
 						</td>
@@ -179,7 +179,7 @@
 		<script>
 	        // 서버에서 전달받은 값이 true인지 확인
 	        <c:if test="${neResult}">
-	            alert("대여목록에 해당하는 도서명이 없습니다.");
+	            alert("대여도서목록이 없습니다.");
 	        </c:if>
 	    </script>
     
@@ -198,7 +198,6 @@
 				return true;
 			}
 		</script>
-	
 	
 	
 		<!--반납완료 메시지-->

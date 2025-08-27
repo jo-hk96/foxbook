@@ -36,6 +36,8 @@
 									id="moonimg" height="30" alt="moon" /></a>
 			  </div>
 		</div>
+		
+		
 		<!--메인글,검색창 -->
 		<h1 id="mainread">잠시 쉬어가는 지식의 요람</h1>
 		<h3 id="mainread2">안녕하세요 여우별 도서관 입니다.</h3>
@@ -48,7 +50,7 @@
 				</form>
 			<table id="menu2">
 				<tr>
-					<td><a href="/BookList">전체 도서목록 보기</a></td>
+					<td><a href="/BookList">도서목록</a></td>
 					<td><a href="">공지사항</a></td>
 					<td><a href="">##</a></td>
 				</tr>
