@@ -169,7 +169,7 @@
     <div class="activity">
       <div class="title">
         <i class="fa-solid fa-book"></i>
-        <span class="text">대여 목록  [대여수 : ${totalCount}]</span>
+        <span class="text">대여 목록  [도서 대여 : ${totalCount}]</span>
       </div>
       <table class="activity-table">
         <thead>
@@ -225,27 +225,46 @@
     
     
     	<!--입력값없이 검색시-->
-		<script>
-			function eq(){
-				const keywordInput = document.querySelector('.search-box[name="keyword"]');
-				const keyword = keywordInput.value.trim(); 
-				
-				if(keyword === ""){
-						alert("대여하신 도서명 입력후 검색해주세요.");
-					return false;
+			<script>
+				function eq(){
+					const keywordInput = document.querySelector('.search-box[name="keyword"]');
+					const keyword = keywordInput.value.trim(); 
+					
+					if(keyword === ""){
+							alert("대여하신 도서명 입력후 검색해주세요.");
+						return false;
+					}
+					return true;
 				}
-				return true;
-			}
-		</script>
+			</script>
 	
+			<!--금일 같은책을 3번 이상 대여/반납했을경우 -->
+			<script>
+			    let sameRentalError = "${sameRentalError}";
+				    if (sameRentalError) {
+				        alert(sameRentalError);
+				    }
+			</script>
+		
+		
+			<!-- 금일 대여 도서가 10권이상일경우  -->
+			<script>
+			    let todayRentalError = "${todayRentalError}";
+				    if (todayRentalError) {
+				        alert(todayRentalError);
+				    }
+			</script>
+		
 	
-		<!--반납완료 메시지-->
+		<!--대여완료 메시지-->
  		<script>
 		    let subject = "${subject}";
 			    if (subject) {
-			        alert(subject + "이(가) 대여되었습니다");
+			        alert(subject + "이(가) 대여가 완료되었습니다");
 			    }
 		</script>
+		
+		
 		
 		
 <!-- 다크모드 -->

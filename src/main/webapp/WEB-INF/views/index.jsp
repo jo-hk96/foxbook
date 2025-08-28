@@ -7,6 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/index.css" />
+<!-- ICON css  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22256%22 height=%22256%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-size=%2290%22>🌠</text></svg>" />
@@ -52,10 +58,10 @@
 				</form>
 				<div class="vertical-slider">
 					  <div class="slider-content">
-						    <div class="menu-item"><a href="/BookList?keyword=행복한 가족을 만드는 가족생활백서">[추천도서]&lt;행복한 가족을 만드는 가족생활백서&gt; 방규원</a></div>
-						    <div class="menu-item"><a href="/BookList?keyword=훌쩍 커버린 15세, 이제 부모가 말을 걸 차례다">[추천도서]&lt;훌쩍 커버린 15세, 이제 부모가 말을 걸 차례다&gt; 손석한</a></div>
-						    <div class="menu-item"><a href="/BookList?keyword=지리산 둘레길, 사람과 풍경이 만나는 곳">[추천도서]&lt;지리산 둘레길, 사람과 풍경이 만나는 곳&gt; 이송이</a></div>
-						    <div class="menu-item"><a href="/BookList?keyword=항산화제, 내 몸을 살린다">[추천도서]&lt;항산화제, 내 몸을 살린다&gt; 정윤상</a></div>
+						    <div class="menu-item"><a href="/BookList?keyword=행복한 가족을 만드는 가족생활백서"><i class="fa-solid fa-book"></i>추천도서&lt;행복한 가족을 만드는 가족생활백서&gt; 방규원</a></div>
+						    <div class="menu-item"><a href="/BookList?keyword=훌쩍 커버린 15세, 이제 부모가 말을 걸 차례다"><i class="fa-solid fa-book"></i>추천도서&lt;훌쩍 커버린 15세, 이제 부모가 말을 걸 차례다&gt; 손석한</a></div>
+						    <div class="menu-item"><a href="/BookList?keyword=지리산 둘레길, 사람과 풍경이 만나는 곳"><i class="fa-solid fa-book"></i>추천도서&lt;지리산 둘레길, 사람과 풍경이 만나는 곳&gt; 이송이</a></div>
+						    <div class="menu-item"><a href="/BookList?keyword=항산화제, 내 몸을 살린다"><i class="fa-solid fa-book"></i>추천도서&lt;항산화제, 내 몸을 살린다&gt; 정윤상</a></div>
 					  </div>
 					</div>
 				</div>

@@ -16,11 +16,14 @@ public interface BooklistMapper {
 	 //void updateRentalStatus(int ybi_idx, String status);
 
 	 //도서목록 리스트 조회
-	 public List<booklistDTO> getBookList(@Param("params") SearchDTO params, @Param("yu_userid") String yu_userid);
+	 List<booklistDTO> getBookList(@Param("params") SearchDTO params, @Param("yu_userid") String yu_userid);
 	
 	 //대여정보 리스트
 	 List<rentalDTO> rentalList(@Param("params") SearchDTO params, @Param("yu_userid") String yu_userid);
 	 
 	 //반납정보 리스트
 	 List<rentalDTO> returnList(@Param("params") SearchDTO params, @Param("yu_userid") String yu_userid);
+
+	int renCount(String userId);
+
 }

@@ -15,7 +15,6 @@
 /*----로그인 관련----*/
 #header {width:100%; text-align:right; padding: 25px;
    		display: flex;  align-items: center; gap: 35px; 
-  
    		}
 #header a{text-align:center;  color:#003049 ;text-decoration : none; font-size: 30px;}
 #header a:hover{ color:#7BDFF2  }
@@ -31,13 +30,13 @@
 .logo {margin-right: auto;}
 
 
-/*----메인 글자----*/  
+/*----메인 배너----*/  
 
 
 #mainread, #mainread2 {
     width: 90%;
-    max-width: 600px; 
-    margin: 80px auto; 
+    max-width: 700px; 
+    margin: 50px auto; 
     text-align: center;
     color :#003049;
 }
@@ -49,7 +48,7 @@
 /* 배너 슬라이더 */
 .vertical-slider {
   overflow: hidden;
-  margin-top : 20px;
+  margin-top : 40	px;
   height: 30px; /* 한 칸 높이 */
   width: 600px;
   position: relative;
@@ -168,9 +167,8 @@
 
 
 
-/*----검색바 밑 메뉴----*/
+/*----검색바 밑 배너----*/
 #menu2{margin-top: 10px; font-size:20px;}
-#menu2 td{padding:20px;}
 
 #menu2 a{text-decoration: none;}
 #menu2 a:link{color:#003049;}

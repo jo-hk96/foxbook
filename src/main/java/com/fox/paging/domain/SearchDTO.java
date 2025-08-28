@@ -17,7 +17,7 @@ public class SearchDTO {
 	//pageSize: 화면 보여줄 페이지 최대 갯수 
 	public SearchDTO() {
 		this.page = 1;
-		this.recordSize = 10;
+		this.recordSize = 15;
 		this.pageSize = 5;
 	}
 

@@ -2,6 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fox.booklist.mapper.BooklistMapper">
 
+	<select id="renCount" resultType="int">
+			SELECT 
+		   count(*)
+			FROM yb_book_info ybi, yb_rental_info yri 
+			WHERE 
+		    yri.yu_userid = #{yu_userid}
+		    AND ybi.ybi_idx = yri.ybi_idx
+		    AND yri.yri_redate IS NULL 
+	</select>
+
+
 	<!-- 대여책 리스트 -->
 	<select id = "rentalList">
 		SELECT YBI.YBI_IDX, YBI.YBI_SUBJECT, YBI.ybi_publi, YBI.YBI_NAME, to_char(YRI.YRI_RTDATE,'YYYY-MM-DD HH24:MI:SS') YRI_RTDATE, 

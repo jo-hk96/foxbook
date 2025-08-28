@@ -32,16 +32,17 @@ public class Pagination {
         if (params.getPage() > totalPageCount) {
             params.setPage(totalPageCount);
         }
-        // 첫 페이지 번호 계산
+        // 첫 페이지 번호 계산 1 , 11 ,21 ...
         this.startPage = ((params.getPage() - 1) / params.getPageSize()) * params.getPageSize() + 1;
         
-        // 끝 페이지 번호 계산
+        // 끝 페이지 번호 계산 : ex) 시작페이지 1 + 화면에뜨는 게시글 10 = 11 > 11 - 1 = 10
         this.endPage   = this.startPage + params.getPageSize() - 1;
-        //끝페이지보다 시작페이지가 작으면 이전버튼 보여줌
-        	this.existPrevPage = (this.endPage > this.startPage);
+        
+        //현재 페이징 그룹의 시작 페이지가 1보다 클경우 이전 버튼을 보여줌 ex) 1~10 X : 11~21 O
+        this.existPrevPage = (this.startPage > 1);
       
         
-        // 총 페이지보다 끝페이지가 작으면 다음페이지 보여줌
+        // 총페이지수보다 끝페이지수가 작거나 총페이지수가 총 2페이지보다 높을경우 다음 버튼이 나옴
         this.existNextPage = (this.endPage < this.totalPageCount);
         
         // 끝 페이지가 전체 페이지 수보다 큰 경우, 끝 페이지 전체 페이지 수 저장

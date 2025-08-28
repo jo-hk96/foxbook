@@ -125,16 +125,20 @@ public class userController {
 		
 		
 				
-				
-				//rentalList에 일치하는항목이 있는지 확인
-				if(returnList.isEmpty()) {
-					//없다면 neResult로 넘겨줌
-					model.addAttribute("neResult" , true);
-				}else {
-					//결과가 있다면 그대로 넘겨줌
-					model.addAttribute("returnList" , returnList);
-				}
-		
+		//keyword가 비어있지 않거나 혹은 null이 아닐경우
+		 if (params.getKeyword() != null && !params.getKeyword().isEmpty()) {
+			 	//returnList목록에 해당하는 도서가 없다면
+		        if(returnList.isEmpty()) {
+		            //없다면 neResult로 넘겨줌
+		            model.addAttribute("neResult" , true);
+		        } else {
+		            //결과가 있다면 returnList로 넘겨줌
+		            model.addAttribute("returnList" , returnList);
+		        }
+		    } else {
+		        // keyword가 없을 때는 무조건 rentalList를 넘겨줌 (비어있더라도)
+		        model.addAttribute("returnList" , returnList);
+		    }
 		
 		// 1. 반납 목록의 총 개수 조회
 		int totalCount = pagingMapper.returnCount(yu_userid, params.getKeyword());

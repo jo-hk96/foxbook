@@ -168,7 +168,7 @@
     <div class="activity">
       <div class="title">
         <i class="fa-solid fa-book"></i>
-        <span class="text">반납 목록 [반납수 : ${totalCount}]</span>
+        <span class="text">반납 목록 [도서 반납 : ${totalCount}]</span>
       </div>
       <table class="activity-table">
         <thead>
@@ -232,7 +232,7 @@
  			 <script>
 			   let subject = ("${subject}")
 				    if (subject) {
-				        alert(subject + "이(가) 반납되었습니다.");
+				        alert(subject + "이(가) 반납이 완료되었습니다.");
 				    }
 				</script>	
 				
@@ -240,7 +240,7 @@
   <script src="./js/darkmode.js"></script>
   
   
-				
+	<!-- 페이징 -->			
 	<div class = "rentalPaging">
 		<%@include file = "/WEB-INF/include/pagingReturnList.jsp" %>
 	</div>	
