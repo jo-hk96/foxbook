@@ -78,14 +78,22 @@ public class userController {
 		List<rentalDTO> rentalList = booklistMapper.rentalList(params, yu_userid);
 		
 		
-		//rentalList에 일치하는항목이 있는지 확인
-		if(rentalList.isEmpty()) {
-			//없다면 neResult로 넘겨줌
-			model.addAttribute("neResult" , true);
-		}else {
-			//결과가 있다면 그대로 넘겨줌
-			model.addAttribute("rentalList" , rentalList);
-		}
+		// RentalList?keyword= 키워드가 null이 아니거나 또는 비어있지않다면 다음 if 실행
+		 if (params.getKeyword() != null && !params.getKeyword().isEmpty()) {
+			 	//rentalList목록에 해당하는 도서가 없다면
+		        if(rentalList.isEmpty()) {
+		            //없다면 neResult로 넘겨줌
+		            model.addAttribute("neResult" , true);
+		        } else {
+		            //결과가 있다면 그대로 넘겨줌
+		            model.addAttribute("rentalList" , rentalList);
+		        }
+		    } else {
+		        // keyword가 없을 때는 무조건 rentalList를 넘겨줌 (비어있더라도)
+		        model.addAttribute("rentalList" , rentalList);
+		    }
+		    
+		
 		
 		 // 1. 대여 내역의 총 개수 조회
 		int totalCount = pagingMapper.rentalCount(yu_userid, params.getKeyword());
@@ -115,6 +123,9 @@ public class userController {
 		String yu_userid = (String) session.getAttribute("login_id");
 		List<rentalDTO> returnList = booklistMapper.returnList(params, yu_userid);
 		
+		
+				
+				
 				//rentalList에 일치하는항목이 있는지 확인
 				if(returnList.isEmpty()) {
 					//없다면 neResult로 넘겨줌

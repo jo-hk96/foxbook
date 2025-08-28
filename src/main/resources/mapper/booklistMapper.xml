@@ -49,7 +49,7 @@
     </where>
     GROUP BY
     YBI.YBI_IDX, YBI.YBI_SUBJECT, YBI.YBI_PUBLI, YBI.YBI_NAME, YBI.YBI_RENTAL, YBI.YBI_INDATE, YBI.YBI_DEL
-    ORDER BY YBI.YBI_IDX desc
+    ORDER BY YBI.ybi_subject asc
     OFFSET #{params.offset} ROWS FETCH NEXT #{params.recordSize} ROWS ONLY
 </select>
 	

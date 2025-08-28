@@ -3,8 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div>
 
-	<!-- totalCount 가 0 이거나 작을경우 페이징이 안보여요 -->
- 
+ <c:if test = "${totalCount > 0}">
 		<table id = "page">
 			<tr>
 				<c:if test="${searchDTO.pagination.existPrevPage}">
@@ -27,11 +26,14 @@
 				</c:if>	
 			</tr>
 		</table>
-
+</c:if>
 	
 	
-<%-- <c:if test ="${totalCount == 0 }">
+	<c:if test ="${totalCount == 0 }">
 		<h2>도서목록이없습니다</h2>
-	</c:if>	 --%>
+	</c:if>	
 	
 </div>
+
+
+<script src="./js/darkmode.js"></script>

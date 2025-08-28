@@ -58,8 +58,19 @@ public class booklistController {
 		// 4. 페이지네이션 정보와 사용자 ID, 검색 조건으로 목록 조회 (params : keyword)
 		List<booklistDTO> bookList = booklistMapper.getBookList(params, yu_userid); // Mapper에 DTO와 ID를 함께 넘김
 		
+			if(bookList.isEmpty()) {
+				//없다면 neResult로 넘겨줌
+				model.addAttribute("neResult" , true);
+			}else {
+				//결과가 있다면 그대로 넘겨줌
+				model.addAttribute("bookList" , bookList);
+			}
+			
+		
 		// 5. 모델에 데이터 담아 뷰로 전달
+		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("searchDTO", params);
+		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("bookList", bookList);
 		
 		return "list";

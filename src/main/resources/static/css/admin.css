@@ -195,6 +195,7 @@ i.search-box {
 .activity-table {
     border-collapse: collapse;
     border-spacing: 0;
+	white-space: nowrap;
 }
 .activity-table td, .activity-table th {
     padding: 18px;
@@ -430,17 +431,39 @@ footer {
 
 .listPaging{display:flex; justify-content:center; align-items:center; height:10vh;}
 
+/*다크*/
 #page{font-size : 20px; }
 #page td{padding : 20px; }
 #page a{text-decoration: none; color: #7BDFF2;}
-#page a:hover{color : #EFF7F6;}
+#page a:hover{color : blue;}
 
 #page td.active {
-    color: #fff; /* 글자색을 흰색으로 */
-    font-weight: bold; /* 글자를 굵게 */
+    font-weight: bold; 
 }
 
 #page td.active a {
-    color: red; /* 현재 페이지 링크의 글자색을 흰색으로 */
+    color: red; 
 }
 
+/*라이트모드*/
+#page{font-size : 20px; }
+#page td{padding : 20px; }
+#page a{text-decoration: none; color: black;}
+#page a:hover{color : blue;}
+
+#page td.active {
+    font-weight: bold; 
+}
+
+#page td.active a {
+    color: red; 
+}
+
+
+/*--페이징 반응형--*/
+@media(max-width: 780px){
+	
+	
+#page{font-size : 17px; }
+#page td{padding : 17px; }
+}

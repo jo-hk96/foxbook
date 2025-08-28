@@ -79,34 +79,73 @@
         
       </ul>
       <!-- === 로그아웃 / 다크모드 스위치 === -->
-      <ul class="logout-mode">
-        <li>
-          <a href="/logout">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-            <span class="link-name">로그아웃</span>
-          </a>
-        </li>
-        <li class="mode">
-          <a href="#">
-            <div class="switch-icon" id="sun">
-              <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"
-                fill="currentColor">
-                <path
-                  d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM217-433H23v-94h194v94Zm720 0H743v-94h194v94ZM433-743v-194h94v194h-94Zm0 720v-194h94v194h-94ZM261-633 138-754l66-69 122 122-65 68Zm496 495L633-261l66-66 123 120-65 69ZM633-699l121-123 69 65-121 124-69-66ZM138-204l122-124 67 67-120 123-69-66Z" />
-              </svg>
-            </div>
-            <div class="switch-icon" id="moon">
-              <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"
-                fill="currentColor">
-                <path
-                  d="M615-656 490-781l125-125 125 125-125 125Zm200 131-90-91 90-90 91 90-91 91ZM474-55q-87 0-163-32.5T178-177q-57-57-90-133.5T55-474q0-155 100.5-271.5T408-890q-12 101 14.5 198.5T522-522q71 71 168.5 97.5T889-404q-26 151-143 250T474-55Z" />
-              </svg>
-            </div>
-            <span class="link-name" id="modeword">다크모드</span>
-          </a>
-        </li>
-      </ul>
-    </div>
+      <c:if test = "${sessionScope.login_id != null}">
+		      <ul class="logout-mode">
+		        <li>
+		            <a>
+		             <i class="fa-solid fa-users"></i>
+		            <span class="link-name">${sessionScope.login_id}</span>
+		          </a>
+		        </li>
+		        <li>
+		          <a href="/logout">
+		            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+		            <span class="link-name" onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</span>
+		          </a>
+		        </li>
+		        <li class="mode">
+		          <a href="#">
+		            <div class="switch-icon" id="sun">
+		              <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"
+		                fill="currentColor">
+		                <path
+		                  d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM217-433H23v-94h194v94Zm720 0H743v-94h194v94ZM433-743v-194h94v194h-94Zm0 720v-194h94v194h-94ZM261-633 138-754l66-69 122 122-65 68Zm496 495L633-261l66-66 123 120-65 69ZM633-699l121-123 69 65-121 124-69-66ZM138-204l122-124 67 67-120 123-69-66Z" />
+		              </svg>
+		            </div>
+		            <div class="switch-icon" id="moon">
+		              <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"
+		                fill="currentColor">
+		                <path
+		                  d="M615-656 490-781l125-125 125 125-125 125Zm200 131-90-91 90-90 91 90-91 91ZM474-55q-87 0-163-32.5T178-177q-57-57-90-133.5T55-474q0-155 100.5-271.5T408-890q-12 101 14.5 198.5T522-522q71 71 168.5 97.5T889-404q-26 151-143 250T474-55Z" />
+		              </svg>
+		            </div>
+		            <span class="link-name" id="modeword">다크모드</span>
+		          </a>
+		        </li>
+		      </ul>
+	   </c:if>
+	   
+	   
+	<c:if test = "${sessionScope.login_id == null}">   
+	    <ul class="logout-mode">
+		        <li>
+		          <a href="/LoginForm">
+		            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+		            <span class="link-name">로그인</span>
+		          </a>
+		        </li>
+		        <li class="mode">
+		          <a href="#">
+		            <div class="switch-icon" id="sun">
+		              <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"
+		                fill="currentColor">
+		                <path
+		                  d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM217-433H23v-94h194v94Zm720 0H743v-94h194v94ZM433-743v-194h94v194h-94Zm0 720v-194h94v194h-94ZM261-633 138-754l66-69 122 122-65 68Zm496 495L633-261l66-66 123 120-65 69ZM633-699l121-123 69 65-121 124-69-66ZM138-204l122-124 67 67-120 123-69-66Z" />
+		              </svg>
+		            </div>
+		            <div class="switch-icon" id="moon">
+		              <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"
+		                fill="currentColor">
+		                <path
+		                  d="M615-656 490-781l125-125 125 125-125 125Zm200 131-90-91 90-90 91 90-91 91ZM474-55q-87 0-163-32.5T178-177q-57-57-90-133.5T55-474q0-155 100.5-271.5T408-890q-12 101 14.5 198.5T522-522q71 71 168.5 97.5T889-404q-26 151-143 250T474-55Z" />
+		              </svg>
+		            </div>
+		            <span class="link-name" id="modeword">다크모드</span>
+		          </a>
+		        </li>
+		      </ul>
+		</c:if>      
+		      
   </nav>
 
   <!-- ====== 대시보드 ====== -->
@@ -130,36 +169,36 @@
     <div class="activity">
       <div class="title">
         <i class="fa-solid fa-book"></i>
-        <span class="text">대여 목록</span>
+        <span class="text">대여 목록  [대여수 : ${totalCount}]</span>
       </div>
       <table class="activity-table">
         <thead>
           <tr>
-            <th class="table-title">책번호</th>
-            <th class="table-title">책제목</th>
-            <th class="table-title">출판사</th>
-            <th class="table-title">저자</th>
-            <th class="table-title">대여한날짜</th>
-            <th class="table-title">반납여부</th>
-            <th class="table-title">대여/반납</th>
+            <th>책번호</th>
+            <th>책제목</th>
+            <th>출판사</th>
+            <th>저자</th>
+            <th>대여한날짜</th>
+            <th>반납여부</th>
+            <th>대여/반납</th>
           </tr>
         </thead>
         <tbody>
         <c:forEach var = "rentals" items = "${rentalList}" varStatus = "loop">
 			
 		          <tr>
-			            <td class="table-data">${rentals.ybi_idx}</td>
-			            <td class="table-data">${rentals.ybi_subject}</td>
-			            <td class="table-data">${rentals.ybi_publi}</td>
-			            <td class="table-data">${rentals.ybi_name}</td>
-			            <td class="table-data">${rentals.yri_rtdate}</td>
-			            <td class="table-data">${rentals.yri_redate}</td>
+			            <td>${rentals.ybi_idx}</td>
+			            <td>${rentals.ybi_subject}</td>
+			            <td>${rentals.ybi_publi}</td>
+			            <td>${rentals.ybi_name}</td>
+			            <td>${rentals.yri_rtdate}</td>
+			            <td>${rentals.yri_redate}</td>
 			            <td>
 							<c:if test = "${rentals.yri_redate eq '대여중'}">
 								<form action = "/ReturnBook"  method = "get" onsubmit="return confirm('${rentals.ybi_subject}을(를)반납 하시겠습니까?');">
 									<input type="hidden" name="ybi_idx" value="${rentals.ybi_idx}">
 									<input type = "hidden" name ="ybi_subject" 		value = "${rentals.ybi_subject}">
-									<button class="rent-btn" type = "submit">반납하기</button>
+									<button class="rent-btn" type = "submit">반납</button>
 								</form>
 							</c:if>
 						</td>
@@ -179,7 +218,7 @@
 		<script>
 	        // 서버에서 전달받은 값이 true인지 확인
 	        <c:if test="${neResult}">
-	            alert("대여도서목록이 없습니다.");
+	            alert("해당하는 대여내역이 없습니다.");
 	        </c:if>
 	    </script>
     

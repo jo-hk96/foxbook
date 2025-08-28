@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22256%22 height=%22256%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-size=%2290%22>🌠</text></svg>" />
 <title>여우별 도서관</title>
 </head>
+
 <body id="back">
 
 	<main>
@@ -30,7 +32,7 @@
 				<c:if test="${sessionScope.login_id != null}">
 					<a class = "nohover">${sessionScope.login_id}님 반갑습니다!</a>
 					<a href="/RentalList">내 정보</a>
-					<a href="/logout">로그아웃</a>
+					<a href="/logout"  onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a>
 				</c:if>
 					<a href="/" class="dark"><img src="/img/moon.svg"
 									id="moonimg" height="30" alt="moon" /></a>
@@ -48,16 +50,16 @@
 						<i class="fa-solid fa-magnifying-glass fa-xl" style="color: #003049;"></i>
 					</button>
 				</form>
-			<table id="menu2">
-				<tr>
-					<td><a href="/BookList">도서목록</a></td>
-					<td><a href="">공지사항</a></td>
-					<td><a href="">##</a></td>
-				</tr>
-			</table>
-		</div>
+				<div class="vertical-slider">
+					  <div class="slider-content">
+						    <div class="menu-item"><a href="/BookList?keyword=행복한 가족을 만드는 가족생활백서">[추천도서]&lt;행복한 가족을 만드는 가족생활백서&gt; 방규원</a></div>
+						    <div class="menu-item"><a href="/BookList?keyword=훌쩍 커버린 15세, 이제 부모가 말을 걸 차례다">[추천도서]&lt;훌쩍 커버린 15세, 이제 부모가 말을 걸 차례다&gt; 손석한</a></div>
+						    <div class="menu-item"><a href="/BookList?keyword=지리산 둘레길, 사람과 풍경이 만나는 곳">[추천도서]&lt;지리산 둘레길, 사람과 풍경이 만나는 곳&gt; 이송이</a></div>
+						    <div class="menu-item"><a href="/BookList?keyword=항산화제, 내 몸을 살린다">[추천도서]&lt;항산화제, 내 몸을 살린다&gt; 정윤상</a></div>
+					  </div>
+					</div>
+				</div>
 	</main>
-	
 	<!--푸터 -->
 	<footer>
 		<div id="footer">
@@ -65,24 +67,6 @@
 				FoxStar Library. All rights reserved.</span><br>
 		</div>
 	</footer>
-	
-	
-	
-		<!--입력값없이 검색시-->
-		<script>
-			function eq(){
-				const keywordInput = document.querySelector('.search-txt[name="keyword"]');
-				const keyword = keywordInput.value.trim(); 
-				
-				if(keyword === ""){
-						alert("도서명 입력후 검색해주세요.");
-					return false;
-				}
-				return true;
-			}
-		</script>
-	
-	
 	<!--햄버거메뉴스크립트 -->
 	<script>
    		document.addEventListener('DOMContentLoaded', function() {
@@ -93,5 +77,11 @@
         });
     });
 </script>
+
+
+
+	<!--다크모드 -->
+<!--   <script src="./js/darkmode.js"></script> -->
+
 </body>
 </html>

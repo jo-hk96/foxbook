@@ -26,87 +26,133 @@
 <body>
   <!-- ======= nav ======= -->
   <nav>
-    <!-- === 로고 === -->
-    <div class="logo-name">
-      <div class="logo-image">
-        <a href="/">
-          <img id="logoimg" src="/img/LightModeLogo.png" alt="logo">
-          <img id="logoimgsmall" src="img/SmallLogoLight.png" alt="logo">
-        </a>
-      </div>
-    </div>
-    <!-- === 메뉴 아이템 === -->
-    <div class="menu-items">
-      <ul class="nav-links">
-        <!-- 화면 크기 400 미만일 때 로고 대신 홈 버튼 등장 -->
-        <li id="house">
-          <a href="/">
-            <i class="fa-solid fa-house"></i>
-            <span class="link-name">홈으로</span>
-          </a>
-        </li>
-        <li>
-          <a href="/">
-            <i class="fa-solid fa-clipboard-list"></i>
-            <span class="link-name">메인으로</span>
-          </a>
-        </li>
-        <li>
-          <a href="userlist.html">
-            <i class="fa-solid fa-users"></i>
-            <span class="link-name">내 정보 수정</span>
-          </a>
-        </li>
-        <li>
-          <a href="/BookList">
-            <i class="fa-solid fa-book"></i>
-            <span class="link-name">도서 목록</span>
-          </a>
-        </li>
-        <li>
-          <a href="/RentalList">
-            <i class="fa-solid fa-book"></i>
-            <span class="link-name">대여 내역</span>
-          </a>
-        </li>
-        
-        <li>
-          <a href="/ReturnList">
-            <i class="fa-solid fa-book"></i>
-            <span class="link-name">반납 내역</span>
-          </a>
-        </li>
-        
-      </ul>
-      <!-- === 로그아웃 / 다크모드 스위치 === -->
-      <ul class="logout-mode">
-        <li>
-          <a href="/logout">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-            <span class="link-name">로그아웃</span>
-          </a>
-        </li>
-        <li class="mode">
-          <a href="#">
-            <div class="switch-icon" id="sun">
-              <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"
-                fill="currentColor">
-                <path
-                  d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM217-433H23v-94h194v94Zm720 0H743v-94h194v94ZM433-743v-194h94v194h-94Zm0 720v-194h94v194h-94ZM261-633 138-754l66-69 122 122-65 68Zm496 495L633-261l66-66 123 120-65 69ZM633-699l121-123 69 65-121 124-69-66ZM138-204l122-124 67 67-120 123-69-66Z" />
-              </svg>
-            </div>
-            <div class="switch-icon" id="moon">
-              <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"
-                fill="currentColor">
-                <path
-                  d="M615-656 490-781l125-125 125 125-125 125Zm200 131-90-91 90-90 91 90-91 91ZM474-55q-87 0-163-32.5T178-177q-57-57-90-133.5T55-474q0-155 100.5-271.5T408-890q-12 101 14.5 198.5T522-522q71 71 168.5 97.5T889-404q-26 151-143 250T474-55Z" />
-              </svg>
-            </div>
-            <span class="link-name" id="modeword">다크모드</span>
-          </a>
-        </li>
-      </ul>
-    </div>
+	    <!-- === 로고 === -->
+	    <div class="logo-name">
+	      <div class="logo-image">
+	        <a href="/">
+	          <img id="logoimg" src="/img/LightModeLogo.png" alt="logo">
+	          <img id="logoimgsmall" src="img/SmallLogoLight.png" alt="logo">
+	        </a>
+	      </div>
+	    </div>
+	    <!-- === 메뉴 아이템 === -->
+	    <div class="menu-items">
+	      <ul class="nav-links">
+	        <!-- 화면 크기 400 미만일 때 로고 대신 홈 버튼 등장 -->
+	        <li id="house">
+	          <a href="/">
+	            <i class="fa-solid fa-house"></i>
+	            <span class="link-name">홈으로</span>
+	          </a>
+	        </li>
+	        <li>
+	          <a href="/">
+	            <i class="fa-solid fa-clipboard-list"></i>
+	            <span class="link-name">메인으로</span>
+	          </a>
+	        </li>
+	        <li>
+	          <a href="userlist.html">
+	            <i class="fa-solid fa-users"></i>
+	            <span class="link-name">내 정보 수정</span>
+	          </a>
+	        </li>
+	        <li>
+	          <a href="/BookList">
+	            <i class="fa-solid fa-book"></i>
+	            <span class="link-name">도서 목록</span>
+	          </a>
+	        </li>
+		     <c:if test="${sessionScope.login_id == null}">   
+		      </c:if>  
+		      
+		     <c:if test="${sessionScope.login_id != null}">   
+			        <li>
+			          <a href="/RentalList">
+			            <i class="fa-solid fa-book"></i>
+			            <span class="link-name">대여 내역</span>
+			          </a>
+			        </li>
+			        
+			        <li>
+			          <a href="/ReturnList">
+			            <i class="fa-solid fa-book"></i>
+			            <span class="link-name">반납 내역</span>
+			          </a>
+			        </li>
+		      </c:if> 
+		       
+	      </ul>
+	      <!-- === 로그아웃 / 다크모드 스위치 === -->
+	      
+	      
+	 <c:if test = "${sessionScope.login_id != null}">
+		      <ul class="logout-mode">
+		        <li>
+		          <a>
+		             <i class="fa-solid fa-users"></i>
+		            <span class="link-name">${sessionScope.login_id}</span>
+		          </a>
+		        </li>
+		        <li>
+		          <a href="/logout">
+		            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+		            <span class="link-name" onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</span>
+		          </a>
+		        </li>
+		        <li class="mode">
+		          <a href="#">
+		            <div class="switch-icon" id="sun">
+		              <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"
+		                fill="currentColor">
+		                <path
+		                  d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM217-433H23v-94h194v94Zm720 0H743v-94h194v94ZM433-743v-194h94v194h-94Zm0 720v-194h94v194h-94ZM261-633 138-754l66-69 122 122-65 68Zm496 495L633-261l66-66 123 120-65 69ZM633-699l121-123 69 65-121 124-69-66ZM138-204l122-124 67 67-120 123-69-66Z" />
+		              </svg>
+		            </div>
+		            <div class="switch-icon" id="moon">
+		              <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"
+		                fill="currentColor">
+		                <path
+		                  d="M615-656 490-781l125-125 125 125-125 125Zm200 131-90-91 90-90 91 90-91 91ZM474-55q-87 0-163-32.5T178-177q-57-57-90-133.5T55-474q0-155 100.5-271.5T408-890q-12 101 14.5 198.5T522-522q71 71 168.5 97.5T889-404q-26 151-143 250T474-55Z" />
+		              </svg>
+		            </div>
+		            <span class="link-name" id="modeword">다크모드</span>
+		          </a>
+		        </li>
+		      </ul>
+	   </c:if>
+	   
+	   
+	<c:if test = "${sessionScope.login_id == null}">
+	    <ul class="logout-mode">
+		        <li>
+		          <a href="/LoginForm">
+		            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+		            <span class="link-name">로그인</span>
+		          </a>
+		        </li>
+		        <li class="mode">
+		          <a href="#">
+		            <div class="switch-icon" id="sun">
+		              <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"
+		                fill="currentColor">
+		                <path
+		                  d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM217-433H23v-94h194v94Zm720 0H743v-94h194v94ZM433-743v-194h94v194h-94Zm0 720v-194h94v194h-94ZM261-633 138-754l66-69 122 122-65 68Zm496 495L633-261l66-66 123 120-65 69ZM633-699l121-123 69 65-121 124-69-66ZM138-204l122-124 67 67-120 123-69-66Z" />
+		              </svg>
+		            </div>
+		            <div class="switch-icon" id="moon">
+		              <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"
+		                fill="currentColor">
+		                <path
+		                  d="M615-656 490-781l125-125 125 125-125 125Zm200 131-90-91 90-90 91 90-91 91ZM474-55q-87 0-163-32.5T178-177q-57-57-90-133.5T55-474q0-155 100.5-271.5T408-890q-12 101 14.5 198.5T522-522q71 71 168.5 97.5T889-404q-26 151-143 250T474-55Z" />
+		              </svg>
+		            </div>
+		            <span class="link-name" id="modeword">다크모드</span>
+		          </a>
+		        </li>
+		      </ul>
+		</c:if>      
+		      
   </nav>
 
   <!-- ====== 대시보드 ====== -->
@@ -130,7 +176,7 @@
     <div class="activity">
       <div class="title">
         <i class="fa-solid fa-book"></i>
-        <span class="text">도서 목록</span>
+        <span class="text">도서 목록 [도서수 : ${totalCount}]</span>
       </div>
       <table class="activity-table">
         <thead>
@@ -151,10 +197,10 @@
 				<td>${books.ybi_name}</td>
 				<td>
 					<c:if test="${books.rentalst eq '대여가능'}">	
-							<form action ="/Rent" method ="get" onsubmit="return confirm('${books.ybi_subject}을(를)대여 하시겠습니까?');">
+							<form action ="/Rent" method ="get" onsubmit="return confirmRental('${books.ybi_subject}');">
 								<input type = "hidden" name ="ybi_idx" 		value = "${books.ybi_idx}">
 								<input type = "hidden" name ="ybi_subject" 		value = "${books.ybi_subject}">
-								<button class="rent-btn" type = "submit">대여하기</button>
+								<button class="rent-btn" type = "submit">대여</button>
 							</form>
 					</c:if> 
 					<c:if test="${books.rentalst eq '대여중'}">
@@ -180,7 +226,13 @@
   
   
 	  		<!--목록과 일치하는 도서명이없을시 메시지-->
-	  	
+	  			<script>
+	        // 서버에서 전달받은 값이 true인지 확인
+			        <c:if test="${neResult}">
+			            alert("해당하는 도서내역이 없습니다.");
+			        </c:if>
+			    </script>
+		    
 	  
   
   			<!--검색창을 비우고 검색시 메시지-->
@@ -196,14 +248,29 @@
 					return true;
 				}
 			</script>
-			
-	
+						
+						
+	  		<script>
+					function confirmRental(bookName){
+						var loginId = "${sessionScope.login_id}";
+						//!loginId : 없으면 true 또는 null일 경우 알림창과 함께 로그인창으로 이동
+						if(!loginId || loginId === "null"){
+							if(confirm("로그인후 대여가 가능합니다.\n로그인페이지로 이동하시겠습니까?")){
+							 		 window.location.href = "/LoginForm";
+								}
+							 return false; // form 전송을 막음
+						}
+							  // 로그인이 되어 있다면 confirm 창을 띄움
+							  return confirm(bookName + "을(를) 대여 하시겠습니까?");
+				}
+			</script>
+						
+						
+						
+						
 				
   <!-- ===== 다크모드 전환, 메뉴 토글 스크립트 ===== -->
   <script src="./js/darkmode.js"></script>
-  
-  
-				
 
 </body>
 
