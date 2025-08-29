@@ -31,7 +31,7 @@
 </c:if>	
 
 <c:if test ="${totalCount == 0 }">
-	<h2>대여목록이없습니다</h2>
+	<h2 id = "notBookList">대여목록이없습니다</h2>
 </c:if>	
 	
 	

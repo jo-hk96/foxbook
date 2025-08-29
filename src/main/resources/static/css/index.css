@@ -48,7 +48,7 @@
 /* 배너 슬라이더 */
 .vertical-slider {
   overflow: hidden;
-  margin-top : 40	px;
+  margin-top : 30px;
   height: 30px; /* 한 칸 높이 */
   width: 600px;
   position: relative;
@@ -168,7 +168,7 @@
 
 
 /*----검색바 밑 배너----*/
-#menu2{margin-top: 10px; font-size:20px;}
+#menu2{margin-top: 20px; font-size:20px;}
 
 #menu2 a{text-decoration: none;}
 #menu2 a:link{color:#003049;}
@@ -197,25 +197,7 @@ main {
 
 
 
-/* 햄버거메뉴 */
 
-#burger-menu {
-    display: none;
-    cursor: pointer;
-}
-
-#burger-menu span {
-    display: block;
-    width: 30px;
-    height: 3px;
-    background: #003049;
-    margin: 5px 0;
-}
-
-#nav-menu {
-    display: flex;
-    gap: 35px;
-}
 /*-------반응형-------*/
 
 
@@ -244,6 +226,27 @@ main {
         margin: 0; 
     }
     
+    /* 햄버거메뉴 */
+
+	#burger-menu {
+	    display: none;
+	    cursor: pointer;
+	}
+	
+	#burger-menu span {
+	    display: block;
+	    width: 30px;
+	    height: 3px;
+	    background: #003049;
+	    margin: 5px 0;
+	}
+	
+	#nav-menu {
+		white-space: nowrap;
+	    display: flex;
+	    gap: 35px;
+	}
+		    
     
     /*--메인로고 이미지--*/
 	#logoimg {height:30px;}
@@ -329,7 +332,7 @@ main {
 	text-decoration: none;
 	font-size:17px;
 	color: #003049;
-}
+	}
 
     
 }

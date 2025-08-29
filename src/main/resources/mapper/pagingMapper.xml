@@ -3,15 +3,15 @@
 <mapper namespace="com.fox.paging.mapper.PagingMapper">
 	
 	
-	<select id="getTodaySameBookCount" >
-	    SELECT COUNT(*) FROM yb_rental_info
-	    WHERE yu_userid = #{userId}
-	    AND ybi_idx = #{ybi_idx}
-	    AND to_char(yri_rtdate, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD')
-	    AND to_char(yri_redate, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD')
+	<!--전체 갯수-->
+	<select id="count">
+		SELECT COUNT(*)
+	    FROM YB_BOOK_INFO
+	    WHERE 1=1
+	    <if test="keyword != null and keyword != ''">
+	        AND (YBI_SUBJECT LIKE '%' || #{keyword} || '%')
+	    </if>
 	</select>
-	
-	
 	
 	
 	<!--대여갯수-->
@@ -40,16 +40,6 @@
 		    <if test="keyword != null and keyword != ''">
 	       	 	AND (YBI_SUBJECT LIKE '%' || #{keyword} || '%')
 	  	 	 </if>
-	</select>
-	
-	<!--전체 갯수-->
-	<select id="count">
-		SELECT COUNT(*)
-	    FROM YB_BOOK_INFO
-	    WHERE 1=1
-	    <if test="keyword != null and keyword != ''">
-	        AND (YBI_SUBJECT LIKE '%' || #{keyword} || '%')
-	    </if>
 	</select>
 	
 	

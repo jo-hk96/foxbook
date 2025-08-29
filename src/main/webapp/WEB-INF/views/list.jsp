@@ -11,7 +11,7 @@
   <title>도서 목록</title>
   <!-- CSS -->
   <link rel="stylesheet" href="/css/common.css">
-  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="stylesheet" href="/css/menu.css">
 
   <!-- Icon CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
@@ -45,27 +45,28 @@
 	            <span class="link-name">홈으로</span>
 	          </a>
 	        </li>
-	        <li>
+	       <!--  <li>
 	          <a href="/">
 	            <i class="fa-solid fa-clipboard-list"></i>
 	            <span class="link-name">메인으로</span>
 	          </a>
-	        </li>
-	        <li>
-	          <a href="userlist.html">
-	            <i class="fa-solid fa-users"></i>
-	            <span class="link-name">내 정보 수정</span>
-	          </a>
-	        </li>
+	        </li> -->
+	        
+	      <%--   <c:if test = "${sessionScope.login_id != null}">
+		        <li>
+		          <a href="userInfo.jsp">
+		            <i class="fa-solid fa-users"></i>
+		            <span class="link-name">내 정보 수정</span>
+		          </a>
+		        </li>
+	        </c:if> --%>
+	        
 	        <li>
 	          <a href="/BookList">
 	            <i class="fa-solid fa-book"></i>
 	            <span class="link-name">도서 목록</span>
 	          </a>
 	        </li>
-		     <c:if test="${sessionScope.login_id == null}">   
-		      </c:if>  
-		      
 		     <c:if test="${sessionScope.login_id != null}">   
 			        <li>
 			          <a href="/RentalList">
@@ -94,6 +95,16 @@
 		            <span class="link-name">${sessionScope.login_id}</span>
 		          </a>
 		        </li>
+		        
+		        <c:if test = "${sessionScope.login_id != null}">
+			        <li>
+			          <a href="/userInfo">
+			            <i class="fa-solid fa-users"></i>
+			            <span class="link-name">내 정보 수정</span>
+			          </a>
+			        </li>
+	       	 	</c:if>
+	        
 		        <li>
 		          <a href="/logout">
 		            <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -249,7 +260,7 @@
 				}
 			</script>
 						
-						
+			<!--로그인상태가 아닐시-->	
 	  		<script>
 					function confirmRental(bookName){
 						var loginId = "${sessionScope.login_id}";
@@ -264,10 +275,8 @@
 							  return confirm(bookName + "을(를) 대여 하시겠습니까?");
 				}
 			</script>
-						
-						
-						
-						
+		
+			
 				
   <!-- ===== 다크모드 전환, 메뉴 토글 스크립트 ===== -->
   <script src="./js/darkmode.js"></script>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fox.bookuser.mapper.UserMapper">
 	
-	<!--유저아이디 들고오기-->
+	<!--유저아이디-->
 	<select id = "getUser" resultType = "com.fox.bookuser.domain.userDTO">
 		select yu_userid,yu_passwd
 		from yb_user

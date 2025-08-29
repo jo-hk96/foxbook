@@ -11,7 +11,7 @@
   <title>반납 내역</title>
   <!-- CSS -->
   <link rel="stylesheet" href="/css/common.css">
-  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="stylesheet" href="/css/menu.css">
 
   <!-- Icon CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
@@ -45,18 +45,20 @@
             <span class="link-name">홈으로</span>
           </a>
         </li>
-        <li>
+       <!--  <li>
           <a href="/">
             <i class="fa-solid fa-clipboard-list"></i>
             <span class="link-name">메인으로</span>
           </a>
-        </li>
-        <li>
-          <a href="userlist.html">
-            <i class="fa-solid fa-users"></i>
-            <span class="link-name">내 정보 수정</span>
-          </a>
-        </li>
+        </li> -->
+	        <%-- <c:if test = "${sessionScope.login_id != null}">
+		        <li>
+		          <a href="userInfo.jsp">
+		            <i class="fa-solid fa-users"></i>
+		            <span class="link-name">내 정보 수정</span>
+		          </a>
+		        </li>
+	        </c:if> --%>
         <li>
           <a href="/BookList">
             <i class="fa-solid fa-book"></i>
@@ -87,6 +89,14 @@
 		            <span class="link-name">${sessionScope.login_id}</span>
 		          </a>
 		        </li>
+		           <c:if test = "${sessionScope.login_id != null}">
+				        <li>
+				          <a href="/userInfo">
+				            <i class="fa-solid fa-users"></i>
+				            <span class="link-name">내 정보 수정</span>
+				          </a>
+				        </li>
+	      		  </c:if>
 		        <li>
 		          <a href="/logout">
 		            <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -168,7 +178,7 @@
     <div class="activity">
       <div class="title">
         <i class="fa-solid fa-book"></i>
-        <span class="text">반납 목록 [도서 반납 : ${totalCount}]</span>
+        <span class="text">반납 목록 [반납 도서 : ${totalCount}]</span>
       </div>
       <table class="activity-table">
         <thead>
@@ -193,9 +203,16 @@
 		            <td>${returns.yri_rtdate}</td>
 		            <td>${returns.yri_redate}</td>
 		            <td>
-						<c:if test = "${not empty returns.yri_redate and returns.yri_redate ne '대여중'}">
-								<span class="returned-status">반납완료</span>
-						</c:if>	
+						<c:choose>
+						   <c:when test="${not empty calcReturnDays[loop.index] and calcReturnDays[loop.index].comm eq '기간만료'  }">
+						       <span class="status">기간만료반납</span>
+						   </c:when>
+				           <c:otherwise>
+				                <c:if test="${not empty returns.yri_redate}">
+				                    <span class="returned-status">반납완료</span>
+				                </c:if>
+				           </c:otherwise>
+						</c:choose>
 					</td>
 				</tr>
 		</c:forEach>
@@ -204,7 +221,7 @@
     </div>
   </section>
   
-	  		<!--목록과 일치하는 도서명이없을시 메시지-->
+	  		<!--반납목록검색중 일치하지않을시-->
 	  		<script>
 		        // 서버에서 전달받은 값이 true인지 확인
 		        <c:if test="${neResult}">
@@ -236,9 +253,10 @@
 				    }
 				</script>	
 				
-  <!-- ===== 다크모드 전환, 메뉴 토글 스크립트 ===== -->
-  <script src="./js/darkmode.js"></script>
-  
+				
+	  <!--다크모드-->
+	  <script src="./js/darkmode.js"></script>
+	  
   
 	<!-- 페이징 -->			
 	<div class = "rentalPaging">
@@ -247,5 +265,4 @@
 	
 
 </body>
-
 </html>

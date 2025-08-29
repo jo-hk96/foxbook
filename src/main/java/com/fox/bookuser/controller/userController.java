@@ -33,6 +33,9 @@ public class userController {
 	@Autowired
 	private PagingMapper pagingMapper;
 	
+	@Autowired
+	private RentalMapper rentalMapper;
+	
 	
 	@RequestMapping("/LoginForm")
 	public String loginForm() {
@@ -122,9 +125,8 @@ public class userController {
 	public String returnList(SearchDTO params, HttpSession session , Model model) {
 		String yu_userid = (String) session.getAttribute("login_id");
 		List<rentalDTO> returnList = booklistMapper.returnList(params, yu_userid);
+		List<rentalDTO> calcReturnDays = rentalMapper.calcReturnDays(params);
 		
-		
-				
 		//keyword가 비어있지 않거나 혹은 null이 아닐경우
 		 if (params.getKeyword() != null && !params.getKeyword().isEmpty()) {
 			 	//returnList목록에 해당하는 도서가 없다면
@@ -136,8 +138,9 @@ public class userController {
 		            model.addAttribute("returnList" , returnList);
 		        }
 		    } else {
-		        // keyword가 없을 때는 무조건 rentalList를 넘겨줌 (비어있더라도)
+		        // keyword가 없을 때는 무조건 넘겨줌 (비어있더라도)
 		        model.addAttribute("returnList" , returnList);
+		        model.addAttribute("calcReturnDays",calcReturnDays);
 		    }
 		
 		// 1. 반납 목록의 총 개수 조회
@@ -152,6 +155,9 @@ public class userController {
 		//pagination 객체 생성
 		Pagination pagination = new Pagination(totalCount , params);
 		params.setPagination(pagination);
+		
+		
+		
 		
 		//페이징,대여리스트,유저아이디
 		model.addAttribute("searchDTO", params);

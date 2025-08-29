@@ -30,6 +30,7 @@
 			<div id="burger-menu">
 				<span></span> <span></span> <span></span>
 			</div>
+			
 			<div id="nav-menu">
 				<c:if test="${sessionScope.login_id == null}">
 					<a href="/LoginForm">로그인</a>

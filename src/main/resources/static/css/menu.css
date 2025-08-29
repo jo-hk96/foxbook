@@ -443,7 +443,6 @@ footer {
 .dark #page a:hover {
     display: inline-block; color: #EFF7F6; border:1px; border-radius: 7px; padding:10px; background:var(--primary-color);
 }
-#003049
 
 
 /*라이트모드*/
@@ -467,3 +466,8 @@ footer {
 #page{font-size : 17px; }
 #page td{padding : 17px; }
 }
+
+
+#notBookList{ color: #003049; padding:10px; }
+
+.dark #notBookList{ color: #EFF7F6; padding:10px; }

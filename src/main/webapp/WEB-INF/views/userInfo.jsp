@@ -10,7 +10,7 @@
   <title>여우별 도서관</title>
   <!-- CSS -->
   <link rel="stylesheet" href="css/common.css">
-  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/menu.css">
 
   <!-- Icon CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
@@ -28,7 +28,7 @@
     <!-- === 로고 === -->
     <div class="logo-name">
       <div class="logo-image">
-        <a href="index.html">
+        <a href="/">
           <img id="logoimg" src="img/LightModeLogo.png" alt="logo">
           <img id="logoimgsmall" src="img/SmallLogoLight.png" alt="logo">
         </a>
@@ -39,27 +39,27 @@
       <ul class="nav-links">
         <!-- 화면 크기 400 미만일 때 로고 대신 홈 버튼 등장 -->
         <li id="house">
-          <a href="index.html">
+          <a href="/">
             <i class="fa-solid fa-house"></i>
-            <span class="link-name">홈으로</span>
+            <span class="link-name">##</span>
           </a>
         </li>
         <li>
-          <a href="admin.html">
+          <a href="/">
             <i class="fa-solid fa-clipboard-list"></i>
-            <span class="link-name">메인으로</span>
+            <span class="link-name">##</span>
           </a>
         </li>
         <li>
-          <a href="userlist.html">
+          <a href="/">
             <i class="fa-solid fa-users"></i>
-            <span class="link-name">사용자 목록</span>
+            <span class="link-name">##</span>
           </a>
         </li>
         <li>
-          <a href="booklist.html">
+          <a href="/">
             <i class="fa-solid fa-book"></i>
-            <span class="link-name">도서 목록</span>
+            <span class="link-name">##</span>
           </a>
         </li>
       </ul>
@@ -110,7 +110,7 @@
     <div class="activity">
       <div class="title">
         <i class="fa-solid fa-users"></i>
-        <span class="text">사용자 목록</span>
+        <span class="text" style = "font-size: 50px">내 정보 수정란 입니다. 추후 변경예정</span>
       </div>
       <table class="activity-table">
         <thead>

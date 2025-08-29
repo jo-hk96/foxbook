@@ -11,7 +11,7 @@
   <title>대여 내역</title>
   <!-- CSS -->
   <link rel="stylesheet" href="/css/common.css">
-  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="stylesheet" href="/css/menu.css">
 
   <!-- Icon CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
@@ -20,9 +20,7 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22256%22 height=%22256%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 dominant-baseline=%22central%22 text-anchor=%22middle%22 font-size=%2290%22>🌠</text></svg>" />
-
 </head>
-
 <body>
   <!-- ======= nav ======= -->
   <nav>
@@ -45,18 +43,20 @@
             <span class="link-name">홈으로</span>
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a href="/">
             <i class="fa-solid fa-clipboard-list"></i>
             <span class="link-name">메인으로</span>
           </a>
-        </li>
-        <li>
-          <a href="userlist.html">
-            <i class="fa-solid fa-users"></i>
-            <span class="link-name">내 정보 수정</span>
-          </a>
-        </li>
+        </li> -->
+	     <%--    <c:if test = "${sessionScope.login_id != null}">
+		        <li>
+		          <a href="userInfo.jsp">
+		            <i class="fa-solid fa-users"></i>
+		            <span class="link-name">내 정보 수정</span>
+		          </a>
+		        </li>
+	        </c:if> --%>
         <li>
           <a href="/BookList">
             <i class="fa-solid fa-book"></i>
@@ -87,6 +87,14 @@
 		            <span class="link-name">${sessionScope.login_id}</span>
 		          </a>
 		        </li>
+	          <c:if test = "${sessionScope.login_id != null}">
+			        <li>
+			          <a href="/userInfo">
+			            <i class="fa-solid fa-users"></i>
+			            <span class="link-name">내 정보 수정</span>
+			          </a>
+			        </li>
+        		</c:if>
 		        <li>
 		          <a href="/logout">
 		            <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -169,7 +177,7 @@
     <div class="activity">
       <div class="title">
         <i class="fa-solid fa-book"></i>
-        <span class="text">대여 목록  [도서 대여 : ${totalCount}]</span>
+        <span class="text">대여 목록  [대여 도서 : ${totalCount}]</span>
       </div>
       <table class="activity-table">
         <thead>
@@ -209,9 +217,8 @@
       </table>
     </div>
   </section>
-  	<div class = "rentalPaging">
-		<%@include file = "/WEB-INF/include/pagingRentalList.jsp" %>
-	</div>	
+  
+  	
 	
 	
 		<!--목록과 일치하는 도서명이없을시 메시지-->
@@ -254,21 +261,27 @@
 				        alert(todayRentalError);
 				    }
 			</script>
+			
 		
-	
-		<!--대여완료 메시지-->
- 		<script>
-		    let subject = "${subject}";
-			    if (subject) {
-			        alert(subject + "이(가) 대여가 완료되었습니다");
-			    }
-		</script>
+			<!--대여완료 메시지-->
+	 		<script>
+			    let subject = "${subject}";
+				    if (subject) {
+				        alert(subject + "이(가) 대여가 완료되었습니다");
+				    }
+			</script>
 		
 		
 		
 		
 <!-- 다크모드 -->
   <script src="./js/darkmode.js"></script>
+  
+  
+  
+<!--페이징-->
+	<div class = "rentalPaging">
+		<%@include file = "/WEB-INF/include/pagingRentalList.jsp" %>
+	</div>	
 </body>
-
 </html>

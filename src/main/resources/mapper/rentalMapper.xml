@@ -2,8 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fox.bookrental.mapper.RentalMapper">
 	
+	 
+	<!-- 모든 사용자의 대여내역 리스트 -->
+	<select id ="notReturnsBooks" >
+		select * from yb_rental_info
+		where yri_redate is null;
+	</select>
 	
-	<!--대여일자업뎃-->
+	
+	<!--대여일자 삽입-->
 	<insert id = "insertRental">
 		insert into yb_rental_info (yri_idx , yri_rtdate, ybi_idx, yu_userid )
 		values(
@@ -12,14 +19,32 @@
 		)
 	</insert>
 	
-	<!-- 반납일자업뎃 -->
+	<!-- 반납일자 삽입-->
 	<update id="updateRental">
 	    UPDATE yb_rental_info	
 	    SET YRI_REDATE = sysdate
 	    WHERE YU_USERID = #{yu_userid} AND YBI_IDX = #{ybi_idx} AND YRI_REDATE IS NULL
 	</update>
 
-
+	
+	<!--대여/반납 갯수조회-->
+	<select id="getTodaySameBookCount" >
+	    SELECT COUNT(*) FROM yb_rental_info
+	    WHERE yu_userid = #{userId}
+	    AND ybi_idx = #{ybi_idx}
+	    AND to_char(yri_rtdate, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD')
+	    AND to_char(yri_redate, 'YYYY-MM-DD') = to_char(sysdate, 'YYYY-MM-DD')
+	</select>
+	
+	
+	
+	<!--기간만료 삽입-->
+	<select id = "calcReturnDays">
+		select 
+  		to_date(yri_redate) - to_date(yri_rtdate) as dat, 
+    	case when to_date(yri_redate) - to_date(yri_rtdate) >= 7 then '기간만료' else '반납완료' end comm , ybi_idx
+		from yb_rental_info
+	</select>
 	
 	
 
