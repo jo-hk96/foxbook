@@ -15,4 +15,8 @@ public class rentalDTO {
 	private String ybi_publi; // 출판사
 	private String ybi_name; // 이름
 	
+	//
+	private String comm; // 기간만료,반납가능
+	
+	
 }

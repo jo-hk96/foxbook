@@ -19,5 +19,16 @@
 	        </form>
 		</div>
 	</div>
+	
+	
+		<!--로그인하지않았을경우 -->
+					<script>
+					    let loginError = "${loginError}";
+						    if (loginError) {
+						        alert(loginError);
+						    }
+					</script>
+					
+					
 </body>
 </html>

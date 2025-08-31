@@ -11,7 +11,6 @@ import com.fox.bookuser.domain.userDTO;
 @Mapper
 public interface UserMapper {
 	
-	
 	//로그인 시 정보 확인
 	userDTO getUser( userDTO userDTO);
 	

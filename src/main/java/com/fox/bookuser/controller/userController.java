@@ -36,7 +36,6 @@ public class userController {
 	@Autowired
 	private RentalMapper rentalMapper;
 	
-	
 	@RequestMapping("/LoginForm")
 	public String loginForm() {
 		return "login_sample";
@@ -45,9 +44,7 @@ public class userController {
 	
 	@RequestMapping("/login")
 	public String login(userDTO userDTO, HttpSession session, Model model) {
-		
 		userDTO user = userMapper.getUser(userDTO);
-		
 		if(user != null && user.getYu_passwd().equals(userDTO.getYu_passwd())) {
 			session.setAttribute("login_id", user.getYu_userid());
 			return "index";
@@ -59,7 +56,6 @@ public class userController {
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-		
 		//세션 해제
 		session.invalidate();
 		return "redirect:/";
@@ -67,20 +63,21 @@ public class userController {
 	
 	@RequestMapping("/userInfo")
 	public String userInfo() {
-		
-		
 		return "userInfo";
 	}
-	
 	
 	//대여내역 리스트
 	@RequestMapping("/RentalList")
 	public String rentalList(SearchDTO params, HttpSession session ,  Model model) {
 		String yu_userid = (String) session.getAttribute("login_id");
+		
+		if(yu_userid == null) {
+			model.addAttribute("loginError" , "로그인이 필요한 서비스입니다.");
+			return "login_sample";
+		}
+		
 		//리스트 가져오기
 		List<rentalDTO> rentalList = booklistMapper.rentalList(params, yu_userid);
-		
-		
 		// RentalList?keyword= 키워드가 null이 아니거나 또는 비어있지않다면 다음 if 실행
 		 if (params.getKeyword() != null && !params.getKeyword().isEmpty()) {
 			 	//rentalList목록에 해당하는 도서가 없다면
@@ -96,13 +93,10 @@ public class userController {
 		        model.addAttribute("rentalList" , rentalList);
 		    }
 		    
-		
-		
 		 // 1. 대여 내역의 총 개수 조회
 		int totalCount = pagingMapper.rentalCount(yu_userid, params.getKeyword());
 		
-		
-		System.out.println( yu_userid  + "의" + "대여내역갯수:"+ totalCount);
+		System.out.println( yu_userid  + "의 " + "대여내역갯수:"+ totalCount);
 		
 		//pagination 
 		Pagination pagination = new Pagination(totalCount , params);
@@ -124,6 +118,13 @@ public class userController {
 	@RequestMapping("/ReturnList")
 	public String returnList(SearchDTO params, HttpSession session , Model model) {
 		String yu_userid = (String) session.getAttribute("login_id");
+		
+		if(yu_userid == null) {
+			model.addAttribute("loginError", "로그인이 필요한 서비스입니다.");
+			return "login_sample";
+		}
+		
+		
 		List<rentalDTO> returnList = booklistMapper.returnList(params, yu_userid);
 		List<rentalDTO> calcReturnDays = rentalMapper.calcReturnDays(params);
 		
@@ -136,17 +137,15 @@ public class userController {
 		        } else {
 		            //결과가 있다면 returnList로 넘겨줌
 		            model.addAttribute("returnList" , returnList);
-		        }
-		    } else {
+		          	}
+				} else {
 		        // keyword가 없을 때는 무조건 넘겨줌 (비어있더라도)
 		        model.addAttribute("returnList" , returnList);
 		        model.addAttribute("calcReturnDays",calcReturnDays);
-		    }
-		
+		   }
 		// 1. 반납 목록의 총 개수 조회
 		int totalCount = pagingMapper.returnCount(yu_userid, params.getKeyword());
-		
-		System.out.println(yu_userid + "의" + "반납내역갯수:" + totalCount);
+		System.out.println(yu_userid + "의 " + "반납내역갯수:" + totalCount);
 		//페이지가 보다 작을 경우 1로 설정
 		if(params.getPage() < 0) {
 			params.setPage(1);
@@ -155,10 +154,7 @@ public class userController {
 		//pagination 객체 생성
 		Pagination pagination = new Pagination(totalCount , params);
 		params.setPagination(pagination);
-		
-		
-		
-		
+
 		//페이징,대여리스트,유저아이디
 		model.addAttribute("searchDTO", params);
 		model.addAttribute("totalCount", totalCount);

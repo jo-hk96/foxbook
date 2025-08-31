@@ -1,3 +1,14 @@
+
+
+
+/* ARE YOU HAPPY NOW? */
+body{
+    background-color: var(--panel-color);
+}
+
+
+
+
 /* ===== nav ===== */
 nav{
     position: fixed;
@@ -119,7 +130,6 @@ body.dark .nav-links li a:hover .link-name{
     width: calc(100% - 250px);
     padding: 10px 14px;
     transition: var(--tran-05);
-    flex-grow: 1
 }
 nav.close ~ .dashboard{
     left: 73px;
@@ -141,13 +151,11 @@ nav.close ~ .dashboard{
     align-items: flex-start;
 }
 /* ==== 검색 바  ==== */
-
-.search-container {
-    display: flex; /* 부모 요소에 flex 적용 */
+.search-box {
+    display: flex;
     height: 35px;
-    align-items: center; /* 세로 중앙 정렬 */
+    align-items: center;
 }
-
 input.search-box {
     display: flex;
     border: 1px solid var(--border-color);
@@ -169,21 +177,11 @@ i.search-box {
     color: var(--black-light-color);
     cursor: pointer;
 }
-
-
-/* button submit 태그 숨김  */
-.hidden-button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-
 /* === 테이블 위 제목 === */
 .title{
     display: flex;
     align-items: center;
-    margin: 60px 0 30px 0;
+    margin: 20px 0 10px 0;
     padding: 5px;
     color: var(--text-color);
 }
@@ -196,7 +194,6 @@ i.search-box {
 .activity-table {
     border-collapse: collapse;
     border-spacing: 0;
-	white-space: nowrap;
 }
 .activity-table td, .activity-table th {
     padding: 18px;
@@ -217,12 +214,57 @@ i.search-box {
     color: var(--text-color);
 }
 .activity-table tbody tr:hover {
-    background-color: #EFF7F6;
+    background-color: var(--color3);
+}
+.activity-table tbody tr:active {
+    background-color: var(--color2);
 }
 .activity-table .table-data {
     text-align: left;
     vertical-align: top;
 }
+.activity-table .table-link {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+/* === 도서, 사용자 상세 폼 === */
+.form .input-bar {
+    border: none;
+    background-color: lightgray;
+	padding: 12px 15px;
+	margin: 5px 0;
+	width: 300px;
+    
+    font-size: 16px;
+}
+.form .labelname {
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 18px;
+    margin-right: 20px;
+}
+.form .data{
+    color: var(--text-color);
+} 
+
+/* 버튼 */
+.activity .action-btn {
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin-left: 10px;
+  
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+
+  cursor: pointer;
+}
+nav-links
+/* 다크모드 아이콘 */
 .switch-icon {
     width: 30px;
     height: 30px;
@@ -233,29 +275,14 @@ i.search-box {
     justify-content: center;
     color: var(--black-light-color) !important;
 }
+
+/* 로고 작아질 때 */
 nav .logo-name #logoimgsmall {
     display: none;
 }
 nav .logo-name #logoimg.small {
     transform: scale(65%);
     transform-origin: center center;
-}
-
-
-
-/* 대여하기 버튼 */
-form .rent-btn {
-  background-color: var(--rent-button); /* Green */
-  border: none;
-  color: white;
-  padding: 10px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-}
-form .rent-btn:hover {
-  cursor: pointer;
 }
 
 /* 화면 크기 400 미만의 경우 등장하는 홈 버튼 */
@@ -273,6 +300,11 @@ form .rent-btn:hover {
 footer {
     height: 300px;
 }
+
+.activity {
+    padding-bottom: 25px;
+}
+
 
 /* ============== 반응형 ============== */
 @media (min-width: 781px) and (max-width: 1500px) {
@@ -417,57 +449,4 @@ footer {
     #house {
         display: flex;
     }
-    
 }
-
-
-/*--페이징--*/
-.listPaging{display:flex; justify-content:center; align-items:center; height:10vh;}
-.rentalPaging{display:flex; justify-content:center; align-items:center; height:10vh;}
-.returnPaging{display: flex; justify-content: center; align-items: center; height: 10vh;}
-
-
-.dark .listPaging{display:flex; justify-content:center; align-items:center; height:10vh; background-color: var(--panel-color);}
-.dark .rentalPaging{display:flex; justify-content:center; align-items:center; height:10vh;  background-color: var(--panel-color);}
-.dark .returnPaging{display: flex; justify-content: center; align-items: center; height: 10vh;  background-color: var(--panel-color);}
-
-
-/*다크*/
-#page{font-size : 20px; }
-#page td{padding : 5px; }
-.dark #page a {
-      color: #EFF7F6; padding:10px; 
-}
-.dark #page td.active a {
-   display: inline-block;  color: #EFF7F6; border:1px;  border-radius: 7px; padding:10px; background:var(--box1-color);
-}
-.dark #page a:hover {
-    display: inline-block; color: #EFF7F6; border:1px; border-radius: 7px; padding:10px; background:var(--box1-color);
-}
-
-/*라이트모드*/
-#page{font-size : 20px; }
-#page td{padding : 5px; }
-#page a{text-decoration: none; color: black; padding: 10px;}
-#page a:hover{display: inline-block; color: #EFF7F6; border:1px; border-radius: 7px; padding:10px; background:#003049;}
-
-#page td.active {
-    font-weight: bold; 
-}
-
-#page td.active a {
-    display: inline-block; color: #EFF7F6; border:1px; border-radius: 7px; padding:10px; background:#003049;}
-
-
-/*--페이징 반응형--*/
-@media(max-width: 780px){
-	
-	
-#page{font-size : 17px; }
-#page td{padding : 17px; }
-}
-
-
-#notBookList{ color: #003049; padding:10px; }
-
-.dark #notBookList{ color: #EFF7F6; padding:10px; }

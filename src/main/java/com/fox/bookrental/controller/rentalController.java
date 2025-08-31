@@ -66,10 +66,10 @@ public class rentalController {
 		//login_id 세션 불러오기
 		String yu_userid = (String) session.getAttribute("login_id");
 		
+		
 		//유저이름 ,반납일 저장
 		rentalDTO.setYu_userid(yu_userid);
 		rentalMapper.updateRental(rentalDTO);
-		//booklistMapper.updateRentalStatus(rentalDTO.getYbi_idx(), "N");
 		re.addFlashAttribute("subject",ybi_subject);
 		return "redirect:/ReturnList";	
 	}

@@ -21,6 +21,8 @@
     font-family: 'GangwonEdu_OTFBoldA', sans-serif;
 }
 
+
+/*라이트  */
 :root{
     /* ====== 색 ====== */
     --primary-color: #003049;
@@ -32,7 +34,8 @@
     --box1-color: #7BDFF2;
     --box2-color: #B2F7EF;
     --box3-color: #EFF7F6;
-    
+    --rent-button: #003049;
+    --scrollbar : #003049;
     /* ====== Transition ====== */
     --tran-05: all 0.5s ease;
     --tran-03: all 0.3s ease;
@@ -41,12 +44,11 @@
 
 body{
     min-height: 100vh;
-    background-color: var(--panel-color);
 }
 
 /* ===== 다크모드 전환 시 색 ===== */
 body.dark{
-    --primary-color: #3A3B3C;
+    --primary-color: #B7E5FE;
     --panel-color: #242526;
     --text-color: #CCC;
     --black-light-color: #CCC;
@@ -55,6 +57,8 @@ body.dark{
     --box1-color: #3A3B3C;
     --box2-color: #3A3B3C;
     --box3-color: #3A3B3C;
+    --rent-button:#3A3B3C;
+    --scrollbar : #3A3B3C;
 }
 
 /* === 커스텀 스크롤바 CSS === */
@@ -66,7 +70,7 @@ body.dark{
     border-radius: 20px;
 }
 ::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
+    background: var(--scrollbar);
     border-radius: 12px;
     transition: all 0.3s ease;
 }

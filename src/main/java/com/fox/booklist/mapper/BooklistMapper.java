@@ -26,4 +26,6 @@ public interface BooklistMapper {
 
 	int renCount(String userId);
 
+	
+
 }

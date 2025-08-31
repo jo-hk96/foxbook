@@ -43,9 +43,9 @@ public class booklistController {
 		String yu_userid = (String) session.getAttribute("login_id");
 		
 		// 2. 검색 조건에 맞는 전체 게시글 수 조회
-		int totalCount = pagingMapper.count(params);
+		int totalCount = pagingMapper.count(params, yu_userid);
 		
-		System.out.println("전체도서갯수:" + totalCount);
+		System.out.println( yu_userid + "의 대여가능한 전체 도서갯수:" + totalCount);
 		
 		// 3. Pagination 객체 생성 및 SearchDTO에 주입
 		Pagination pagination = new Pagination(totalCount, params);
@@ -66,11 +66,10 @@ public class booklistController {
 				model.addAttribute("bookList" , bookList);
 			}
 			
-		
+			
 		// 5. 모델에 데이터 담아 뷰로 전달
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("searchDTO", params);
-		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("bookList", bookList);
 		
 		return "list";

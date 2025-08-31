@@ -11,7 +11,7 @@ public class SearchDTO {
 	private String keyword;
 	private String searchType;
 	private Pagination pagination;
-	
+	private String yu_userid;
 	
 	//recoredSize: 페이지에 보여줄 게시글 수 
 	//pageSize: 화면 보여줄 페이지 최대 갯수 
