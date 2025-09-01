@@ -49,7 +49,7 @@
 							<a href="/logout"  onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a>
 						</c:if>
 		                <c:if test="${sessionScope.login_id ne null and sessionScope.login_id eq 'admin'}">
-							<a class = "nohover">${sessionScope.login_id}관리자님 반갑습니다!</a>
+							<a class = "nohover">${sessionScope.login_id} [관리자]</a>
 							<a href="/RentalList">관리자 메뉴</a>
 							<a href="/logout"  onclick="return confirm('로그아웃 하시겠습니까?');">로그아웃</a>
 						</c:if>

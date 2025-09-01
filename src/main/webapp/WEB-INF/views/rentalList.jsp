@@ -45,13 +45,13 @@
         </li>
         <li>
           <c:if test="${sessionScope.login_id ne null and sessionScope.login_id eq 'admin'}"> 
-	          <a href="/BookList">
+	          <a href="/BookList?searchType=">
 	            <i class="fa-solid fa-book"></i>
 	            <span class="link-name">관리자 도서 목록</span>
 	          </a>
        	  </c:if>
           <c:if test="${sessionScope.login_id ne null and sessionScope.login_id ne 'admin'}"> 
-	          <a href="/BookList">
+	          <a href="/BookList?searchType=">
 	            <i class="fa-solid fa-book"></i>
 	            <span class="link-name">도서 목록</span>
 	          </a>
@@ -85,6 +85,15 @@
 			          <a href="/ReturnList">
 			            <i class="fa-solid fa-book"></i>
 			            <span class="link-name">관리자 반납 내역</span>
+			          </a>
+			        </li>
+		      </c:if>
+		      
+		       <c:if test="${sessionScope.login_id ne null and sessionScope.login_id eq 'admin'}">
+			        <li>
+			          <a href="/adminPage">
+			            <i class="fa-solid fa-book"></i>
+			            <span class="link-name">관리자 페이지</span>
 			          </a>
 			        </li>
 		      </c:if> 
@@ -200,7 +209,7 @@
     <div class="activity">
       <div class="title">
         <i class="fa-solid fa-book"></i>
-        <span class="text">대여 목록  [대여 도서 : ${totalCount}]</span>
+        <span class="text">대여 목록  [대여 도서 : ${totalCount}]  (3분 이상 대여 자동반납)</span>
       </div>
       <table class="activity-table">
         <thead>

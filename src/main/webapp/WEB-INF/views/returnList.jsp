@@ -47,13 +47,13 @@
         </li>
         <li>
 	        <c:if test="${sessionScope.login_id ne null and sessionScope.login_id eq 'admin'}"> 
-	          <a href="/BookList">
+	          <a href="/BookList?searchType=">
 	            <i class="fa-solid fa-book"></i>
 	            <span class="link-name">관리자 도서 목록</span>
 	          </a>
 	       	</c:if>
 	        <c:if test="${sessionScope.login_id ne null and sessionScope.login_id ne 'admin'}"> 
-	          <a href="/BookList">
+	          <a href="/BookList?searchType=">
 	            <i class="fa-solid fa-book"></i>
 	            <span class="link-name">도서 목록</span>
 	          </a>
@@ -74,7 +74,6 @@
 			          </a>
 			        </li>
 		      </c:if> 
-		      
 		     <c:if test="${sessionScope.login_id ne null and sessionScope.login_id eq 'admin'}">   
 			        <li>
 			          <a href="/RentalList">
@@ -82,15 +81,21 @@
 			            <span class="link-name">관리자 대여 내역</span>
 			          </a>
 			        </li>
-			        
 			        <li>
 			          <a href="/ReturnList">
 			            <i class="fa-solid fa-book"></i>
 			            <span class="link-name">관리자 반납 내역</span>
 			          </a>
 			        </li>
+		       </c:if> 
+		       <c:if test="${sessionScope.login_id ne null and sessionScope.login_id eq 'admin'}">
+			        <li>
+			          <a href="/adminPage">
+			            <i class="fa-solid fa-book"></i>
+			            <span class="link-name">관리자 페이지</span>
+			          </a>
+			        </li>
 		      </c:if> 
-        
       </ul>
       <!-- === 로그아웃 / 다크모드 스위치 === -->
         <ul class="logout-mode">
@@ -110,16 +115,14 @@
 					          </a>
 					        </li>
 					  </c:if>
-			  
-		        <c:if test = "${sessionScope.login_id ne null and sessionScope.longin_id ne 'admin'}">
-			        <li>
-			          <a href="/userInfo">
-			            <i class="fa-solid fa-users"></i>
-			            <span class="link-name">내 정보 수정</span>
-			          </a>
-			        </li>
-	       	 	</c:if>
-	       	 	
+			          <c:if test = "${sessionScope.login_id ne null and sessionScope.longin_id ne 'admin'}">
+				        <li>
+				          <a href="/userInfo">
+				            <i class="fa-solid fa-users"></i>
+				            <span class="link-name">내 정보 수정</span>
+				          </a>
+				        </li>
+		       	 	  </c:if>
 			        <li>
 			          <a href="/logout">
 			            <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -146,8 +149,6 @@
 			          </a>
 			        </li>
 			    </ul>
-	   
-	   
 	<c:if test = "${sessionScope.login_id == null}">   
 	    <ul class="logout-mode">
 		        <li>
@@ -177,7 +178,6 @@
 		        </li>
 		      </ul>
 		</c:if>      
-		      
   </nav>
 
   <!-- ====== 대시보드 ====== -->
@@ -216,7 +216,6 @@
         </thead>
         <tbody>
         <c:forEach var = "returns" items = "${returnList}" varStatus = "loop">
-								
 		        <tr>
 		            <td>${returns.ybi_idx}</td>
 		            <td>${returns.ybi_subject}</td>
@@ -226,7 +225,7 @@
 		            <td>${returns.yri_redate}</td>
 		            <td>
 						<c:choose>
-						   <c:when test="${not empty calcReturnDays[loop.index] and calcReturnDays[loop.index].comm eq '기간만료'  }">
+						   <c:when test="${not empty calcReturnDays[loop.index].comm and calcReturnDays[loop.index].comm eq '기간만료'  }">
 						       <span class="status">기간만료반납</span>
 						   </c:when>
 				           <c:otherwise>

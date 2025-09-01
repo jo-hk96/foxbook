@@ -12,6 +12,25 @@
    		where yu_userid = #{yu_userid , jdbcType=VARCHAR}
    		and yri_redate is null
 	    )
+	    <if test="params.keyword != null and params.keyword != ''">
+		    	and(
+				   	<choose>
+			            <when test="params.searchType == 'searchBookName'">
+			                YBI_SUBJECT LIKE '%' || #{params.keyword} || '%'
+			            </when>
+			            <when test="params.searchType == 'author'">
+			                YBI_NAME LIKE '%' || #{params.keyword} || '%'
+			            </when>
+			            <when test="params.searchType == 'bookNum'">
+			                YBI_IDX = #{params.keyword}
+			            </when>
+			            <when test="params.searchType == 'publi'">
+			                YBI_publi like '%' || #{params.keyword} || '%'
+			            </when>
+			        </choose>
+	    	
+	    	)
+	    </if>
 	</select>
 	
 <!--	    <if test="keyword != null and keyword != ''">

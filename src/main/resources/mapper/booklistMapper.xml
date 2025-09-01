@@ -52,7 +52,20 @@
     LEFT JOIN yb_rental_info YRI ON YBI.ybi_idx = YRI.ybi_idx
     <where>
         <if test="params.keyword != null and params.keyword != ''">
-            YBI.YBI_SUBJECT LIKE '%' || #{params.keyword} || '%'
+        	<choose>
+        	<when test ="params.searchType == 'searchBookName'">
+            	YBI.YBI_SUBJECT LIKE '%' || #{params.keyword} || '%'
+            </when>
+            <when test ="params.searchType == 'author'">
+           	 	YBI.YBI_NAME LIKE '%' || #{params.keyword} || '%'
+            </when>
+            <when test ="params.searchType == 'bookNum'">
+           	 	YBI.YBI_IDX = #{params.keyword}
+            </when>
+            <when test ="params.searchType == 'publi'">
+           	 	YBI.YBI_PUBLI like '%' || #{params.keyword} || '%'
+            </when>
+        </choose>
         </if>
     </where>
      GROUP BY
@@ -61,6 +74,5 @@
     ORDER BY YBI.ybi_subject asc
     OFFSET #{params.offset} ROWS FETCH NEXT #{params.recordSize} ROWS ONLY
 </select>
-	
 	
 </mapper>

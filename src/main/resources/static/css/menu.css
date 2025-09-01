@@ -179,6 +179,14 @@ i.search-box {
   cursor: pointer;
 }
 
+
+/* 검색셀렉터  */
+#searchType{height: 35px; width:120px; text-align:center; font-size:20px; margin-left : 10px;}
+
+.dark #searchType{height: 35px; width:120px; text-align:center; font-size:16px; margin-left:10px;
+					background-color:var(--panel-color); color:#EFF7F6; }
+
+
 /* === 테이블 위 제목 === */
 .title{
     display: flex;

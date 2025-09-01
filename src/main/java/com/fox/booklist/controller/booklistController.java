@@ -34,10 +34,16 @@ public class booklistController {
 		return "index";
 	}
 	
+	@RequestMapping("/adminPage")
+	public String adminPage() {
+		return "admin";
+	}
+	
 	
 	
 	@GetMapping("/BookList")
-	public String getBookList(SearchDTO params, HttpSession session, Model model) {
+	//public String getBookList(@RequestParam("searchType") String searchType, SearchDTO params, HttpSession session, Model model) {
+	public String getBookList(@RequestParam("searchType") String searchType, SearchDTO params, HttpSession session, Model model) {
 		
 		// 1. 세션에서 로그인 사용자 ID 가져오기
 		String yu_userid = (String) session.getAttribute("login_id");
@@ -68,10 +74,10 @@ public class booklistController {
 			
 			
 		// 5. 모델에 데이터 담아 뷰로 전달
+		model.addAttribute("searchType", searchType);
 		model.addAttribute("totalCount", totalCount);
 		model.addAttribute("searchDTO", params);
 		model.addAttribute("bookList", bookList);
-		
 		return "list";
 	}
 }

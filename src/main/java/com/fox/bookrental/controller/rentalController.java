@@ -1,5 +1,6 @@
 package com.fox.bookrental.controller;
 
+import java.time.Instant;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +28,9 @@ public class rentalController {
 	
 	@Autowired
 	private BooklistMapper booklistMapper;
-	
+
+	@Autowired
+	private ThreadPoolTaskScheduler taskScheduler;	
 	
 	//대여
 	@RequestMapping("/Rent")
@@ -49,10 +53,27 @@ public class rentalController {
 	    	 re.addFlashAttribute("todayRentalError", "하루 총 10권까지 대여가 가능합니다.");
 	    	
 	    }else{
-	    	rentalDTO rental = new rentalDTO();
-			rental.setYbi_idx(ybi_idx);
-			rental.setYu_userid(userId);
-			rentalMapper.insertRental(rental);
+	    	final rentalDTO rental = new rentalDTO();
+	    	rental.setYbi_idx(ybi_idx);
+	    	rental.setYu_userid(userId);
+	    	rentalMapper.insertRental(rental);
+			
+			//대여시점으로 시작
+			Runnable autoReturnTask = () ->{
+				rentalMapper.updateRental(rental);
+				System.out.println("사용자:" + userId + " 도서명:"  + ybi_subject + " 기간만료반납이 완료되었습니다" );
+				
+			};
+			
+			//Task스케줄러
+			//5분 뒤 반납
+			long delayTime = 3 * 60 * 1000L;
+			//Instant.now() 현재시각을 Instant객체로 나노초 단위까지 계산 후
+			// 현재시간 + delayTime = 반납시간
+			Instant scheduledInstant = Instant.now().plusMillis(delayTime);
+			taskScheduler.schedule(autoReturnTask, scheduledInstant);
+			
+			System.out.println("사용자:" + userId + " 도서명:"  + ybi_subject + "을(를) 대여하였습니다." );
 			
 			re.addFlashAttribute("subject",ybi_subject);
 	    }

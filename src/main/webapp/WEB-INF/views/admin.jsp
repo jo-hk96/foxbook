@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +30,7 @@
     <!-- === 로고 === -->
     <div class="logo-name">
       <div class="logo-image">
-        <a href="index.html">
+        <a href="/">
           <img id="logoimg" src="img/LightModeLogo.png" alt="logo">
           <img id="logoimgsmall" src="img/SmallLogoLight.png" alt="logo">
         </a>
@@ -36,7 +41,7 @@
       <ul class="nav-links">
         <!-- 화면 크기 400 미만일 때 로고 대신 홈 버튼 등장 -->
         <li id="house">
-          <a href="index.html">
+          <a href="/">
             <i class="fa-solid fa-house"></i>
             <span class="link-name">홈으로</span>
           </a>

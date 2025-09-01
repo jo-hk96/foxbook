@@ -26,8 +26,8 @@ public interface RentalMapper {
 	//모든 사용자의 도서대여리스트
 	List<rentalDTO> notReturnsBooks();
 
-
-
+	
+	//금일자로 부터 반납된 시간 계산
 	List<rentalDTO> calcReturnDays(SearchDTO params);
 	
 	

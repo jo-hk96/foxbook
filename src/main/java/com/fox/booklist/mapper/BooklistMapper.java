@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fox.booklist.domain.booklistDTO;
 import com.fox.bookrental.domain.rentalDTO;
@@ -25,6 +26,8 @@ public interface BooklistMapper {
 	 List<rentalDTO> returnList(@Param("params") SearchDTO params, @Param("yu_userid") String yu_userid);
 
 	int renCount(String userId);
+
+	List<booklistDTO> authorSearch(SearchDTO params, String yu_userid);
 
 	
 

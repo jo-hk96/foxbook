@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -50,13 +50,13 @@
 	        </li>
 	        <li>
 	          <c:if test="${sessionScope.login_id != null and sessionScope.login_id eq 'admin'}"> 
-		          <a href="/BookList">
+		          <a href="/BookList?searchType=">
 		            <i class="fa-solid fa-book"></i>
 		            <span class="link-name">관리자 도서 목록</span>
 		          </a>
 		       </c:if>
 		       <c:if test="${sessionScope.login_id ne null and sessionScope.login_id ne 'admin'}"> 
-		          <a href="/BookList">
+		          <a href="/BookList?searchType=">
 		           	 <i class="fa-solid fa-book"></i>
 		            <span class="link-name">도서 목록</span>
 	          	  </a>
@@ -93,7 +93,15 @@
 			          </a>
 			        </li>
 		      </c:if> 
-		       
+		      
+		      <c:if test="${sessionScope.login_id ne null and sessionScope.login_id eq 'admin'}">
+			        <li>
+			          <a href="/adminPage">
+			            <i class="fa-solid fa-book"></i>
+			            <span class="link-name">관리자 페이지</span>
+			          </a>
+			        </li>
+		      </c:if> 
 	      </ul>
 	      	<!-- === 로그아웃 / 다크모드 스위치 === -->
 			  <ul class="logout-mode">
@@ -159,7 +167,13 @@
 	        <!-- 검색 바 -->
 	      	<form action="/BookList" method="get" onsubmit = "return eq()">
 	      		<div class = "search-container">
-			        <input class="search-box" type="text" name="keyword" placeholder="찾으시는 도서명을 입력하세요">
+			               <select id = "searchType" name="searchType"  onchange="changePlaceholder()">
+							  <option value="searchBookName">도서명</option> <!--th:selected: thymeleaf 속성  -->
+							  <option value="bookNum" >책번호</option>
+							  <option value="author" >저자</option>
+							  <option value="publi" >출판사</option>
+						   </select>
+					<input class="search-box" type="text" name="keyword" id="searchInput" placeholder="찾으시는 도서명을 입력하세요">
 			        <button type = "submit" class ="hidden-button">
 			       	 	<i class="search-box fa-solid fa-magnifying-glass" id="searchbtn"></i>
 			        </button>
@@ -172,6 +186,7 @@
       <div class="title">
         <i class="fa-solid fa-book"></i>
         <span class="text">도서 목록 [대여 가능 도서 : ${totalCount}]</span>
+ 
       </div>
       <table class="activity-table">
         <thead>
@@ -205,15 +220,6 @@
 	</table>
 		    </div>
   </section>
-  
-	  	
-			<div class = "listPaging">
-				<%@include file = "/WEB-INF/include/paging.jsp" %>
-			</div>	
-			
-	  	
-  
-  
 	  		<!--목록과 일치하는 도서명이없을시 메시지-->
 	  			<script>
 	        // 서버에서 전달받은 값이 true인지 확인
@@ -231,7 +237,7 @@
 					const keyword = keywordInput.value.trim(); 
 					
 					if(keyword === ""){
-							alert("찾으시는 도서명 입력후 검색해주세요.");
+							alert("검색어 입력후 검색해주세요.");
 						return false;
 					}
 					return true;
@@ -254,9 +260,62 @@
 							  return confirm(bookName + "을(를) 대여 하시겠습니까?");
 				}
 			</script>
-		
 			
-				
+			
+			<!-- 검색 타입 선택  -->
+			<script>
+			function searchSelect() {
+		        // 1. name이 "keyword"인 input 요소를 가져옴.
+		        var searchInput = document.getElementsByName("keyword")[0];
+		        
+		        // 2. 선택된 검색 타입의 value 값을 가져옴.
+		        var searchTypeSelect = document.getElementById("searchType");
+		        var searchTypeValue = searchTypeSelect.options[searchTypeSelect.selectedIndex].value;
+
+		        // 3. 검색어 값을 가져옴.
+		        var searchKeyword = searchInput.value;
+
+		        // 4. 두 값을 합쳐 URL을 만들고 페이지 이동.
+		        window.location.href = "BookList?searchType=" + searchTypeValue + "&keyword=" + searchKeyword;
+		    }
+			</script>
+			
+			
+			<!-- 셀렉터 선택시 placeholder 값 변경 -->
+			<script>
+				function changePlaceholder(){
+					var searchTypeSelect = document.getElementsByName("searchType")[0];
+					var searchInput = document.getElementById("searchInput");
+					var searchTypeValue = searchTypeSelect.options[searchTypeSelect.selectedIndex].value;
+					
+					var placeholderText = "";
+					
+					 if (searchTypeValue === "searchBookName") {
+						    placeholderText = "찾으시는 도서명을 입력하세요";
+						  } else if (searchTypeValue === "author") {
+						    placeholderText = "찾으시는 저자를 입력하세요";
+						  } else if (searchTypeValue === "bookNum") {
+						    placeholderText = "찾으시는 책번호를 입력하세요";
+						  } else if (searchTypeValue === "publi") {
+						    placeholderText = "찾으시는 출판사를 입력하세요";
+						  } else  {
+							  
+						    // 기본값 또는 다른 옵션
+						    placeholderText = "검색어를 입력하세요";
+						  }
+					 
+					 	searchInput.placeholder = placeholderText;
+					
+				}
+		
+			</script>
+			
+			
+	<!-- 페이징  -->
+		<div class = "listPaging">
+			<%@include file = "/WEB-INF/include/paging.jsp" %>
+		</div>	
+					
   <!-- ===== 다크모드 전환, 메뉴 토글 스크립트 ===== -->
   <script src="./js/darkmode.js"></script>
 
