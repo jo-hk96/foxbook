@@ -85,6 +85,7 @@
             <h3 id="mainread2">안녕하세요 여우별 도서관 입니다.</h3>
             <div class="search-container">
 				<form class="search-box" action="/BookList" method="get" onsubmit = "return eq()">
+					<input type="hidden" name="searchType" value="bookName">
 					<input class="search-txt" type="text" name="keyword" placeholder="도서명을 입력해주세요.">
 					<button class="search-btn" type="submit">
 						<i class="fa-solid fa-magnifying-glass fa-xl"></i>

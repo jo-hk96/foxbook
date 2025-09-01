@@ -415,12 +415,22 @@ body {
        display: none;
        cursor: pointer;
    }
+   
+   
 
    #burger-menu span {	
        display: block;
        width: 30px;
        height: 3px;
        background: #003049;
+       margin: 5px 0;
+    
+   }
+   .dark #burger-menu span {	
+       display: block;
+       width: 30px;
+       height: 3px;
+       background: #7BDFF2;
        margin: 5px 0;
     
    }
@@ -442,8 +452,6 @@ body {
     #nav-menu{
     visibility: hidden;
     flex-direction: column;
-    
-    
     position: fixed; 
     top: 10%;  /* 맨위 넓이 */
     left: 50%; /* 왼쪽 50%만큼 넓이  */
@@ -451,7 +459,7 @@ body {
     width: 80%; /*넓이  */
     height: 40; /*높이  */
     
-    background-color: white; /* 배경색 */
+    background-color: var(--border-color); /* 배경색 */
     text-align: center;
     padding: 20px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

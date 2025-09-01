@@ -168,12 +168,12 @@
 	      	<form action="/BookList" method="get" onsubmit = "return eq()">
 	      		<div class = "search-container">
 			               <select id = "searchType" name="searchType"  onchange="changePlaceholder()">
-							  <option value="searchBookName">도서명</option> <!--th:selected: thymeleaf 속성  -->
+							  <option value="searchBookName">도서명</option>
 							  <option value="bookNum" >책번호</option>
 							  <option value="author" >저자</option>
 							  <option value="publi" >출판사</option>
 						   </select>
-					<input class="search-box" type="text" name="keyword" id="searchInput" placeholder="찾으시는 도서명을 입력하세요">
+					<input class="search-box" type="text" name="keyword" id="searchInput" placeholder="도서명을 입력하세요">
 			        <button type = "submit" class ="hidden-button">
 			       	 	<i class="search-box fa-solid fa-magnifying-glass" id="searchbtn"></i>
 			        </button>
@@ -261,7 +261,6 @@
 				}
 			</script>
 			
-			
 			<!-- 검색 타입 선택  -->
 			<script>
 			function searchSelect() {
@@ -280,7 +279,6 @@
 		    }
 			</script>
 			
-			
 			<!-- 셀렉터 선택시 placeholder 값 변경 -->
 			<script>
 				function changePlaceholder(){
@@ -291,13 +289,13 @@
 					var placeholderText = "";
 					
 					 if (searchTypeValue === "searchBookName") {
-						    placeholderText = "찾으시는 도서명을 입력하세요";
+						    placeholderText = "도서명을 입력하세요";
 						  } else if (searchTypeValue === "author") {
-						    placeholderText = "찾으시는 저자를 입력하세요";
+						    placeholderText = "저자를 입력하세요";
 						  } else if (searchTypeValue === "bookNum") {
-						    placeholderText = "찾으시는 책번호를 입력하세요";
+						    placeholderText = "책번호를 입력하세요";
 						  } else if (searchTypeValue === "publi") {
-						    placeholderText = "찾으시는 출판사를 입력하세요";
+						    placeholderText = "출판사를 입력하세요";
 						  } else  {
 							  
 						    // 기본값 또는 다른 옵션
@@ -305,12 +303,28 @@
 						  }
 					 
 					 	searchInput.placeholder = placeholderText;
-					
 				}
-		
 			</script>
-			
-			
+			<!-- 셀렉터값 검색후에도 고정  -->
+			<SCRIPT>
+				window.onload = function() {
+				    // URL의 쿼리 파라미터 가져오기
+				    const urlParams = new URLSearchParams(window.location.search);
+				    const searchType = urlParams.get('searchType');
+	
+				    if (searchType) {
+				        // searchType 값을 가진 option을 찾아서 selected로 설정
+				        const selectElement = document.getElementById('searchType');
+				        for (let i = 0; i < selectElement.options.length; i++) {
+				            if (selectElement.options[i].value === searchType) {
+				                selectElement.options[i].selected = true;
+				                break;
+				            }
+				        }
+				    }
+				    changePlaceholder(); 
+				};			
+			</SCRIPT>
 	<!-- 페이징  -->
 		<div class = "listPaging">
 			<%@include file = "/WEB-INF/include/paging.jsp" %>
